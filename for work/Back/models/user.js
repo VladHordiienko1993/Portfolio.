@@ -23,9 +23,9 @@ module.exports = (sequelize, DataTypes) => {
       isMale: { type: DataTypes.BOOLEAN, field: "is_male"},
       birthday: { type: DataTypes.DATEONLY, validate: {
         isDate: true,
-        isVlidDate(value){
-          if(isBefore(new Date(), new Date(value))){
-            throw new Error('check your birthday')
+        customValidator(value) {
+          if (new Date(value) > new Date()) {
+            throw new Error("invalid date");
           }
         }
       } },

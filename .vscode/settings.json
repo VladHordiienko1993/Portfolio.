@@ -1,0 +1,17 @@
+{
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "database": "baseToWork",
+      "name": "baseToWork",
+      "username": "postgres",
+      "password": "postgres"
+    }
+  ],
+  "files.exclude": {
+    "**/.DS_Store": false
+  }
+}
