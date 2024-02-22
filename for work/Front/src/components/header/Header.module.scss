@@ -1,0 +1,53 @@
+.navContainer{
+  width: 100%;
+}
+.ulContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between ;
+  align-items: center;
+  color: inherit;
+}
+
+.logoWhiteDiamond{
+  width: 45px;
+  height: 45px;
+}
+.logoSun_Moon{
+  background-color: white;
+  color:white;
+  background: white;
+  border-radius: 15px 15px;
+  width: 22px;
+  height: 22px;
+}
+.logoSun_Moon:hover{
+  background: gold;
+}
+
+.btnSignUp{
+  width: 85px;
+  height: 30px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 5px;
+  background: #FCD535;
+  text-align: center;
+}
+.btnSignUp:hover{
+  background: #fcd435a7;
+}
+
+.linkBtnSingUp{
+  display: flex;
+  justify-content: space-around;
+  align-items:center;
+  font-weight: 550;
+}
+
+.logoBtn{
+  width: 19px;
+  height: 19px;
+}
+

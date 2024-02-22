@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ThemeContext } from '../context';
+
+
+
+
 
 const HomePage = () => {
+  
+  const {useSetClassName} = useContext(ThemeContext);
+  const {classNamePage} = useSetClassName();
+
   return (
-   <>
-   <h1>HOME</h1>
+   <div className={classNamePage()}>
    <button>HOME</button>
-   </>
+   </div>
   );
 }
 

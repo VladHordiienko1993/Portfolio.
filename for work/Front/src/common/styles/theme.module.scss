@@ -1,0 +1,46 @@
+.darkPage {
+  display: block;
+  height: calc(100vh - 140px);
+  background: linear-gradient(to bottom, #1a1a1a 50%, #181A20 56%);
+  color: cornsilk;
+}
+
+.lightPage {
+  display: block;
+  height: calc(100vh - 140px);
+  background: none;
+  background: linear-gradient(to bottom, #f1f1f1 0%, #f3f3f3 76%);
+  color: #000000;
+}
+
+.darkHeader{
+  display: flex;
+  height: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #1a1a1a;
+  color: cornsilk;
+}
+
+.lightHeader{ 
+  display: flex;
+  height: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: white;
+  color: #000000;
+}
+
+
+.darkFooter{
+  height: 140px;
+  display: flex;
+  background-color: #1a1a1a;
+  color: cornsilk;
+}
+.lightFooter{
+  height: 140px;
+  display: flex;
+  background-color: white;
+  color: #000000;
+}
