@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { ThemeContext } from '../context';
-import SignUpForm from '../components/SignUpForm';
+import { ThemeContext } from '../context/index';
+import ChoiceRegistrationOption from '../components/ChoiceRegistrationOption/ChoiceRegistrationOption';
 
 
 
@@ -8,8 +8,8 @@ const SignUpPage = () => {
   const {useSetClassName} = useContext(ThemeContext);
   const {classNamePage} = useSetClassName();
   return (
-   <div className={classNamePage()}>
-   <SignUpForm/>
+     <div className={classNamePage()}>
+     <ChoiceRegistrationOption/>
    </div>
   );
 }

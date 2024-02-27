@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ThemeContext } from "../../context";
 import { toggleTheme } from "../../slices/themeSwitchSlices";
@@ -17,28 +17,49 @@ const Header = () => {
   const dispatch = useDispatch();
   const toggleLogo = () => (theme ? LogoSun : LogoMoon);
   const toggleLogoDiamond = ()=> (theme ? LogoWhiteDiamond : LogoDarkDiamond);
+  const location = useLocation();
+  
 
   return (
     <>
       <div className={classNameHeader()}>
-        <nav className={styles.navContainer}>
-          <ul className={styles.ulContainer}>
-            <Link  to="/"><img className={styles.logoWhiteDiamond} src={toggleLogoDiamond()}></img>
-              Project
+        <div className={styles.containerDiamond}>
+  <Link className={styles.linkDiamond}  to="/"><img className={styles.logoDiamond} src={toggleLogoDiamond()}></img>
+             <h2 className={`${styles.textDiamond} ${styles.generalHover}`}>Project</h2> 
             </Link>
-            <li>Todo List</li>
-            <li>Log in</li>
-            <button className={styles.btnSignUp}><Link className={styles.linkBtnSingUp} to="/signUpPage"><img className={styles.logoBtn} src={LogoBtn} />Sign Up</Link></button>
+        </div>
+        <nav className={styles.containerNav}>
+          {location.pathname === '/signUpWithEmail' ? '' :  <ul className={styles.containerUl}>
+            <Link><li className={`${styles.linkNav} ${styles.generalHover}`}>Chat</li></Link>
+            <Link><li className={`${styles.linkNav} ${styles.generalHover}`}>Movie Library</li></Link>
+            <Link><li className={`${styles.linkNav} ${styles.generalHover}`}>Todo List</li></Link>
+
+          </ul>}
+         
+        </nav>
+
+          <div className={styles.containerLogIn}>
+              <Link><h2 className={`${styles.textLogIn} ${styles.generalHover}`}>Log in</h2></Link> 
+            <Link to="/signUpPage"><button className={styles.btnSignUp}><img className={styles.logoBtn} src={LogoBtn} />Sign Up</button></Link>
             <img
               onClick={() => dispatch(toggleTheme())}
-              className={styles.logoSun_Moon}
+              className={styles.logoSunMoon}
               src={toggleLogo()}
             />
-          </ul>
-        </nav>
+           
+          </div>
+        
       </div>
     </>
   );
 };
 
 export default Header;
+
+
+{/* <button className={styles.btnSignUp}><Link className={styles.linkBtnSingUp} to="/signUpPage"><img className={styles.logoBtn} src={LogoBtn} />Sign Up</Link></button>
+<img
+  onClick={() => dispatch(toggleTheme())}
+  className={styles.logoSun_Moon}
+  src={toggleLogo()}
+/> */}

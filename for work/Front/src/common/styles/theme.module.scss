@@ -15,32 +15,36 @@
 
 .darkHeader{
   display: flex;
+  flex-direction: row;
   height: 50px;
   padding-left: 20px;
-  padding-right: 20px;
+  padding-right: 23px;
   background-color: #1a1a1a;
   color: cornsilk;
+  font-weight: 600;
 }
 
 .lightHeader{ 
   display: flex;
+  flex-direction: row;
   height: 50px;
   padding-left: 20px;
-  padding-right: 20px;
+  padding-right: 23px;
   background-color: white;
   color: #000000;
+  font-weight: 600;
 }
 
 
 .darkFooter{
-  height: 140px;
   display: flex;
+  height: 140px;
   background-color: #1a1a1a;
   color: cornsilk;
 }
 .lightFooter{
-  height: 140px;
   display: flex;
+  height: 140px;
   background-color: white;
   color: #000000;
 }

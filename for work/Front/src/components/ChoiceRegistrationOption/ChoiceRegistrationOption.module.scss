@@ -1,0 +1,114 @@
+.container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  // background-color: red;
+}
+
+.containerForm{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  margin-top: 8em;
+  // padding-left: 5em;
+  // background-color: red;
+
+}
+.containerImg{
+  width: 50%;
+  display: flex;
+  margin-top: 8em;
+}
+
+.textWelcome{
+  font-size: 2em;
+  margin-bottom: 40px;
+  margin-left: 5em;
+}
+
+.btnSingUp{
+  width: 350px;
+  height: 45px;
+  display: flex;
+  align-items:center;
+  margin-left:160px;
+  border: none;
+  border-radius: 5px;
+  background: #FCD535;
+  color: inherit;
+  font-size: 18px;
+  cursor: pointer;
+}
+.btnSingUp:hover{
+  background: #fcd435a7;
+}
+.iconPassKey{
+  width: 22px;
+  height: 22px;
+  margin-left: 5px;
+  margin-right: 62px;
+}
+.textOr{
+  display: flex;
+  align-items: center;
+  margin-left: 160px;
+  font-size: 15px;
+}
+.textOr::before{
+  content:'-----------------------------------------------------------------------------------------------------------------------------------------------';
+  margin-right: 25px;
+  font-size: 3px;
+  font-weight: bold;
+
+}
+.textOr::after{
+  content:'-----------------------------------------------------------------------------------------------------------------------------------------------';
+  margin-left:  25px;
+  font-size: 3px;
+  font-weight: bold; 
+}
+.btnGoogle{
+  width: 350px;
+  height: 45px;
+  display: flex;
+  align-items:center;
+  margin-left:160px;
+  border: none;
+  border-radius: 5px;
+  background-color: #474D57;
+  color: inherit;
+  font-size: 18px;
+  cursor: pointer;
+}
+.iconGoogle{
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+  margin-right: 62px;
+}
+.btnGoogle:hover{
+  background-color: #3b3e42;
+}
+
+.textWrapperforLink{
+  margin-left: 160px;
+  margin-top: 30px;
+  color: #474D57;
+  font-size: 15px;
+  
+}
+.textLink{
+ margin-left: 5px;
+ color:  #FCD535;
+ font-style: normal;
+}
+.textLink:hover{
+  text-decoration: underline;
+}
+
+.LogoChoice{
+  width: 80%;
+  height: 80%;
+}
