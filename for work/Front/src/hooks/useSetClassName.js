@@ -1,4 +1,3 @@
-import React from 'react';
 import cx from "classnames";
 import styles from '../common/styles/theme.module.scss'
 import { useSelector } from 'react-redux';

@@ -1,35 +1,76 @@
-import React from 'react';
-import {useDispatch} from "react-redux";
-import {Field, Form, Formik} from "formik";
-import {createUserRequest} from "../../slices/userSlices";
-import styles from './SignUpForm.module.scss';
-
+import React from "react";
+import { useDispatch} from "react-redux";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { createUserRequest } from "../../slices/userSlices";
+import CONSTANTS from "../../utils/constants/constants";
+import { SCHEMA_SIGN_UP } from "../../utils/schemas";
+import styles from "./SignUpForm.module.scss";
 
 const SignUpForm = () => {
-
   const dispatch = useDispatch();
 
-  const onSubmit = (values, formikBag)=>{
-    dispatch(createUserRequest(values))
+ 
+ 
+  
+  const onSubmit = (values, formikBag) => {
+    dispatch(createUserRequest(values));
     console.log(values);
     formikBag.resetForm();
   };
-
+ 
   return (
-     <div className={styles.container}>
-          <Formik  onSubmit={onSubmit} initialValues={{firstName: '', email: '',password: ''}}>
-      <Form className={styles.form} >
-      <Field name="firstName" placeholder='Name' className={styles.inputBox} />
-      <Field name="email" placeholder='Email' className={styles.inputBox} />
-      <Field name="password" placeholder='Password' className={styles.inputBox} />
-      <Field name="password" placeholder='Password' className={styles.inputBox} />
-      <Field name='submit' type='submit' value='Join now' className={styles.btnSubmit} />
-      </Form>
-    </Formik>
-     </div>
-   
-   
+    <div className={styles.container}>
+      <Formik
+        enableReinitialize
+        onSubmit={onSubmit}
+        initialValues={CONSTANTS.INITIAL_VALUES_FORM_SIGN_UP}
+        validationSchema={SCHEMA_SIGN_UP}
+      >
+        {(formikProps) => {
+          return (
+            <Form className={styles.form}>
+              <label className={styles.label}>
+                <Field
+                  name="name"
+                  placeholder="Name"
+                  className={styles.inputBox}
+                />
+                <ErrorMessage
+                  className={styles.errorMessage}
+                  name="name"
+                  component="em"
+                />
+              </label>
 
+              <label className={styles.label}>
+                <Field
+                type='email'
+                  name="email"
+                  placeholder="Email"
+                  className={styles.inputBox}
+                />
+                <ErrorMessage name="email" component="em" />
+              </label>
+              <label className={styles.label}>
+                <Field
+                  name="password"
+                  // type={formikProps.showPassword ? 'text' : 'password'}
+                  type='password'
+                  placeholder="Password"
+                  className={styles.inputBox}
+                />
+              </label>
+              <Field
+                name="submit"
+                type="submit"
+                value="Join now"
+                className={styles.btnSubmit}
+              />
+            </Form>
+          );
+        }}
+      </Formik>
+    </div>
   );
-}
+};
 export default SignUpForm;

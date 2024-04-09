@@ -5,7 +5,8 @@ const { checkUser } = require("../middlewares/user.mw");
 
 const userRouter = Router();
 
-userRouter.post('/', uploadImageMw ,UserController.createUserInstance)
+userRouter.post('/registration', uploadImageMw ,UserController.userRegistration)
+userRouter.post('/login', UserController.userLogin);
 userRouter.get('/', UserController.getAllUsers)
 userRouter.delete('/:userId', checkUser, UserController.deleteUserInstance)
 userRouter.patch('/:userId', checkUser, UserController.updateUserInstance)

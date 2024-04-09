@@ -11,14 +11,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    // border:1px solid #ee8456;
   }
- 
+  .label{
+    height: 85px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+  }
+
  
  
   .inputBox {
     position: relative;
-    margin-bottom: 30px;
     padding: 15px 20px;
     outline: none;
     background: transparent;
@@ -28,12 +32,10 @@
     font-size: 1em;
     transition: 0.4s cubic-bezier(0.05, 0.81, 0, 0.93);
 }
-
 .inputBox::placeholder {
     color: #999;
     transition: 0.4s cubic-bezier(0.05, 0.81, 0, 0.93);
 }
-
 .inputBox:focus::placeholder {
     position: absolute;
     font-size: 0.7em;
@@ -45,6 +47,7 @@
     border: 1px solid #ee8456;
     color: #999; /* Сохраняем цвет текста подсказки */
 }
+
 
 .btnSubmit{
   width: 235px;
@@ -58,4 +61,11 @@
 }
 .btnSubmit:hover{
   background: #fcd435a7;
+}
+
+
+.errorMessage{
+  // position: absolute;
+  bottom: 10px;
+  font-size: 14px;
 }

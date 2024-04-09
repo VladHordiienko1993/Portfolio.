@@ -1,8 +1,8 @@
 import React from "react";
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ThemeContext } from "./context";
-import { useSetClassName } from "./hooks";
+import { ThemeContext, UserContext } from "./context";
+import { useSetClassName, useAuth } from "./hooks";
 import Header from "./components/Header";
 import Footer from './components/Footer/index';
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -11,10 +11,10 @@ const SignUpWithEmail = lazy(()=>import('./pages/SignUpWithEmailPage'));
 
 const App = () => {
   return (
+    <UserContext.Provider value={{useAuth}}>
     <ThemeContext.Provider value={{ useSetClassName }}>
       <BrowserRouter>
         <Header />
-
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -25,6 +25,7 @@ const App = () => {
         <Footer/>
       </BrowserRouter>
     </ThemeContext.Provider>
+    </UserContext.Provider>
   );
 };
 

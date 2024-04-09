@@ -6,7 +6,7 @@ const Footer = () => {
   const { classNameFooter } = useSetClassName();
   return (
     <div className={classNameFooter()}>
-      <h1>Hi</h1>
+      <h1></h1>
     </div>
   );
 }

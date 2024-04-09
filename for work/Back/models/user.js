@@ -12,11 +12,20 @@ module.exports = (sequelize, DataTypes) => {
   }
   User.init(
     {
-      firstName: { type: DataTypes.STRING(64), field: "first_name", allowNull: false, validate: {
-        notNull: true,
-        notEmpty: true
-      } },
-      lastName: { type: DataTypes.STRING(64), field: "last_name", allowNull: false, validate: {
+      token: {
+        type: DataTypes.STRING,
+      },
+      googleId: {type: DataTypes.STRING, allowNull: true,
+        field: 'google_id',
+        unique: true,
+      },
+      facebookId:{
+        type: DataTypes.STRING,
+        field: 'facebook_id',
+        unique: true,
+        allowNull: true,
+      },
+      name: { type: DataTypes.STRING(64), allowNull: false, validate: {
         notNull: true,
         notEmpty: true
       } },
@@ -34,13 +43,10 @@ module.exports = (sequelize, DataTypes) => {
         notNull: true,
         notEmpty: true,
       } },
-      password: { type: DataTypes.TEXT(32), field: "password_hash", allowNull: false, validate: {
+      password: { type: DataTypes.TEXT(32), allowNull: false, validate: {
         notNull: true,
         notEmpty: true,
-      },
-    set(v){
-      this.setDataValue('password','hash password')
-    } },
+      } },
       imgPath: { type: DataTypes.TEXT, field: "img_path", allowNull:true },
     },
     {

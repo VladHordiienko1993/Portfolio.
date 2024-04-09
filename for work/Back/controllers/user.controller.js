@@ -1,18 +1,70 @@
 const createError = require("http-errors");
+const bcrypt = require("bcryptjs");
 const { User } = require("../models");
+const generateAccessToken = require("../middlewares/secretKeyRandom");
 
-module.exports.createUserInstance = async (req, res, next) => {
+
+
+module.exports.userGoogle = async (req,res,next)=>{
   try {
-    const { body, file } = req;
+    const user = req.user;
+    console.log(user);
+    if(!user){
+      const error = createError(400,'Something Is Wrong Try Again');
+      next(error);
+    }
+    const token = generateAccessToken(user.id);
+    user.token = token;
+   
+    res.send({data:user}); 
+  } catch (error) {
+    next(error)
+  }
+};
+
+module.exports.userRegistration = async (req, res, next) => {
+  try {
+    const { body, file} = req;
+    const candidate = await User.findOne({where:{email: body.email}});
+    if(candidate){
+      const error = createError(400,'User with this email already exists');
+      next(error);
+    }
     if (file) {
       body.imgPath = file.filename;
     }
+    hashPassword = bcrypt.hashSync(body.password, 5);
+     body.password = hashPassword;
     const user = await User.create(body);
     if (!user) {
       const error = createError(400, "Try again");
+      next(error); 
+    }
+    const token = generateAccessToken(user.id);
+    user.token = token;
+
+    res.status(201).send({ data: user });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports.userLogin = async (req,res,next)=>{
+  try {
+    const {body} = req;
+    const user = await User.findOne({where:{email: body.email}});
+    if(!user){
+      const error = createError(400,'Please enter a valid email');
       next(error);
     }
-    res.status(201).send({ data: user });
+    const validPassword = bcrypt.compareSync(body.password,user.password);
+    if(!validPassword){
+      const error = createError(400,'Password is not valid')
+      next(error);
+    }
+    const token = generateAccessToken(user.id);
+    user.token = token;
+    res.status(201).send({data:user})
   } catch (error) {
     next(error);
   }
@@ -72,3 +124,6 @@ module.exports.createImageforUser = async (req, res, next) => {
     next(error);
   }
 };
+
+
+

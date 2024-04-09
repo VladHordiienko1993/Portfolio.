@@ -9,14 +9,23 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
-      firstName: {
-        type: Sequelize.STRING(64),
-        field: "first_name",
-        allowNull:false,
+      token: {
+        type: Sequelize.STRING,
       },
-      lastName: {
+      googleId: {
+        type: Sequelize.STRING,
+        field: 'google_id',
+        unique: true,
+        allowNull: true
+      },
+      facebookId:{
+        type: Sequelize.STRING,
+        field: 'facebook_id',
+        unique: true,
+        allowNull: true
+      },
+      name: {
         type: Sequelize.STRING(64),
-        field: "last_name",
         allowNull:false,
       },
       isMale: {
@@ -33,7 +42,6 @@ module.exports = {
       },
       password: {
         type: Sequelize.TEXT(32),
-        field: "password_hash",
         allowNull:false,
       },
       imgPath: {
