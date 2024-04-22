@@ -1,3 +1,4 @@
 .*!gitignore
+for work/Back/node_modules
+for work/Front/node_modules
 node_modules/
-/config/
