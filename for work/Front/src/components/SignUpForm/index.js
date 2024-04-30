@@ -54,7 +54,6 @@ const SignUpForm = () => {
               <label className={styles.label}>
                 <Field
                   name="password"
-                  // type={formikProps.showPassword ? 'text' : 'password'}
                   type='password'
                   placeholder="Password"
                   className={styles.inputBox}

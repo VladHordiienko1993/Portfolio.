@@ -1,27 +1,19 @@
-import React, { useContext, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useContext } from 'react';
 import { ThemeContext } from '../context';
-import { userGoogleRequest } from '../slices/userSlices';
-
+import VidioForHome from '../components/VidioForHome';
 
 
 const HomePage = () => {
-  const dispatch = useDispatch();
-  const user = useSelector((state)=>state.users.users);
-  
-   useEffect(()=>{
-    dispatch(userGoogleRequest());
-  },[]);
  
-  console.log(user);
   const {useSetClassName} = useContext(ThemeContext);
   const {classNamePage} = useSetClassName();
   
 
   return (
-   <div className={classNamePage()}>
-   <h2>{user === undefined? null : user.name}</h2>
-   </div>
+    <div className={classNamePage()}>
+    <VidioForHome/>
+    </div>
+   
   );
 }
 
