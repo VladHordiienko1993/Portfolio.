@@ -6,7 +6,7 @@ const httpClient = axios.create({
   withCredentials: true
 });
 
-export const fetchCreateUser = (data)=> httpClient.post('/users', data);
+export const fetchCreateUser = (data)=> httpClient.post('/users/registration', data);
 
 export const fetchGoogleCallBack = (data)=> httpClient.get('/google/auth/callBack/success',data);
 

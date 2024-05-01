@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 import { useDispatch} from "react-redux";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { createUserRequest } from "../../slices/userSlices";
@@ -8,7 +9,7 @@ import styles from "./SignUpForm.module.scss";
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
-
+  const push = useNavigate();
  
  
   
@@ -16,6 +17,7 @@ const SignUpForm = () => {
     dispatch(createUserRequest(values));
     console.log(values);
     formikBag.resetForm();
+    push('/')
   };
  
   return (

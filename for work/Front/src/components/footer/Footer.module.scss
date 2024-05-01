@@ -1,9 +1,15 @@
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+}
+
 .btnToGitHub{
   display: flex;
   justify-content: center;
   align-items: center; 
   width: 300px;
-  height: 35px;
+  height: 20px;
   margin-top: 10px;
   background: none;
   border: none;
@@ -11,16 +17,20 @@
   cursor: pointer;
  
 }
-
 .imgLogoWhiteDiamond{
   width: 24px;
   height: 24px;
  
 }
-
 .textBtn{
   color: inherit;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: 700;
   font-size: inherit;
+}
+
+.textCall{
+  font-size: 15px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: 300;
 }

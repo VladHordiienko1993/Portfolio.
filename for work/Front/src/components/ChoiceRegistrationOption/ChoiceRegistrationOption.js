@@ -6,14 +6,7 @@ import iconPassKey from '../../logo/iconPassKey.svg';
 import LogoChoice from '../../logo/LogoChoice.jpg';
 
 
-
-
-
-
-
-
 const ChoiceRegistrationOption = () => {
-  
 
 const google = ()=>{
   window.open('http://localhost:3000/api/google/auth','_self');

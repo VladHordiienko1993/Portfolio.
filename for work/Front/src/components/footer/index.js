@@ -16,11 +16,13 @@ const Footer = () => {
   
   return (
     <div className={classNameFooter()}>
+      <div className={styles.wrapper}>
       <button className={styles.btnToGitHub} onClick={pathToGitHub}>
         <img className={styles.imgLogoWhiteDiamond} src={toggleLogoDiamond()}/>
         <h2 className={styles.textBtn}> https://github.com/VladHordiienko1993/Portfolio.</h2>
-        </button>
-    </div>
+       
+        </button> <em className={styles.textCall}>(85) 784 2101</em>
+    </div></div>
   );
 }
 
