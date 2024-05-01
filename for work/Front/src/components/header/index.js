@@ -34,15 +34,15 @@ const Header = () => {
              <h2 className={`${styles.textDiamond} ${styles.generalHover}`}>Project</h2></Link>
         </div>
        <nav className={styles.containerNav}>
-         {location.pathname === '/signUpWithEmail' ? '' :  <ul className={styles.containerUl}>
+         {isAuth  ?  <ul className={styles.containerUl}>
            <Link><li className={`${styles.linkNav} ${styles.generalHover}`}>Chat</li></Link>
            <Link><li className={`${styles.linkNav} ${styles.generalHover}`}>Movie Library</li></Link>
            <Link><li className={`${styles.linkNav} ${styles.generalHover}`}>Todo List</li></Link>
-         </ul>}        
+         </ul> : ''}        
        </nav>
 
           <div className={styles.containerLogIn}>
-          {isAuth ? <DropDownListUser/> : <><Link><h2 className={`${styles.textLogIn} ${styles.generalHover}`}>Log in</h2></Link><Link to="/signUpPage"><button className={styles.btnSignUp}><img className={styles.logoBtn} src={LogoBtn} />Sign Up</button></Link> </> }
+          {isAuth ? <DropDownListUser/> : <><Link to='/signIn'><h2 className={`${styles.textLogIn} ${styles.generalHover}`}>Log in</h2></Link><Link to="/signUpPage"><button className={styles.btnSignUp}><img className={styles.logoBtn} src={LogoBtn} />Sign Up</button></Link> </> }
 
             <img
               onClick={() => dispatch(toggleTheme())}
