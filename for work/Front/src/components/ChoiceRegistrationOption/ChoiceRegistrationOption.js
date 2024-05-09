@@ -10,8 +10,9 @@ const ChoiceRegistrationOption = () => {
 
 const google = ()=>{
   window.open('http://localhost:3000/api/google/auth','_self');
-  
 }
+
+
   return (
     <div className={styles.container}>
       <div className={styles.containerForm}>
@@ -21,7 +22,7 @@ const google = ()=>{
          <button onClick={google} className={styles.btnGoogle}  ><img src={iconGoogle} className={styles.iconGoogle} />Continue with Google</button>
       <h2 className={styles.textWrapperforLink}>
       Already have an account?
-       <Link><em className={styles.textLink}>Log In</em></Link> 
+       <Link to='/logIn'><em className={styles.textLink}>Log In</em></Link> 
         </h2>
       </div>
       <div className={styles.containerImg}>

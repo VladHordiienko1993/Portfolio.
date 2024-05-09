@@ -45,9 +45,21 @@ const userSlice = createSlice({
       state.isFetching = false;
       state.error = action.payload;
     },
+    signOutUser: (state,action)=>{
+      const initial = {
+        id: '',
+        googleId: '',
+        facebookId: '',
+        token: null,
+        email: '',
+        name: '',
+        imgPath: '',
+      };
+      state.users = initial;
+    },
   }
 });
 
 
-export const {createUserRequest,createUserSuccess,createUserError,userGoogleRequest,userGoogleSuccess,userGoogleError} = userSlice.actions;
+export const {createUserRequest,createUserSuccess,createUserError,userGoogleRequest,userGoogleSuccess,userGoogleError, signOutUser} = userSlice.actions;
 export default userSlice.reducer;

@@ -1,9 +1,11 @@
 import React, {  useRef, useState } from "react";
-import {  useSelector } from "react-redux";
+import {  useDispatch, useSelector } from "react-redux";
 import cx from "classnames";
-import styles from "./DropDownListUser.module.scss";
+import {signOutUser} from '../../slices/userSlices';
 import {useClickOutside} from '../../hooks/index';
 import LogoUser from '../../logo/LogoUser.png';
+import styles from "./DropDownListUser.module.scss";
+
 
 const DropDownListUser = (props) => {
   const user = useSelector((state)=>state.users.users);
@@ -11,8 +13,9 @@ const DropDownListUser = (props) => {
   const stylesMenu = cx(styles.menu, {
     [styles.dropDown]: drop === true,
   });
- 
+ const dispath = useDispatch();
   const callBack = () => {
+    
     setTimeout(() => setDrop(false), 5);
   };
   const clickDrop = () => {
@@ -34,7 +37,7 @@ const DropDownListUser = (props) => {
         <ul className={styles.menuList}>
             <li className={styles.MenuItemText}>Change profile picture</li>
             <li className={styles.MenuItemText}>Remove Acount</li>
-            <li className={styles.MenuItemText}>Sign Out</li>
+            <li onClick={()=>dispath(signOutUser())} className={styles.MenuItemText}>Sign Out</li>
         </ul>
       </nav>
     </>

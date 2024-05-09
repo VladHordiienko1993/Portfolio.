@@ -42,7 +42,7 @@ const Header = () => {
        </nav>
 
           <div className={styles.containerLogIn}>
-          {isAuth ? <DropDownListUser/> : <><Link to='/signIn'><h2 className={`${styles.textLogIn} ${styles.generalHover}`}>Log in</h2></Link><Link to="/signUpPage"><button className={styles.btnSignUp}><img className={styles.logoBtn} src={LogoBtn} />Sign Up</button></Link> </> }
+          {isAuth ? <DropDownListUser/> : <><Link to='/logIn'><h2 className={`${styles.textLogIn} ${styles.generalHover}`}>Log in</h2></Link><Link to="/signUpPage"><button className={styles.btnSignUp}><img className={styles.logoBtn} src={LogoBtn} />Sign Up</button></Link> </> }
 
             <img
               onClick={() => dispatch(toggleTheme())}

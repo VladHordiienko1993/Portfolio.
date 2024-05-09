@@ -4,9 +4,9 @@ import { useDispatch} from "react-redux";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { createUserRequest } from "../../slices/userSlices";
 import CONSTANTS from "../../utils/constants/constants";
-import styles from "./SignInForm.module.scss";
+import styles from "./LogInForm.module.scss";
 
-const SignInForm = () => {
+const LogInForm = () => {
   const dispatch = useDispatch();
   const push = useNavigate();
  
@@ -60,4 +60,4 @@ const SignInForm = () => {
     </div>
   );
 };
-export default SignInForm;
+export default LogInForm;

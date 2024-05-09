@@ -8,7 +8,7 @@ import Footer from './components/Footer/index';
 const HomePage = lazy(() => import("./pages/HomePage"));
 const SignUpPage = lazy(() => import("./pages/SignUpPage"));
 const SignUpWithEmail = lazy(()=>import('./pages/SignUpWithEmailPage'));
-const SignInPage = lazy(()=>import('./pages/SignInPage'));
+const LogInPage = lazy(()=>import('./pages/LogInPage'));
 
 const App = () => {
   return (
@@ -21,7 +21,7 @@ const App = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/signUpPage" element={<SignUpPage />} />
             <Route path='/signUpWithEmail' element={<SignUpWithEmail/>} />
-            <Route path='/signIn' element={<SignInPage/>} />
+            <Route path='/logIn' element={<LogInPage/>} />
           </Routes>
         </Suspense>
         <Footer/>

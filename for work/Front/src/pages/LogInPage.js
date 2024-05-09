@@ -1,17 +1,17 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from '../context/index';
-import SignInForm from '../components/SignInForm/SignInForm';
+import LogInForm from '../components/LogInForm/LogInForm';
 
 
 
-const SignInPage = () => {
+const LogInPage = () => {
   const {useSetClassName} = useContext(ThemeContext);
   const {classNamePage} = useSetClassName();
   return (
      <div className={classNamePage()}>
-     <SignInForm/>
+     <LogInForm/>
    </div>
   );
 }
 
-export default SignInPage;
+export default LogInPage;

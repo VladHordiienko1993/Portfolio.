@@ -40,8 +40,6 @@ module.exports.userRegistration = async (req, res, next) => {
       const error = createError(400, "Try again");
       next(error); 
     }
-    const token = generateAccessToken(user.id);
-    user.token = token;
 
     res.status(201).send({ data: user });
   } catch (error) {
@@ -62,8 +60,7 @@ module.exports.userLogin = async (req,res,next)=>{
       const error = createError(400,'Password is not valid')
       next(error);
     }
-    const token = generateAccessToken(user.id);
-    user.token = token;
+   
     res.status(201).send({data:user})
   } catch (error) {
     next(error);
@@ -123,6 +120,16 @@ module.exports.createImageforUser = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+};
+
+module.exports.userLogout = async (req,res,next)=>{
+  try {
+      req.session.destroy();
+      res.status(201).send({message: 'ok!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'})
+  } catch (error) {
+    next(error)
+  }
+  
 };
 
 

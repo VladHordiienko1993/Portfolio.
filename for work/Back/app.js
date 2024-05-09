@@ -20,7 +20,9 @@ app.use(session ({
   secret: process.env.COOKIE_KEY,
   resave: false,
   saveUninitialized: true,
-  cookie: { maxAge: 24 * 60 * 60 * 1000 } 
+  cookie: { 
+    sameSite: "strict",
+    maxAge: 24 * 60 * 60 * 1000 } 
 }))
 
 app.use(passport.initialize());
@@ -28,8 +30,8 @@ app.use(passport.session());
 
 
 
-app.use(express.static('public'))
-app.use(express.json())
-app.use('/api', router)
-app.use(errorHandler)
+app.use(express.static('public'));
+app.use(express.json());
+app.use('/api', router);
+app.use(errorHandler);
 module.exports = app;

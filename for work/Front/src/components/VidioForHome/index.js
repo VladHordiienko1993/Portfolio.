@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { userGoogleRequest } from '../../slices/userSlices';
 import {UserContext} from "../../context";
@@ -9,11 +9,17 @@ const VidioForHome = () => {
   const dispatch = useDispatch();
   const {useAuth} = useContext(UserContext);
   const {isAuth} = useAuth();
-
-  const user = useSelector((state)=>state.users.users);
   
+  
+  
+  const user =  useSelector((state)=>state.users.users);
+  // const userRef = useRef(user);
+  console.log(user.token)
    useEffect(()=>{
-    dispatch(userGoogleRequest());
+    if(user.token != null){
+       dispatch(userGoogleRequest());
+      // userRef.current = user
+    }
   },[]);
  
   console.log(user);
