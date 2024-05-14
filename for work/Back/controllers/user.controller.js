@@ -50,6 +50,7 @@ module.exports.userRegistration = async (req, res, next) => {
 module.exports.userLogin = async (req,res,next)=>{
   try {
     const {body} = req;
+    console.log(body)
     const user = await User.findOne({where:{email: body.email}});
     if(!user){
       const error = createError(400,'Please enter a valid email');
@@ -57,7 +58,7 @@ module.exports.userLogin = async (req,res,next)=>{
     }
     const validPassword = bcrypt.compareSync(body.password,user.password);
     if(!validPassword){
-      const error = createError(400,'Password is not valid')
+      const error = createError(404,'Password is not valid')
       next(error);
     }
    

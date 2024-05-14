@@ -52,6 +52,7 @@
 
 .btnSubmit{
   width: 235px;
+  margin-top: 20px;
   padding: 15px 20px;
   border: none;
   border-radius: 5px;
@@ -66,7 +67,14 @@
 
 
 .errorMessage{
-  // position: absolute;
   bottom: 10px;
   font-size: 14px;
+}
+
+.notValidEmail{
+  position: absolute;
+  bottom: 348px;
+  left: 507px;
+  color: rgba(255, 0, 0, 0.699);
+  font-size: 13px;
 }

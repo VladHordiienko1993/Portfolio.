@@ -70,3 +70,19 @@ background: #fcd435a7;
 bottom: 10px;
 font-size: 14px;
 }
+
+
+.notValidEmail{
+  position: absolute;
+  bottom: 440px;
+  left: 510px;
+  color: rgba(255, 0, 0, 0.699);
+  font-size: 13px;
+}
+.notValidPassword{
+  position: absolute;
+  bottom: 358px;
+  left: 510px;
+  color: rgba(255, 0, 0, 0.699);
+  font-size: 13px;
+}

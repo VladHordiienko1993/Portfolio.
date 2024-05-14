@@ -1,22 +1,34 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { createUserRequest } from "../../slices/userSlices";
+import { createUserSuccess,createUserError } from "../../slices/userSlices";
 import CONSTANTS from "../../utils/constants/constants";
+import * as API from "../../api/index";
 import styles from "./LogInForm.module.scss";
 
 const LogInForm = () => {
   const dispatch = useDispatch();
+  const error = useSelector((state)=>state.users.error);
   const push = useNavigate();
  
- 
+
   
-  const onSubmit = (values, formikBag) => {
-    dispatch(createUserRequest(values));
-    console.log(values);
-    formikBag.resetForm();
-    push('/')
+  const onSubmit = async(values, formikBag) => {
+    const {data:{data: user}} = await API.fetchLoginUser(values)
+          .catch((err)=>{
+            if(err && err.message){
+              console.log(err.request.status)
+              dispatch(createUserError(err.request.status))
+            }
+          })
+
+          if(user){
+            dispatch(createUserSuccess(user))
+
+            formikBag.resetForm()
+            push('/')
+          }
   };
  
   return (
@@ -53,6 +65,10 @@ const LogInForm = () => {
                 value="Join now"
                 className={styles.btnSubmit}
               />
+               {error === 400 ? <em className={styles.notValidEmail}>
+               Please enter a valid email</em> : null}
+               {error === 404 ? <em className={styles.notValidPassword}>
+               Password is not valid</em> : null}
             </Form>
           );
         }}

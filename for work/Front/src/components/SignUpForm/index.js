@@ -1,25 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { createUserRequest } from "../../slices/userSlices";
+import { createUserError,createUserSuccess } from "../../slices/userSlices";
 import CONSTANTS from "../../utils/constants/constants";
 import { SCHEMA_SIGN_UP } from "../../utils/schemas";
+import * as API from "../../api/index";
 import styles from "./SignUpForm.module.scss";
+
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
   const push = useNavigate();
+  const error = useSelector((state)=>state.users.error);
  
- 
+
+  const onSubmit = async(values, formikBag) => {
+    const {data: {data: user}}  = await API.fetchCreateUser(values)
+     .catch((err)=>{
+       if(err && err.message){
+           dispatch(createUserError(err.response.data.error[0].message))
+       }
+     })
+     if(user ){
+       dispatch(createUserSuccess(user))
   
-  const onSubmit = (values, formikBag) => {
-    dispatch(createUserRequest(values));
-    console.log(values);
-    formikBag.resetForm();
-    push('/')
-  };
- 
+       formikBag.resetForm()
+       push('/')
+     }
+   };
+
+
   return (
     <div className={styles.container}>
       <Formik
@@ -60,6 +71,7 @@ const SignUpForm = () => {
                   placeholder="Password"
                   className={styles.inputBox}
                 />
+                <ErrorMessage name="password" component="em" />
               </label>
               <Field
                 name="submit"
@@ -67,6 +79,8 @@ const SignUpForm = () => {
                 value="Join now"
                 className={styles.btnSubmit}
               />
+              {error ? <em className={styles.notValidEmail}>
+User with this email already exists</em> : null}
             </Form>
           );
         }}

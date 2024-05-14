@@ -10,5 +10,7 @@ export const fetchCreateUser = (data)=> httpClient.post('/users/registration', d
 
 export const fetchGoogleCallBack = (data)=> httpClient.get('/google/auth/callBack/success',data);
 
+export const fetchLoginUser = (data)=> httpClient.post("users/login",data)
+
 export const fetchUserLogout = (data)=> httpClient.get('/logout');
 
