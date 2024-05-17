@@ -1,8 +1,11 @@
 import cx from "classnames";
+import { useSelector} from 'react-redux';
 import styles from '../common/styles/theme.module.scss'
-import { useSelector } from 'react-redux';
+
 
 const useSetClassName = () => {
+  
+  
   const theme = useSelector((state)=>state.themes.theme);
   
   return{ 

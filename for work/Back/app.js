@@ -11,10 +11,8 @@ const passportGoogle = require('./passports/passportGoogle');
 
 const app = express();
 dotenv.config();
-app.use(cors({origin:'http://localhost:3001',methods:'GET,POST,PUT,DELETE',credentials:true}))
-// app.use((req,res)=>{
-//   res.header('Referrer_Policy','no-referrer-when-downgrade');
-// })
+app.use(cors({origin:'http://localhost:3001',methods:'GET,POST,PUT,DELETE,PATCH',credentials:true}))
+
 
 app.use(session ({
   secret: process.env.COOKIE_KEY,

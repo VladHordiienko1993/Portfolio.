@@ -10,7 +10,11 @@ export const fetchCreateUser = (data)=> httpClient.post('/users/registration', d
 
 export const fetchGoogleCallBack = (data)=> httpClient.get('/google/auth/callBack/success',data);
 
-export const fetchLoginUser = (data)=> httpClient.post("users/login",data)
+export const fetchLoginUser = (data)=> httpClient.post("/users/login",data)
 
-export const fetchUserLogout = (data)=> httpClient.get('/logout');
+export const fetchUserLogout = (data)=> httpClient.get("/logout");
+
+export const fetchThemeGet = (data)=> httpClient.get("/theme/getTheme", data);
+
+export const fetchThemeUpdate = (data)=> httpClient.patch("/theme/updateTheme", data);
 

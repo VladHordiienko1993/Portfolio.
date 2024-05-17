@@ -1,8 +1,8 @@
-import React, { useContext} from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useContext, useEffect} from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ThemeContext, UserContext } from "../../context";
-import { toggleTheme } from "../../slices/themeSwitchSlices";
+import { toggleTheme, themeRequest,requestSendTheme } from "../../slices/themeSwitchSlices";
 import styles from "./Header.module.scss";
 import DropDownListUser from "../DropDownList/DropDownListUser";
 import LogoWhiteDiamond from "../../logo/LogoWhiteDiamond.jfif";
@@ -22,7 +22,14 @@ const Header = () => {
   const dispatch = useDispatch();
   const toggleLogo = () => (theme ? LogoSun : LogoMoon);
   const toggleLogoDiamond = ()=> (theme ? LogoWhiteDiamond : LogoDarkDiamond);
-  const location = useLocation();
+  useEffect(()=>dispatch(themeRequest()),[]);
+
+
+  const handleThemeToggle = ()=>{
+    const newTheme = !theme;
+    dispatch(toggleTheme());
+    dispatch(requestSendTheme({theme:newTheme}));
+  };
   
 
 
@@ -45,7 +52,7 @@ const Header = () => {
           {isAuth ? <DropDownListUser/> : <><Link to='/logIn'><h2 className={`${styles.textLogIn} ${styles.generalHover}`}>Log in</h2></Link><Link to="/signUpPage"><button className={styles.btnSignUp}><img className={styles.logoBtn} src={LogoBtn} />Sign Up</button></Link> </> }
 
             <img
-              onClick={() => dispatch(toggleTheme())}
+              onClick={handleThemeToggle}
               className={styles.logoSunMoon}
               src={toggleLogo()}
             />
