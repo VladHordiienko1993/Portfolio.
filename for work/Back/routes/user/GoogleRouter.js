@@ -1,6 +1,6 @@
 const passport = require("passport");
 const {Router} = require('express');
-const UserController = require('../controllers/user.controller');
+const UserController = require('../../controllers/user.controller');
 
 const googleRouter = Router();
 

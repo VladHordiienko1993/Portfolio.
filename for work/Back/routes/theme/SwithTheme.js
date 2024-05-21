@@ -1,5 +1,5 @@
 const {Router} = require("express");
-const ThemeController = require("../controllers/theme.controller");
+const ThemeController = require("../../controllers/theme.controller");
 
 
 const themeRouter = Router();

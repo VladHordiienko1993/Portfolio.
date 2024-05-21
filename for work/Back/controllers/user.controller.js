@@ -5,10 +5,26 @@ const generateAccessToken = require("../middlewares/secretKeyRandom");
 
 
 
+
+
+module.exports.userSession = async (req,res,next)=>{
+  try {
+    const {user} = req.session;
+    if (!user) {
+      return next(createError(401, 'Not authenticated'));
+    }
+    
+    res.status(201).send(user);
+  } catch (error) {
+    next(error);    
+  }
+};
+
+
 module.exports.userGoogle = async (req,res,next)=>{
   try {
     const user = req.user;
-    console.log(user);
+    
     if(!user){
       const error = createError(400,'Something Is Wrong Try Again');
       next(error);
@@ -40,7 +56,7 @@ module.exports.userRegistration = async (req, res, next) => {
       const error = createError(400, "Try again");
       next(error); 
     }
-
+    req.session.user = user;
     res.status(201).send({ data: user });
   } catch (error) {
     next(error);
@@ -50,23 +66,44 @@ module.exports.userRegistration = async (req, res, next) => {
 module.exports.userLogin = async (req,res,next)=>{
   try {
     const {body} = req;
-    console.log(body)
     const user = await User.findOne({where:{email: body.email}});
     if(!user){
       const error = createError(400,'Please enter a valid email');
       next(error);
     }
+  
+
     const validPassword = bcrypt.compareSync(body.password,user.password);
     if(!validPassword){
       const error = createError(404,'Password is not valid')
       next(error);
     }
+     req.session.user = user;
    
     res.status(201).send({data:user})
+   
   } catch (error) {
     next(error);
   }
 };
+
+
+module.exports.userLogout = async (req,res,next)=>{
+  try {
+    req.session.destroy(err => {
+      if (err) {
+        return next(err);
+      }
+      res.clearCookie('connect.sid');
+      res.status(200).send({ message: 'Session has been destroyed' });
+    });
+     
+  } catch (error) {
+    next(error)
+  }
+  
+};
+
 
 module.exports.deleteUserInstance = async (req, res, next) => {
   try {
@@ -123,15 +160,6 @@ module.exports.createImageforUser = async (req, res, next) => {
   }
 };
 
-module.exports.userLogout = async (req,res,next)=>{
-  try {
-      req.session.destroy();
-      res.status(201).send({message: 'ok!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'})
-  } catch (error) {
-    next(error)
-  }
-  
-};
 
 
 

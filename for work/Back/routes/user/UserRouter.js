@@ -1,9 +1,11 @@
 const {Router} = require("express");
-const UserController = require("../controllers/user.controller");
-const uploadImageMw = require("../middlewares/uploadImage.mw");
-const { checkUser } = require("../middlewares/user.mw");
+const UserController = require('../../controllers/user.controller');
+const uploadImageMw = require("../../middlewares/uploadImage.mw");
+const { checkUser } = require("../../middlewares/user.mw");
 
 const userRouter = Router();
+
+
 
 userRouter.post('/registration', uploadImageMw ,UserController.userRegistration)
 userRouter.post('/login', UserController.userLogin);
