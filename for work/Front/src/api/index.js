@@ -18,3 +18,4 @@ export const fetchThemeGet = (data)=> httpClient.get("/theme/getTheme", data);
 
 export const fetchThemeUpdate = (data)=> httpClient.patch("/theme/updateTheme", data);
 
+export const fetchSessionUser = (data)=> httpClient.get("/session",data);

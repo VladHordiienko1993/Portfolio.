@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createUserRequest, userGoogleRequest } from '../../slices/userSlices';
+import { sessionUserRequest } from '../../slices/userSlices';
 import {UserContext} from "../../context";
 import styles from './VidioForHome.module.scss';
 
@@ -11,13 +11,11 @@ const VidioForHome = () => {
   const {isAuth} = useAuth();
   
   const user =  useSelector((state)=>state.users.users);
-            console.log(user)
+            
+
    useEffect(()=>{
-  
-       dispatch(userGoogleRequest());
-      //  dispatch(createUserRequest())
-    
-  },[user]);
+      dispatch(sessionUserRequest());
+  },[]);
 
   
   return (  <div className={styles.container} >

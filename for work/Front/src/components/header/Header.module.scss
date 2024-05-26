@@ -60,6 +60,7 @@
   background: #FCD535;
   text-align: center;
   font-weight: 550;
+  transition: background-color 0.3s;
   cursor: pointer;
 }
 .btnSignUp:hover{
@@ -70,6 +71,7 @@
   height: 25px;
   background: white;
   border-radius: 15px 15px;
+  transition: background-color 0.3s;
   cursor: pointer;
 }
 .logoSunMoon:hover{

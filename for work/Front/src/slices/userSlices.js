@@ -57,9 +57,22 @@ const userSlice = createSlice({
       };
       state.users = initial;
     },
+    sessionUserRequest : (state,action)=>{
+      state.isFetching = true;
+      state.error = null;
+    },
+    sessionSuccess : (state,action)=>{
+      state.users = action.payload;
+      state.isFetching = false;
+      state.error = null;   
+    },
+    sessionError: (state,action)=>{
+      state.isFetching = false;
+      state.error = action.payload;
+    },
   }
 });
 
 
-export const {createUserRequest,createUserSuccess,createUserError,userGoogleRequest,userGoogleSuccess,userGoogleError, signOutUser} = userSlice.actions;
+export const {createUserRequest,createUserSuccess,createUserError,userGoogleRequest,userGoogleSuccess,userGoogleError, signOutUser,sessionUserRequest,sessionSuccess,sessionError} = userSlice.actions;
 export default userSlice.reducer;

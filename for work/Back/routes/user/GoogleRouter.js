@@ -8,7 +8,7 @@ const googleRouter = Router();
 
 googleRouter.get('/auth', passport.authenticate('google', {scope:['profile', 'email']}))
 googleRouter.get('/auth/callBack', passport.authenticate('google',{
-  successRedirect: 'http://localhost:3001/',
+  successRedirect: 'http://localhost:3001/googleSuccess',
   failureRedirect: 'http://localhost:3001/signUpPage'}));
   
   googleRouter.get('/auth/callBack/success', UserController.userGoogle);

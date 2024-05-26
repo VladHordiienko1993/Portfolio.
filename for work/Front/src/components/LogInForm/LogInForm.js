@@ -18,7 +18,6 @@ const LogInForm = () => {
     const {data:{data: user}} = await API.fetchLoginUser(values)
           .catch((err)=>{
             if(err && err.message){
-              console.log(err.request.status)
               dispatch(createUserError(err.request.status))
             }
           })

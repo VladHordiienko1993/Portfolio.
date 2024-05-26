@@ -1,10 +1,12 @@
 import React, {  useRef, useState } from "react";
 import {  useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import cx from "classnames";
 import {signOutUser} from '../../slices/userSlices';
 import {useClickOutside} from '../../hooks/index';
 import LogoUser from '../../logo/LogoUser.png';
 import styles from "./DropDownListUser.module.scss";
+
 
 
 const DropDownListUser = (props) => {
@@ -22,7 +24,11 @@ const DropDownListUser = (props) => {
     setDrop(!drop);
   };
   const refMenu = useRef(null);
-
+  const push = useNavigate();
+  const handlerSignOut = ()=>{
+    dispath(signOutUser())
+    push('/');
+  };
   useClickOutside(refMenu, callBack);
 
   return (
@@ -37,7 +43,7 @@ const DropDownListUser = (props) => {
         <ul className={styles.menuList}>
             <li className={styles.MenuItemText}>Change profile picture</li>
             <li className={styles.MenuItemText}>Remove Acount</li>
-            <li onClick={()=>dispath(signOutUser())} className={styles.MenuItemText}>Sign Out</li>
+            <li onClick={handlerSignOut} className={styles.MenuItemText}>Sign Out</li>
         </ul>
       </nav>
     </>

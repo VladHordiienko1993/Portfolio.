@@ -22,7 +22,12 @@ const Header = () => {
   const dispatch = useDispatch();
   const toggleLogo = () => (theme ? LogoSun : LogoMoon);
   const toggleLogoDiamond = ()=> (theme ? LogoWhiteDiamond : LogoDarkDiamond);
-  useEffect(()=>dispatch(themeRequest()),[]);
+
+  useEffect(()=> {
+    if(theme){
+      dispatch(themeRequest())
+    }
+  },[]);
 
 
   const handleThemeToggle = ()=>{

@@ -14,7 +14,7 @@ module.exports.userSession = async (req,res,next)=>{
       return next(createError(401, 'Not authenticated'));
     }
     
-    res.status(201).send(user);
+    res.status(201).send({data:user});
   } catch (error) {
     next(error);    
   }
@@ -31,7 +31,8 @@ module.exports.userGoogle = async (req,res,next)=>{
     }
     const token = generateAccessToken(user.id);
     user.token = token;
-   
+    req.session.user = user;
+
     res.send({data:user}); 
   } catch (error) {
     next(error)
