@@ -47,7 +47,7 @@ const Header = () => {
         </div>
        <nav className={styles.containerNav}>
          {isAuth  ?  <ul className={styles.containerUl}>
-           <Link><li className={`${styles.linkNav} ${styles.generalHover}`}>Chat</li></Link>
+           <Link to='/chat'><li className={`${styles.linkNav} ${styles.generalHover}`}>Chat</li></Link>
            <Link><li className={`${styles.linkNav} ${styles.generalHover}`}>Movie Library</li></Link>
            <Link><li className={`${styles.linkNav} ${styles.generalHover}`}>Todo List</li></Link>
          </ul> : ''}        

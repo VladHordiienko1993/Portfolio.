@@ -1,12 +1,14 @@
 .darkPage {
-  display: block;
+  display: flex;
+  justify-content: center;
   height: calc(120vh - 140px);
   background: linear-gradient(to bottom, #1a1a1a 50%, #181A20 56%);
   color: cornsilk;
 }
 
 .lightPage {
-  display: block;
+  display: flex;
+  justify-content: center;
   height: calc(120vh - 140px);
   background: linear-gradient(to bottom, #f1f1f1 0%, #f3f3f3 76%);
   color: #000000;
@@ -14,7 +16,6 @@
 
 .darkHeader{
   display: flex;
-  flex-direction: row;
   height: 50px;
   padding-left: 20px;
   padding-right: 23px;
@@ -25,7 +26,6 @@
 
 .lightHeader{ 
   display: flex;
-  flex-direction: row;
   height: 50px;
   padding-left: 20px;
   padding-right: 23px;

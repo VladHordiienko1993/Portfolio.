@@ -10,6 +10,7 @@ const SignUpPage = lazy(() => import("./pages/SignUpPage"));
 const SignUpWithEmail = lazy(()=>import('./pages/SignUpWithEmailPage'));
 const LogInPage = lazy(()=>import('./pages/LogInPage'));
 const GoogleSuccessPage = lazy(()=>import('./pages/GoogleSuccessPage'));
+const ChatPage = lazy(()=>import('./pages/ChatPage'));
 
 const App = () => {
   return (
@@ -23,7 +24,8 @@ const App = () => {
             <Route path="/signUpPage" element={<SignUpPage />} />
             <Route path='/signUpWithEmail' element={<SignUpWithEmail/>} />
             <Route path='/logIn' element={<LogInPage/>} />
-            <Route path='/googleSuccess' element={<GoogleSuccessPage/>}   />
+            <Route path='/googleSuccess' element={<GoogleSuccessPage/>}/>
+            <Route path='/chat' element={<ChatPage/>} />
           </Routes>
         </Suspense>
         <Footer/>

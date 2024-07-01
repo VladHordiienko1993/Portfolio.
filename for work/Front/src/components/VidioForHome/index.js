@@ -21,8 +21,9 @@ const VidioForHome = () => {
   return (  <div className={styles.container} >
       <h2 className={styles.textHome}>
         {isAuth
-          ? `Welcome to the site ${user.name}`
-          : "Watch a video about website management and don’t forget to register to try out the Chat, Movie library, or Todo List."}
+          ? <p className={styles.welkomeText}>Welcome to the site {user.name}</p>  
+          : <p className={styles.textOfLogin}>Watch a video about website management and don’t forget to register to try out the Chat, Movie library, or Todo List. <em>User for login: testuserusemy@gmail.com password: testUserUseMe1</em></p> }
+          
       </h2>
     
   </div>

@@ -1,0 +1,175 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  // max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  // background: #f7f7f7;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  height: 80%;
+  background-image: url('../../logo/LogoSpace.webp');
+  color: inherit;
+
+}
+.textPage{
+  color: white;
+}
+.divDiv {
+  display: flex;
+  flex-direction: column;
+  width: 1000px;
+  max-height: 800px;
+  padding-bottom: 60px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  /* Стили для полос прокрутки Webkit (Chrome, Safari) */
+  ::-webkit-scrollbar {
+    width: 12px; /* Ширина вертикальной полосы прокрутки */
+    height: 12px; /* Высота горизонтальной полосы прокрутки */
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #2a2a2a; /* Цвет фона трека прокрутки */
+    border-radius: 10px; /* Радиус скругления трека */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #3a3a3a; /* Цвет "ползунка" полосы прокрутки */
+    border-radius: 10px; /* Радиус скругления "ползунка" */
+    border: 3px solid #2a2a2a; /* Полоса вокруг "ползунка" */
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #5a5a5a; /* Цвет "ползунка" при наведении */
+  }
+
+  /* Стили для полос прокрутки Firefox */
+  scrollbar-width: thin; /* Толщина полосы прокрутки */
+  scrollbar-color: #3a3a3a #2a2a2a; /* Цвет "ползунка" и трека */
+}
+
+.message {
+  display: block;
+  margin: 5px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  position: relative;
+  color: cornsilk;
+  flex-shrink: 0;
+  width: 60%; 
+  
+  
+}
+
+
+.currentUser {
+  align-self: flex-start;
+  background-color: #181917;
+}
+
+.otherUser {
+  align-self: flex-end;
+  background-color: rgba(27, 27, 28, 0.4);
+}
+
+
+
+.currentUser::after {
+  left: 100%;
+  border-left-color: #dcf8c6;
+}
+
+.otherUser::after {
+  right: 100%;
+  border-right-color: #e9e9eb;
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 20px;
+  margin-right: 10px;
+  outline: none;
+  border: none;
+  background-color: #3a2838;
+  color: cornsilk;
+  font-size: 16px;
+}
+
+input[type="submit"] {
+  padding: 10px 20px;
+  background-color: #3a2838;
+  color: cornsilk;
+  font-size: 14px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+  background-color: #594040;
+
+}
+.wrapperButtons{
+  display: flex;
+  justify-content: space-around;
+  width: 400px;
+  height: 70px;
+  // border: solid 1px red;
+}
+
+
+.button {
+  display: flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content: center;
+  padding: 8px 16px;
+  background-color: rgba(0, 0, 0, 0.5);   
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+
+button:hover {
+  background-color: #3a2838;
+}
+
+.imgUser{
+   margin-right: 10px;
+   margin-bottom: 30px;
+    position: relative;
+    width: 35px;
+    height: 35px;
+    border-radius: 50px;
+    cursor: pointer;
+    background-size: cover;
+    background-position: center; 
+  
+}
+
+.textMessage{
+  display: flex;
+  align-items: center;
+  flex: 1;
+  margin: 0;
+  word-break: break-word; 
+}

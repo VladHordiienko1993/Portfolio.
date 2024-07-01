@@ -9,7 +9,7 @@ import * as API from "../../api/index";
 import styles from "./SignUpForm.module.scss";
 
 
-const SignUpForm = () => {
+  const SignUpForm = () => {
   const dispatch = useDispatch();
   const push = useNavigate();
   const error = useSelector((state)=>state.users.error);
@@ -62,7 +62,7 @@ const SignUpForm = () => {
                   placeholder="Email"
                   className={styles.inputBox}
                 />
-                <ErrorMessage name="email" component="em" />
+                <ErrorMessage name="email" component="em"   />
               </label>
               <label className={styles.label}>
                 <Field

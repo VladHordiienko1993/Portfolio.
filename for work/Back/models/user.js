@@ -1,6 +1,5 @@
 "use strict";
 const { Model } = require("sequelize");
-const {isBefore} = require("data-fns");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
  
@@ -8,10 +7,17 @@ module.exports = (sequelize, DataTypes) => {
      User.hasMany(models.Task,{
       foreignKey: "userId"
      });
+     User.hasMany(models.Message, { foreignKey: 'userId' });
     }
   }
   User.init(
     {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+        allowNull: false
+      },
       token: {
         type: DataTypes.STRING,
       },

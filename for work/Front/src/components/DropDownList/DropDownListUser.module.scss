@@ -1,4 +1,5 @@
-.btnMenu{
+
+.btnMenu {
   position: relative;
   width: 25px;
   height: 25px;
@@ -7,6 +8,8 @@
   background-color: white;
   border-radius: 50px;
   cursor: pointer;
+  background-size: cover;
+  background-position: center; 
 }
 .menu {
   position: absolute;
