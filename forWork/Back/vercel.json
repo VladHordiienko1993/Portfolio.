@@ -11,8 +11,5 @@
       "src": "server.js",  
       "use": "@vercel/node" 
     }
-  ],
-  "commands": {
-    "postinstall": "npm install pg"
-  }
+  ]
 }
