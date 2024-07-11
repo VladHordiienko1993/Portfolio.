@@ -7,6 +7,15 @@
     "dialect": "postgres",
     "migrationStores": "json"
   },
-  "test": {},
-  "production": {}
+  "test": {
+    "username": "postgres",
+    "password": "postgres",
+    "database": "baseToWork",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    
+      "dialect": "postgres"
+  }
 }
