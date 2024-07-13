@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node ./server.js",
     "start-dev": "nodemon ./server.js",
-    "postinstall": "npm install pg"
+    "postinstall": "npm install pg",
+    "build": "npm i"
   },
   "keywords": [],
   "author": "",
