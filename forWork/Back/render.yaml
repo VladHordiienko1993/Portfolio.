@@ -1,11 +1,10 @@
 services:
   - type: web
-    name: base1_3tq5
+    name: my-todo-backend
     env: node
     buildCommand: npm install
-    startCommand: npm start
+    startCommand: |
+      PGPASSWORD=JIJ4UMRFl1jp7iCVRBwR98RElbCt6G8q psql -h dpg-cqan9hrqf0us738105kg-a.frankfurt-postgres.render.com -U vlad1993 -d base1_3tq5 -f seed.sql && npm start
     envVars:
       - key: DATABASE_URL
         value: postgresql://vlad1993:JIJ4UMRFl1jp7iCVRBwR98RElbCt6G8q@dpg-cqan9hrqf0us738105kg-a.frankfurt-postgres.render.com/base1_3tq5
-    postdeploy:
-      - PGPASSWORD=JIJ4UMRFl1jp7iCVRBwR98RElbCt6G8q psql -h dpg-cqan9hrqf0us738105kg-a.frankfurt-postgres.render.com -U vlad1993 -d base1_3tq5 -f seed.sql
