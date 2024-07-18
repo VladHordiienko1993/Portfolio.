@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./server.js",
     "start-dev": "nodemon ./server.js",
-    "postinstall": "npm install pg",
+    "postinstall": "npm install pg && npx sequelize-cli db:migrate",
     "build": "npm i"
   },
   "keywords": [],
