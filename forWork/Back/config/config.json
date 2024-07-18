@@ -1,21 +1,23 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "postgres",
-    "database": "baseToWork",
-    "host": "127.0.0.1",
-    "dialect": "postgres",
-    "migrationStores": "json"
+    "username": "vlad1993",
+    "password": "JIJ4UMRFl1jp7iCVRBwR98RElbCt6G8q",
+    "database": "base1_3tq5",
+    "host": "dpg-cqan9hrqf0us738105kg-a.frankfurt-postgres.render.com",
+    "dialect": "postgres"
   },
   "test": {
-    "username": "postgres",
-    "password": "postgres",
-    "database": "baseToWork",
-    "host": "127.0.0.1",
+    "username": "vlad1993",
+    "password": "JIJ4UMRFl1jp7iCVRBwR98RElbCt6G8q",
+    "database": "base1_3tq5",
+    "host": "dpg-cqan9hrqf0us738105kg-a.frankfurt-postgres.render.com",
     "dialect": "postgres"
   },
   "production": {
-    "use_env_variable": "DATABASE_URL",
+    "username": "vlad1993",
+    "password": "JIJ4UMRFl1jp7iCVRBwR98RElbCt6G8q",
+    "database": "base1_3tq5",
+    "host": "dpg-cqan9hrqf0us738105kg-a.frankfurt-postgres.render.com",
     "dialect": "postgres"
   }
 }
