@@ -32,6 +32,18 @@ const LogInForm = () => {
  
   return (
     <div className={styles.container}>
+
+
+<div className={styles.containerforTextLogin}><h2 className={styles.textOfLogin}>
+            <p>User for login</p><p>email: 2testuserusemy@gmail.com</p>
+            <p>password: testUserUseMe2</p> 
+             </h2>
+             </div>
+
+
+
+
+
       <Formik
         enableReinitialize
         onSubmit={onSubmit}
