@@ -10,12 +10,14 @@
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   height: 80%;
-  background-image: url('../../logo/LogoSpace.webp');
+  background-image: url('../../logo/LogoSpace.jfif');
+  background-size:cover;
   color: inherit;
 
 }
 .textPage{
   color: white;
+  margin: auto;
 }
 .divDiv {
   display: flex;
@@ -63,8 +65,7 @@
   color: cornsilk;
   flex-shrink: 0;
   width: 60%; 
-  
-  
+  font-size: 12px;
 }
 
 
@@ -97,17 +98,15 @@
   margin-top: 10px;
 }
 
-input[type="text"] {
-  flex: 1;
-  padding: 10px;
-  border: 2px solid #ccc;
-  border-radius: 20px;
+.input[type="text"] {
   margin-right: 10px;
   outline: none;
   border: none;
   background-color: #3a2838;
   color: cornsilk;
   font-size: 16px;
+  height: 98%;
+  width: 100%;
 }
 
 input[type="submit"] {
@@ -130,15 +129,14 @@ input[type="submit"]:hover {
   justify-content: space-around;
   width: 400px;
   height: 70px;
-  // border: solid 1px red;
+  margin-bottom: 10px;
 }
 
 
-.button {
+.buttonUser {
   display: flex;
   flex-direction:column;
   align-items:center;
-  justify-content: center;
   padding: 8px 16px;
   background-color: rgba(0, 0, 0, 0.5);   
   color: white;
@@ -149,14 +147,40 @@ input[type="submit"]:hover {
 }
 
 
-button:hover {
+.buttonUser:hover {
   background-color: #3a2838;
 }
 
+
+
+.messageContainer {
+  display: flex;
+  justify-content: space-between; /* Разделяет текст и время по сторонам */
+  align-items: center;
+  width: 100%;
+}
+
+.textMessage {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  word-break: break-word; 
+  flex: 1;
+}
+
+.timestamp {
+  font-size: 12px; /* Меньший размер шрифта */
+  color: #888; /* Светлый цвет для времени */
+  margin-left: 12px; /* Отступ от текста */
+  margin-top: 26px;
+  white-space: nowrap; /* Предотвращает перенос времени на новую строку */
+}
+
+
 .imgUser{
-   margin-right: 10px;
-   margin-bottom: 30px;
-    position: relative;
+   margin-right: 8px;
+   margin-bottom: 5px;
+   position: relative;
     width: 35px;
     height: 35px;
     border-radius: 50px;
@@ -166,10 +190,22 @@ button:hover {
   
 }
 
-.textMessage{
+
+
+.inputWrapper{
   display: flex;
-  align-items: center;
-  flex: 1;
-  margin: 0;
-  word-break: break-word; 
+ margin-left: 240px;
+  height: 36px;
+  flex: 0.7;
+  padding: 1px;
+  border: 2px solid #ccc;
+  border-radius: 20px;
+  margin-right: 10px;
+  outline: none;
+  border: none;
+  background-color: #3a2838;
+  color: cornsilk;
+  font-size: 16px;
 }
+
+

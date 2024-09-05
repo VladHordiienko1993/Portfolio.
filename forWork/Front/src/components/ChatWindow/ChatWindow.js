@@ -4,11 +4,10 @@ import {sessionUserRequest} from "../../slices/userSlices";
 import {requestCreateChat, requestAddMessages,requestGetMessages} from "../../slices/chatSlices";
 import cx from "classnames";
 import styles from "./ChatWindow.module.scss";
-import { Formik } from 'formik';
-import { Form } from 'formik';
-import { Field } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import LogoRobot1 from '../../logo/LogoRobot1.jpg';
 import LogoRobot2 from '../../logo/LogoRobot2.png';
+import LogoUser from '../../logo/LogoUser.png';
 
 
 const ChatWindow = () => {
@@ -39,9 +38,9 @@ const ChatWindow = () => {
   }, [user.id]);
 
   const [activeUserid, SetActiveUserId] = useState(user.id);
-
+ 
   const switchUser = (userId) => {
-    // console.log(userId)
+  
     SetActiveUserId(userId);
   };
   
@@ -63,9 +62,9 @@ const ChatWindow = () => {
     <div className={styles.container}> 
       <h2 className={styles.textPage} >Choose who you want to be</h2>
       <div className={styles.wrapperButtons}>
-        <button className={styles.button} onClick={() => switchUser(user.id)}> <img className={styles.imgUser} src={user.imgPath} /> {user.name}</button>
-        <button className={styles.button} onClick={() => switchUser(2)}><img className={styles.imgUser} src={LogoRobot2} /> {bot1.name}</button>
-        <button className={styles.button} onClick={() => switchUser(3)}><img className={styles.imgUser} src={LogoRobot1} /> {bot2.name}</button>
+        <button className={styles.buttonUser} onClick={() => switchUser(user.id)}> <img className={styles.imgUser} src={user.imgPath || LogoUser} /> {user.name}</button>
+        <button className={styles.buttonUser} onClick={() => switchUser(2)}><img className={styles.imgUser} src={LogoRobot2} /> {bot1.name}</button>
+        <button className={styles.buttonUser} onClick={() => switchUser(3)}><img className={styles.imgUser} src={LogoRobot1} /> {bot2.name}</button>
       </div>
   
  
@@ -87,10 +86,42 @@ let bot;
           }
 
           return (
-            <div key={message.id} className={messageClass}>
-              
-             <h2 className={styles.textMessage} ><img  className={styles.imgUser} src={user.userId === message.userId ? user.imgPath: bot} />{message.text}</h2> 
-            </div>
+          //   <div key={message.id} className={messageClass}>
+             
+          //    <h2 className={styles.textMessage} ><img  className={styles.imgUser} 
+          //    src={ 
+          //      message.userId === user.id ? (user.imgPath || LogoUser) :
+          //        message.userId === 2 ? LogoRobot2 :
+          //       message.userId === 3 ? LogoRobot1 : null}
+          //        alt="User Avatar"
+          //  />{message.text}</h2> 
+          //   </div>
+
+
+<div key={message.id} className={messageClass}>
+  {console.log(activeUserid)}
+  <div className={styles.messageContainer}>
+    <h2 className={styles.textMessage}>
+      <img
+        className={styles.imgUser}
+        src={
+          message.userId === user.id ? (user.imgPath || LogoUser) :
+          message.userId === 2 ? LogoRobot2 :
+          message.userId === 3 ? LogoRobot1 : null
+        }
+        alt="User Avatar"
+      />
+      {message.text}
+    </h2>
+    <span className={styles.timestamp}>
+      {new Date(message.createdAt).toLocaleTimeString()} 
+    </span>
+  </div>
+</div>
+
+
+
+
           );
         })}
            <div ref={messagesEndRef} />
@@ -102,7 +133,13 @@ let bot;
       >
         {(formikProps) => (
           <Form className={styles.form}>
-            <Field type="text" name="text" placeholder="TEXT" className={styles.input} />
+            <div className={styles.inputWrapper}>
+              <img className={styles.imgUser} src={ activeUserid === user.id ? (user.imgPath || LogoUser) :
+                 activeUserid === 2 ? LogoRobot2 :
+                 activeUserid === 3 ? LogoRobot1 : null} />
+               <Field type="text" name="text" placeholder="TEXT" className={styles.input} />
+            </div>
+           
             <Field name="submit" type="submit" value="Send" className={styles.button} />
           </Form>
         )}
