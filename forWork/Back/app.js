@@ -11,7 +11,7 @@ const passportGoogle = require('./passports/passportGoogle');
 
 const app = express();
 dotenv.config();
-app.use(cors({origin:'http://localhost:3001',methods:'GET,POST,PUT,DELETE,PATCH',credentials:true}))
+app.use(cors({origin:'https://main--hordiienko1.netlify.app',methods:'GET,POST,PUT,DELETE,PATCH',credentials:true}))
 
 
 app.use(session ({
