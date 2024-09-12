@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const passport = require("passport");
 const session = require('express-session');
+const RedisStore = require('connect-redis')
+const redis = require("redis");
 const dotenv = require('dotenv');
 const router = require("./routes");
 const  {errorHandler}  = require("./middlewares/error.handler.mw");
@@ -14,14 +16,22 @@ dotenv.config();
 
 app.use(cors({origin:'https://main--hordiienko1.netlify.app',methods:'GET,POST,PUT,DELETE,PATCH',credentials:true}))
 
+const redisClient = redis.createClient({
+  url: process.env.REDIS_URL,
+  legacyMode: true,
+});
+redisClient.connect().catch(console.error);
 
-app.use(session ({
-  secret: process.env.COOKIE_KEY,
-  resave: false,
-  saveUninitialized: true,
-  cookie: { 
-    sameSite: "strict",
-    maxAge: 24 * 60 * 60 * 1000 } 
+
+app.use(session({
+  store: new RedisStore({ client: redisClient }),  
+  secret: process.env.COOKIE_KEY,                  
+  resave: false,                                   
+  saveUninitialized: false,                       
+  cookie: {
+    sameSite: "strict",                           
+    maxAge: 24 * 60 * 60 * 1000                    
+  }
 }));
 
 app.use(passport.initialize());
