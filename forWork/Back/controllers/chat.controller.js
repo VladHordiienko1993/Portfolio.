@@ -6,7 +6,8 @@ module.exports.createChatWithBots = async (req, res, next) => {
     const botIds = [2, 3];
 
     if(!user || !user.id){
-        return next(createError(401),'User Not authenticated')
+        // return next(createError(401),'User Not authenticated')
+        return res.status(401).send({error: 'User Not authenticated'})
     }
 
     // Проверка, существует ли уже чат, где данный пользователь является владельцем
