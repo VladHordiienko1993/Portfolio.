@@ -22,6 +22,10 @@ const redisClient = redis.createClient({
 });
 redisClient.connect().catch(console.error);
 
+redisClient.on('error', (err) => {
+  console.error('Redis Client Error:', err);
+});
+
 
 app.use(session({
   store: new RedisStore({ client: redisClient }),  
