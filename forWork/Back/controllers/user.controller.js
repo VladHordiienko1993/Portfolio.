@@ -11,7 +11,7 @@ module.exports.userSession = async (req,res,next)=>{
   try {
     const {user} = req.session;
     if (!user) {
-      return next(createError(401, 'Not authenticated'));
+      return res.status(401).send({error: 'User Not authenticated'})
     }
     
     res.status(201).send({data:user});
