@@ -61,6 +61,14 @@ CREATE TABLE userchats (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Adding Indexes for Foreign Keys to Improve Performance
+CREATE INDEX idx_user_tasks ON tasks(user_id);
+CREATE INDEX idx_chat_owner ON chats(owner_id);
+CREATE INDEX idx_message_user ON messages(user_id);
+CREATE INDEX idx_message_chat ON messages(chat_id);
+CREATE INDEX idx_userchat_user ON userchats(user_id);
+CREATE INDEX idx_userchat_chat ON userchats(chat_id);
+
 
 
 

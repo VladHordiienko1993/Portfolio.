@@ -1,9 +1,13 @@
 const {Chat,User,UserChat,Message} = require("../models");
-
+const createError = require('http-errors')
 module.exports.createChatWithBots = async (req, res, next) => {
   try {
     const { user } = req.session;
     const botIds = [2, 3];
+
+    if(!user || !user.id){
+        return next(createError(401),'User Not authenticated')
+    }
 
     // Проверка, существует ли уже чат, где данный пользователь является владельцем
     const existingChat = await Chat.findOne({
