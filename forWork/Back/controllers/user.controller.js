@@ -9,6 +9,12 @@ const generateAccessToken = require("../middlewares/secretKeyRandom");
 
 module.exports.userSession = async (req,res,next)=>{
   try {
+    req.session.save((err) => {
+      if (err) {
+        console.error('Error saving session:', err);
+      }
+      res.status(200).send('Session saved successfully');
+    });
     const {user} = req.session;
     if (!user) {
       return res.status(401).send({error: 'User Not authenticated'})
