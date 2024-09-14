@@ -13,15 +13,28 @@ const passportGoogle = require('./passports/passportGoogle');
 
 const app = express();
 dotenv.config();
-
+//http://localhost:3001
 app.use(cors({origin:'https://main--hordiienko1.netlify.app',methods:'GET,POST,PUT,DELETE,PATCH',credentials:true}))
 
 const redisClient = redis.createClient({
   url: process.env.REDIS_URL,
   legacyMode: true,
+  socket: {
+    tls: true,   // Добавьте этот параметр для использования TLS
+    rejectUnauthorized: false, // Если возникает проблема с сертификатами, можно временно отключить проверку
+  }
 });
-redisClient.connect().catch(console.error);
 
+// Более подробное логирование процесса подключения
+redisClient.connect()
+  .then(() => {
+    console.log('Redis client connected successfully');
+  })
+  .catch((err) => {
+    console.error('Redis Client Connection Error:', err);
+  });
+
+// Логирование ошибок Redis
 redisClient.on('error', (err) => {
   console.error('Redis Client Error:', err);
 });
