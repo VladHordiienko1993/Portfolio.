@@ -1,8 +1,8 @@
 import axios from "axios";
 
-//http://localhost:3000
+//http://localhost:3000/api
 const httpClient = axios.create({
-  baseURL: "https://portfolio-4jfj.onrender.com/api",
+  baseURL: "https://portfolio-4jfj.onrender.com",
   withCredentials: true
 });
 
