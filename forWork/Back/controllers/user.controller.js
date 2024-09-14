@@ -13,7 +13,7 @@ module.exports.userSession = async (req,res,next)=>{
       if (err) {
         console.error('Error saving session:', err);
       }
-      res.status(200).send('Session saved successfully');
+      return res.status(200).send('Session saved successfully');
     });
     const {user} = req.session;
     if (!user) {
