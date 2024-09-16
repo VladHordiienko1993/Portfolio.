@@ -14,10 +14,15 @@ const passportGoogle = require('./passports/passportGoogle');
 const app = express();
 dotenv.config();
 //http://localhost:3001
-app.use(cors({
-  origin:'https://main--hordiienko1.netlify.app',
-  methods:['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-  credentials:true}));
+const corsOptions = {
+  origin: 'https://hordiienko1.netlify.app',  // Укажите точный домен вашего фронтенда
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],  // Включите PUT и PATCH
+  credentials: true  // Для передачи cookies
+};
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
+
+
 
 const redisClient = redis.createClient({
   url: process.env.REDIS_URL,
