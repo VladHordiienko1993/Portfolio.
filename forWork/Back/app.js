@@ -14,7 +14,10 @@ const passportGoogle = require('./passports/passportGoogle');
 const app = express();
 dotenv.config();
 //http://localhost:3001
-app.use(cors({origin:'https://main--hordiienko1.netlify.app',methods:'GET,POST,PUT,DELETE,PATCH',credentials:true}))
+app.use(cors({
+  origin:'https://main--hordiienko1.netlify.app',
+  methods:['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  credentials:true}));
 
 const redisClient = redis.createClient({
   url: process.env.REDIS_URL,
