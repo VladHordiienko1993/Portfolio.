@@ -80,7 +80,11 @@ module.exports.userLogin = async (req,res,next)=>{
       const error = createError(404,'Password is not valid')
      return next(error);
     }
-     req.session.user = user;
+    req.session.user = {
+      id: user.id,
+      name: user.name,
+      email: user.email
+    };
      req.session.save((err) => {
       if (err) {
         console.error('Error saving session:', err);
