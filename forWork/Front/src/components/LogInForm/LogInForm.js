@@ -14,22 +14,57 @@ const LogInForm = () => {
  
 
   
-  const onSubmit = async(values, formikBag) => {
-    const {data:{data: user}} = await API.fetchLoginUser(values)
-          .catch((err)=>{
-            if(err && err.message){
-              dispatch(createUserError(err.request.status))
-            }
-          })
+  // const onSubmit = async(values, formikBag) => {
+  //   const {data:{data: user}} = await API.fetchLoginUser(values)
+  //         .catch((err)=>{
+  //           if(err && err.message){
+  //             dispatch(createUserError(err.request.status))
+  //           }
+  //         })
 
-          if(user){
-            dispatch(createUserSuccess(user))
+  //         if(user){
+  //           dispatch(createUserSuccess(user))
 
-            formikBag.resetForm()
-            push('/')
-          }
-  };
+  //           formikBag.resetForm()
+  //           push('/')
+  //         }
+  // };
  
+
+  const onSubmit = async(values, formikBag) => {
+    try {
+      // Логин пользователя
+      const { data: { data: user } } = await API.fetchLoginUser(values);
+      
+      // Если логин успешен, обновляем состояние пользователя в Redux
+      if(user) {
+        dispatch(createUserSuccess(user));
+  
+        // Получаем текущую сессию после успешного логина
+        const sessionResponse = await API.fetchSessionUser();
+  
+        // Обрабатываем успешный ответ сессии
+        dispatch(sessionSuccess(sessionResponse.data));
+  
+        // Сбрасываем форму
+        formikBag.resetForm();
+  
+        // Редиректим пользователя на главную страницу
+        push('/');
+      }
+    } catch (err) {
+      // Обрабатываем ошибки логина
+      if (err && err.response) {
+        dispatch(createUserError(err.response.status));
+      }
+  
+      // В случае ошибки сессии (опционально можно обрабатывать её отдельно)
+      dispatch(sessionError(err.response?.status || 'Ошибка при получении сессии'));
+    }
+  };
+
+
+
   return (
     <div className={styles.container}>
 
