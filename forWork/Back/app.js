@@ -20,7 +20,15 @@ const corsOptions = {
   credentials: true  // Для передачи cookies
 };
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));
+
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://hordiienko1.netlify.app'); // Точный домен вашего фронтенда
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept, Authorization, X-Requested-With');
+  next();
+});
 
 
 
