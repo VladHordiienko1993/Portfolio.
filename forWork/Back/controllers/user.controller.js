@@ -12,7 +12,7 @@ module.exports.userSession = async (req,res,next)=>{
    
     const {user} = req.session;
     if (!user) {
-      return res.status(402).send({error: 'User Not authenticated'})
+      return res.status(401).send({error: 'User Not authenticated'})
     }
     
     res.status(201).send({data:user});
