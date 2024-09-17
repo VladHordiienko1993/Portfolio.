@@ -93,7 +93,7 @@ module.exports.userLogin = async (req,res,next)=>{
       console.log('Session saved successfully');
     });
    
-    res.status(201).send({data:user})
+    res.status(201).send({data:user,userSession: req.session.user})
    
   } catch (error) {
     next(error);
