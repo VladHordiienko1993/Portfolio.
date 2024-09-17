@@ -67,6 +67,11 @@ app.use((req, res, next) => {
 });
 
 
+app.use((req, res, next) => {
+  console.log('Cookies:', req.cookies);
+  next();
+});
+
 app.use(passport.initialize());
 app.use(passport.session());
 
