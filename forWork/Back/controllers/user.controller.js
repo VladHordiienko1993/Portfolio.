@@ -65,40 +65,54 @@ module.exports.userRegistration = async (req, res, next) => {
   }
 };
 
-module.exports.userLogin = async (req,res,next)=>{
+module.exports.userLogin = async (req, res, next) => {
   try {
-    const {body} = req;
-    const user = await User.findOne({where:{email: body.email}});
-    if(!user){
-      const error = createError(400,'Please enter a valid email');
-     return  next(error);
+    const { body } = req;
+    
+    // Поиск пользователя по email
+    const user = await User.findOne({ where: { email: body.email } });
+    if (!user) {
+      const error = createError(400, 'Please enter a valid email');
+      return next(error);
     }
-  
 
-    const validPassword = bcrypt.compare(body.password,user.password);
-    if(!validPassword){
-      const error = createError(404,'Password is not valid')
-     return next(error);
+    // Проверка пароля
+    const validPassword = await bcrypt.compare(body.password, user.password);
+    if (!validPassword) {
+      const error = createError(404, 'Password is not valid');
+      return next(error);
     }
+
+    // Сохранение информации о пользователе в сессии
     req.session.user = {
       id: user.id,
       name: user.name,
       email: user.email
     };
-     req.session.save((err) => {
+
+    // Сохранение сессии
+    req.session.save((err) => {
       if (err) {
         console.error('Error saving session:', err);
-        return next(err)
+        return next(err);
       }
       console.log('Session saved successfully');
     });
-   
-    res.status(201).send({data:user},{userSession: req.session.user})
-   
+
+    // Логирование сохранённой сессии в консоль
+    console.log('Saved userSession:', req.session.user);
+
+    // Отправка ответа с данными пользователя и сессией
+    res.status(201).send({
+      data: user,
+      userSession: req.session.user
+    });
+
   } catch (error) {
     next(error);
   }
 };
+
 
 
 module.exports.userLogout = async (req,res,next)=>{
