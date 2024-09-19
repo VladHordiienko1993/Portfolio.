@@ -60,7 +60,7 @@ app.use(session({
   }
 }));
 app.use((req, res, next) => {
-  console.log('Session ID:', req.sessionID,process.env.REDIS_URL);
+  console.log('Session ID:', req.sessionID);
   console.log('Session Data:', req.session);
   next();
 });
