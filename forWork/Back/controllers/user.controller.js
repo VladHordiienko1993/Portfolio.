@@ -2,7 +2,7 @@ const createError = require("http-errors");
 const bcrypt = require("bcryptjs");
 const { User } = require("../models");
 const generateAccessToken = require("../middlewares/secretKeyRandom");
-
+const redis = require('redis');
 
 
 
@@ -65,6 +65,7 @@ module.exports.userRegistration = async (req, res, next) => {
   }
 };
 
+
 module.exports.userLogin = async (req, res, next) => {
   try {
     const { body } = req;
@@ -91,12 +92,34 @@ module.exports.userLogin = async (req, res, next) => {
     };
 
     // Сохранение сессии
-    req.session.save((err) => {
+    req.session.save(async (err) => {
       if (err) {
         console.error('Error saving session:', err);
         return next(err);
       }
       console.log('Session saved successfully');
+      
+      // Создаем клиента Redis
+      const redisClient = redis.createClient({ url: process.env.REDIS_URL });
+      await redisClient.connect(); // Подключаемся к Redis
+      
+      // Используем ID текущей сессии
+      const sessionID = req.sessionID;
+
+      // Проверяем, записана ли сессия в Redis
+      redisClient.get(`sess:${sessionID}`, (err, data) => {
+        if (err) {
+          console.error('Error fetching session from Redis:', err);
+        } else if (data) {
+          console.log('Session in Redis:', data); // Логируем данные сессии из Redis
+        } else {
+          console.log('Session not found in Redis');
+        }
+      });
+
+      // Закрываем соединение с Redis после использования
+      redisClient.quit();
+
     });
 
     // Логирование сохранённой сессии в консоль
@@ -112,7 +135,6 @@ module.exports.userLogin = async (req, res, next) => {
     next(error);
   }
 };
-
 
 
 module.exports.userLogout = async (req,res,next)=>{
