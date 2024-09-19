@@ -3,7 +3,7 @@ const cors = require("cors");
 const passport = require("passport");
 const session = require('express-session');
 const RedisStore = require('connect-redis')(session); 
-const Redis = require("ioredis");
+const redis = require("redis");
 const dotenv = require('dotenv');
 const router = require("./routes");
 const  {errorHandler}  = require("./middlewares/error.handler.mw");
@@ -26,7 +26,7 @@ app.use(cors(corsOptions));
 
 
 
-const redisClient = new Redis({
+const redisClient = redis.createClient({
   url: process.env.REDIS_URL,
   legacyMode: true,
 });
@@ -60,7 +60,7 @@ app.use(session({
   }
 }));
 app.use((req, res, next) => {
-  console.log('Session ID:', req.sessionID);
+  console.log('Session ID:', req.sessionID,process.env.REDIS_URL);
   console.log('Session Data:', req.session);
   next();
 });
