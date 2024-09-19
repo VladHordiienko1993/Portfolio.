@@ -48,6 +48,7 @@ redisClient.on('error', (err) => {
 
 app.use(session({
   store: new RedisStore({ client: redisClient }),  
+  name: "sid",
   secret: process.env.COOKIE_KEY,                  
   resave: false,                                   
   saveUninitialized: false,                       
