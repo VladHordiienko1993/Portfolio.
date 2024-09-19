@@ -1,9 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 const passport = require("passport");
+const redis = require("redis");
 const session = require('express-session');
 const RedisStore = require('connect-redis')(session); 
-const redis = require("redis");
 const dotenv = require('dotenv');
 const router = require("./routes");
 const  {errorHandler}  = require("./middlewares/error.handler.mw");
@@ -54,7 +54,7 @@ app.use(session({
   saveUninitialized: false,                       
   cookie: {
     sameSite: "none",      
-    secure: false,              
+    secure: true,              
     httpOnly: true,       
     maxAge: 24 * 60 * 60 * 1000                    
   }
