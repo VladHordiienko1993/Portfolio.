@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const { User } = require("../models");
 const generateAccessToken = require("../middlewares/secretKeyRandom");
 const redis = require('redis');
+const dotenv = require('dotenv');
 dotenv.config();
 
 
