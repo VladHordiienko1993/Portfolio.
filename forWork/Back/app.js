@@ -29,10 +29,6 @@ app.use(cors(corsOptions));
 const redisClient = redis.createClient({
   url: process.env.REDIS_URL,
   legacyMode: true,
-  socket: {
-    tls: true,   // Добавьте этот параметр для использования TLS
-    rejectUnauthorized: false, // Если возникает проблема с сертификатами, можно временно отключить проверку
-  }
 });
 
 // Более подробное логирование процесса подключения
