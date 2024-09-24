@@ -108,18 +108,7 @@ module.exports.userLogin = async (req, res, next) => {
       const sessionID = req.sessionID;
 
       // Проверяем, записана ли сессия в Redis
-      redisClient.get(`sess:${sessionID}`, (err, data) => {
-        if (err) {
-          console.error('Error fetching session from Redis:', err);
-        } else if (data) {
-          console.log('Session in Redis:', data); // Логируем данные сессии из Redis
-        } else {
-          console.log('Session not found in Redis');
-        }
-      });
-
-      // Закрываем соединение с Redis после использования
-      redisClient.quit();
+    
 
     });
 

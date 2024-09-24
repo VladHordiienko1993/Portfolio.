@@ -66,6 +66,21 @@ app.use((req, res, next) => {
 });
 
 
+redisClient.get(`sess:${sessionID}`, (err, data) => {
+  if (err) {
+    console.error('Error fetching session from Redis:', err);
+  } else if (data) {
+    console.log('Session in Redis:', data); // Логируем данные сессии из Redis
+  } else {
+    console.log('Session not found in Redis');
+  }
+});
+
+// Закрываем соединение с Redis после использования
+redisClient.quit();
+
+
+
 app.use((req, res, next) => {
   console.log('Cookies:', req.cookies);
   next();
