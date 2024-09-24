@@ -52,7 +52,14 @@ app.use(session({
     httpOnly: true,
     maxAge: 24 * 60 * 60 * 1000
   }
+}, (err) => {
+  if (err) {
+    console.error('Session store error:', err);
+  } else {
+    console.log('Session stored successfully in Redis');
+  }
 }));
+ 
 
 // Middleware для логирования сессии
 app.use((req, res, next) => {
