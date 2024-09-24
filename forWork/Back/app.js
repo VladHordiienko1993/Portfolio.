@@ -3,14 +3,14 @@ const cors = require("cors");
 const passport = require("passport");
 const redis = require("redis");
 const session = require('express-session');
-const RedisStore = require('connect-redis').default  
+const RedisStore = require('connect-redis').default;
 const dotenv = require('dotenv');
 const router = require("./routes");
 const { errorHandler } = require("./middlewares/error.handler.mw");
 const passportGoogle = require('./passports/passportGoogle');
 
-const app = express();
 dotenv.config();
+const app = express();
 
 // Настройка CORS
 const corsOptions = {
@@ -20,10 +20,9 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-// Настройка Redis клиента
+// Настройка Redis-клиента без legacyMode
 const redisClient = redis.createClient({
   url: process.env.REDIS_URL,
-  legacyMode: true,
 });
 
 // Логирование процесса подключения к Redis
@@ -52,27 +51,20 @@ app.use(session({
     httpOnly: true,
     maxAge: 24 * 60 * 60 * 1000
   }
-}, (err) => {
-  if (err) {
-    console.error('Session store error:', err);
-  } else {
-    console.log('Session stored successfully in Redis');
-  }
 }));
- 
 
 // Middleware для логирования сессии
 app.use((req, res, next) => {
   console.log('Session ID:', req.sessionID);
   console.log('Session Data:', req.session.user);
-  
+
   // Логирование сессии из Redis
-  const sessionID = req.sessionID;  // Получаем ID текущей сессии
+  const sessionID = req.sessionID;
   redisClient.get(`sess:${sessionID}`, (err, data) => {
     if (err) {
       console.error('Error fetching session from Redis:', err);
     } else if (data) {
-      console.log('Session in Redis:', data); // Логируем данные сессии из Redis
+      console.log('Session in Redis:', data);
     } else {
       console.log('Session not found in Redis');
     }
