@@ -76,14 +76,12 @@ app.use((req, res, next) => {
     if (err) {
       console.error('Error fetching session from Redis:', err);
     } else if (data) {
-      console.log('Session in Redis:', data);
+      console.log('Session in Redis:', JSON.parse(data)); // Парсим данные
     } else {
       console.log('Session not found in Redis');
     }
   });
-
-  next();
-});
+  
 
 // Middleware для логирования куки
 app.use((req, res, next) => {
