@@ -2,25 +2,26 @@ const createError = require("http-errors");
 const bcrypt = require("bcryptjs");
 const { User } = require("../models");
 const generateAccessToken = require("../middlewares/secretKeyRandom");
-const redis = require('redis');
 const dotenv = require('dotenv');
 dotenv.config();
 
 
 
-module.exports.userSession = async (req,res,next)=>{
+module.exports.userSession = async (req, res, next) => {
   try {
-   
-    const {user} = req.session;
+    console.log('Session data:', req.session); // Логируем всю сессию
+
+    const { user } = req.session;
     if (!user) {
-      return res.status(401).send({error: 'User Not authenticated'})
+      return res.status(401).send({ error: 'User Not authenticated' });
     }
-    
-    res.status(201).send({data:user});
+
+    res.status(201).send({ data: user });
   } catch (error) {
-    next(error);    
+    next(error);
   }
 };
+
 
 
 module.exports.userGoogle = async (req,res,next)=>{
@@ -98,7 +99,7 @@ module.exports.userLogin = async (req, res, next) => {
         console.error('Error saving session:', err);
         return next(err);
       }});
-      
+
       console.log('Session saved successfully');
 
     // Логирование сохранённой сессии в консоль
