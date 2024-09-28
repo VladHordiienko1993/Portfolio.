@@ -82,6 +82,7 @@ app.use((req, res, next) => {
     }
   });
   
+});
 
 // Middleware для логирования куки
 app.use((req, res, next) => {
