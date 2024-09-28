@@ -94,21 +94,21 @@ module.exports.userLogin = async (req, res, next) => {
     };
 
     // Сохранение сессии
-    req.session.save((err) => {
+    req.session.save(async (err) => {
       if (err) {
         console.error('Error saving session:', err);
         return next(err);
-      }});
-
+      }
       console.log('Session saved successfully');
+      
+      // Логирование сессии после сохранения
+      console.log('Saved userSession:', req.session.user);
 
-    // Логирование сохранённой сессии в консоль
-    console.log('Saved userSession:', req.session.user);
-
-    // Отправка ответа с данными пользователя и сессией
-    res.status(201).send({
-      data: user,
-      userSession: req.session.user
+      // Ответ с данными
+      res.status(201).send({
+        data: user,
+        userSession: req.session.user
+      });
     });
 
   } catch (error) {
