@@ -80,6 +80,7 @@ app.use((req, res, next) => {
     } else {
       console.log('Session not found in Redis');
     }
+    next();
   });
   
 });
