@@ -67,10 +67,11 @@ app.use(session({
 
 // Middleware для логирования сессии
 app.use((req, res, next) => {
-  console.log('Session ID:', req.sessionID);
-  console.log('Session Data:', req.session.user);
+  console.log(`Session ID: ${req.sessionID} at ${new Date().toISOString()}`);
+  
+  // Логирование данных сессии
+  console.log('Session Data:', req.session ? req.session.user : 'undefined');
 
-  // Логирование сессии из Redis
   const sessionID = req.sessionID;
   redisClient.get(`sess:${sessionID}`, (err, data) => {
     if (err) {
@@ -82,8 +83,8 @@ app.use((req, res, next) => {
     }
     next();
   });
-  
 });
+
 
 // Middleware для логирования куки
 app.use((req, res, next) => {
