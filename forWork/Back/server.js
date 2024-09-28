@@ -7,6 +7,8 @@ dotenv.config();
 const PORT = process.env.PORT || 3000;
 
 const server = http.createServer(app);
+//DATABASE_URL=postgresql://vlad1993:VYKrjCyPpRiztiYK93W3Z1TLh6C39XPB@dpg-crff3djqf0us738k30g0-a/base1_3tq5_39mp
+//DATABASE_URL=postgresql://postgres:postgres@localhost:5432/baseToWork
 
 const startServer = async () => {
   try {
