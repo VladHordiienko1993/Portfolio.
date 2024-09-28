@@ -11,7 +11,8 @@ const passportGoogle = require('./passports/passportGoogle');
 
 dotenv.config();
 const app = express();
-
+//http://localhost:3000
+//https://hordiienko1.netlify.app
 // Настройка CORS
 const corsOptions = {
   origin: 'https://hordiienko1.netlify.app',
@@ -19,25 +20,36 @@ const corsOptions = {
   credentials: true
 };
 app.use(cors(corsOptions));
-
+//REDIS_URL=redis://red-crhd8t08fa8c7390avm0:6379
+//REDIS_URL=rediss://red-crhd8t08fa8c7390avm0:8EZbXtO5UbbxavbPCpNwf06YmsUxBLo2@frankfurt-redis.render.com:6379
 // Настройка Redis-клиента без legacyMode
 const redisClient = redis.createClient({
   url: process.env.REDIS_URL,
+ 
 });
 
-// Логирование процесса подключения к Redis
+// Подключение к Redis
 redisClient.connect()
-  .then(() => {
-    console.log('Redis client connected successfully');
+  .then(async () => {
+    console.log('Connected to Redis successfully');
+
+    // Тестовая запись и чтение данных в Redis
+    try {
+      await redisClient.set('foo', 'bar');  // Устанавливаем ключ 'foo' со значением 'bar'
+      const value = await redisClient.get('foo');  // Читаем значение ключа 'foo'
+      console.log(`Value: ${value}`);  // Логируем результат (должно вывести 'Value: bar')
+    } catch (err) {
+      console.error('Error performing set/get in Redis:', err);
+    }
+
   })
-  .catch((err) => {
-    console.error('Redis Client Connection Error:', err);
+  .catch(err => {
+    console.error('Redis connection error:', err);
   });
 
 redisClient.on('error', (err) => {
   console.error('Redis Client Error:', err);
 });
-
 // Настройка сессий с Redis хранилищем
 app.use(session({
   store: new RedisStore({ client: redisClient }),
