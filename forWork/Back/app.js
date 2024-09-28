@@ -52,7 +52,7 @@ redisClient.on('error', (err) => {
 });
 // Настройка сессий с Redis хранилищем
 app.use(session({
-  store: new RedisStore({ client: redisClient }),
+  store: new RedisStore({ client: redisClient, logErrors: true }),
   name: "sid",
   secret: process.env.COOKIE_KEY,
   resave: false,
