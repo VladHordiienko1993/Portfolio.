@@ -93,24 +93,13 @@ module.exports.userLogin = async (req, res, next) => {
     };
 
     // Сохранение сессии
-    req.session.save(async (err) => {
+    req.session.save((err) => {
       if (err) {
         console.error('Error saving session:', err);
         return next(err);
-      }
+      }});
+      
       console.log('Session saved successfully');
-      
-      // Создаем клиента Redis
-      const redisClient = redis.createClient({ url: process.env.REDIS_URL });
-      await redisClient.connect(); // Подключаемся к Redis
-      
-      // Используем ID текущей сессии
-      const sessionID = req.sessionID;
-
-      // Проверяем, записана ли сессия в Redis
-    
-
-    });
 
     // Логирование сохранённой сессии в консоль
     console.log('Saved userSession:', req.session.user);
