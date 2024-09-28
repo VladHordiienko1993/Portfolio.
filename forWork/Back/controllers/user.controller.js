@@ -98,11 +98,13 @@ module.exports.userLogin = async (req, res, next) => {
       if (err) {
         console.error('Error saving session:', err);
         return next(err);
+      }else{
+        console.log('Saved userSession:', req.session.user);
       }
       console.log('Session saved successfully');
       
-      // Логирование сессии после сохранения
-      console.log('Saved userSession:', req.session.user);
+      
+      
 
       // Ответ с данными
       res.status(201).send({
