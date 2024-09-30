@@ -66,21 +66,58 @@ app.use(session({
 }));
 
 // Middleware для логирования сессии
-app.use((req, res, next) => {
-  console.log(`Session ID: ${req.sessionID} at ${new Date().toISOString()}`);
+// app.use((req, res, next) => {
+//   console.log(`Session ID: ${req.sessionID} at ${new Date().toISOString()}`);
   
-  // Логирование данных сессии
-  console.log('Session Data:', req.session ? req.session.user : 'undefined');
+//   // Логирование данных сессии
+//   console.log('Session Data:', req.session ? req.session.user : 'undefined');
 
+//   const sessionID = req.sessionID;
+//   redisClient.get(`sess:${sessionID}`, (err, data) => {
+//     if (err) {
+//       console.error('Error fetching session from Redis:', err);
+//     } else if (data) {
+//       console.log('Session in Redis:', JSON.parse(data)); // Парсим данные
+//     } else {
+//       console.log('Session not found in Redis');
+//     }
+//     next();
+//   });
+// });
+
+
+
+
+app.use((req, res, next) => {
   const sessionID = req.sessionID;
+
+  // Логируем информацию о текущем запросе и сессии
+  console.log(`\n==== NEW REQUEST ====\nMethod: ${req.method} | URL: ${req.url}`);
+  console.log('Session ID:', sessionID);
+
+  // Логируем текущие данные сессии (до получения их из Redis)
+  console.log('Current Session Data (from req.session):', req.session ? req.session : 'undefined');
+
+  // Логируем данные из Redis
   redisClient.get(`sess:${sessionID}`, (err, data) => {
     if (err) {
       console.error('Error fetching session from Redis:', err);
     } else if (data) {
-      console.log('Session in Redis:', JSON.parse(data)); // Парсим данные
+      // Логируем исходные данные, полученные из Redis, перед парсингом
+      console.log('Raw session data from Redis:', data);
+      
+      try {
+        const parsedData = JSON.parse(data);
+        console.log('Parsed Session in Redis:', parsedData);  // Логируем спарсенные данные
+      } catch (parseErr) {
+        console.error('Error parsing session data from Redis:', parseErr);
+      }
+
     } else {
-      console.log('Session not found in Redis');
+      console.log('Session not found in Redis for session ID:', sessionID);
     }
+
+    // Всегда продолжаем выполнение запроса
     next();
   });
 });
