@@ -93,28 +93,11 @@ app.use((req, res, next) => {
     return next(); // Пропускаем запросы типа HEAD
   }
 
-  const sessionID = req.sessionID;
   console.log(`\n==== NEW REQUEST ====\nMethod: ${req.method} | URL: ${req.url}`);
-  console.log('Session ID:', sessionID);
-  console.log('Current Session Data (from req.session):', req.session ? req.session : 'undefined');
-
-  redisClient.get(`sess:${sessionID}`, (err, data) => {
-    if (err) {
-      console.error('Error fetching session from Redis:', err);
-    } else if (data) {
-      console.log('Raw session data from Redis:', data);
-      try {
-        const parsedData = JSON.parse(data);
-        console.log('Parsed Session in Redis:', parsedData);
-      } catch (parseErr) {
-        console.error('Error parsing session data from Redis:', parseErr);
-      }
-    } else {
-      console.log('Session not found in Redis for session ID:', sessionID);
-    }
-    next();
-  });
+  console.log('Session ID:', req.sessionID);
+  next(); // Не делаем запросы к Redis для теста
 });
+
 
 
 
