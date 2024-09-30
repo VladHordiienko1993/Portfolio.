@@ -3,7 +3,7 @@ const cors = require("cors");
 const passport = require("passport");
 const redis = require("redis");
 const session = require('express-session');
-const RedisStore = require('connect-redis').default;
+const RedisStore = require('connect-redis')(session);
 const dotenv = require('dotenv');
 const router = require("./routes");
 const { errorHandler } = require("./middlewares/error.handler.mw");
@@ -65,26 +65,6 @@ app.use(session({
   }
 }));
 
-// Middleware для логирования сессии
-// app.use((req, res, next) => {
-//   console.log(`Session ID: ${req.sessionID} at ${new Date().toISOString()}`);
-  
-//   // Логирование данных сессии
-//   console.log('Session Data:', req.session ? req.session.user : 'undefined');
-
-//   const sessionID = req.sessionID;
-//   redisClient.get(`sess:${sessionID}`, (err, data) => {
-//     if (err) {
-//       console.error('Error fetching session from Redis:', err);
-//     } else if (data) {
-//       console.log('Session in Redis:', JSON.parse(data)); // Парсим данные
-//     } else {
-//       console.log('Session not found in Redis');
-//     }
-//     next();
-//   });
-// });
-
 
 
 
@@ -120,31 +100,6 @@ app.use((req, res, next) => {
   }
   next();
 });
-
-// Проверка сессии в Redis при каждом запросе
-// app.use((req, res, next) => {
-//   const sessionID = req.sessionID;
-  
-//   redisClient.get(`sess:${sessionID}`, (err, data) => {
-//     if (err) {
-//       console.error('Error fetching session from Redis:', err);
-//     } else {
-//       console.log('Raw session data from Redis:', data);
-
-//       if (data) {
-//         try {
-//           const parsedData = JSON.parse(data);
-//           console.log('Parsed session from Redis:', parsedData);
-//         } catch (parseErr) {
-//           console.error('Error parsing session data from Redis:', parseErr);
-//         }
-//       } else {
-//         console.log('Session not found in Redis for session ID:', sessionID);
-//       }
-//     }
-//     next();
-//   });
-// });
 
 
 
