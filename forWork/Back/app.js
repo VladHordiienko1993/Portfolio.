@@ -101,6 +101,54 @@ app.use((req, res, next) => {
 
 
 
+
+
+
+// Сохранение данных в сессии
+app.use((req, res, next) => {
+  if (req.session.user) {
+    console.log('Saving session data:', req.session.user);
+
+    // Сохраняем сессию явно
+    req.session.save((err) => {
+      if (err) {
+        console.error('Error saving session:', err);
+      } else {
+        console.log('Session saved in Redis successfully');
+      }
+    });
+  }
+  next();
+});
+
+// Проверка сессии в Redis при каждом запросе
+app.use((req, res, next) => {
+  const sessionID = req.sessionID;
+  
+  redisClient.get(`sess:${sessionID}`, (err, data) => {
+    if (err) {
+      console.error('Error fetching session from Redis:', err);
+    } else {
+      console.log('Raw session data from Redis:', data);
+
+      if (data) {
+        try {
+          const parsedData = JSON.parse(data);
+          console.log('Parsed session from Redis:', parsedData);
+        } catch (parseErr) {
+          console.error('Error parsing session data from Redis:', parseErr);
+        }
+      } else {
+        console.log('Session not found in Redis for session ID:', sessionID);
+      }
+    }
+    next();
+  });
+});
+
+
+
+
 // Middleware для логирования куки
 app.use((req, res, next) => {
   console.log('Cookies:', req.cookies);
