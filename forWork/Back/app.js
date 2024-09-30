@@ -89,38 +89,33 @@ app.use(session({
 
 
 app.use((req, res, next) => {
-  const sessionID = req.sessionID;
+  if (req.method === 'HEAD') {
+    return next(); // Пропускаем запросы типа HEAD
+  }
 
-  // Логируем информацию о текущем запросе и сессии
+  const sessionID = req.sessionID;
   console.log(`\n==== NEW REQUEST ====\nMethod: ${req.method} | URL: ${req.url}`);
   console.log('Session ID:', sessionID);
-
-  // Логируем текущие данные сессии (до получения их из Redis)
   console.log('Current Session Data (from req.session):', req.session ? req.session : 'undefined');
 
-  // Логируем данные из Redis
   redisClient.get(`sess:${sessionID}`, (err, data) => {
     if (err) {
       console.error('Error fetching session from Redis:', err);
     } else if (data) {
-      // Логируем исходные данные, полученные из Redis, перед парсингом
       console.log('Raw session data from Redis:', data);
-      
       try {
         const parsedData = JSON.parse(data);
-        console.log('Parsed Session in Redis:', parsedData);  // Логируем спарсенные данные
+        console.log('Parsed Session in Redis:', parsedData);
       } catch (parseErr) {
         console.error('Error parsing session data from Redis:', parseErr);
       }
-
     } else {
       console.log('Session not found in Redis for session ID:', sessionID);
     }
-
-    // Всегда продолжаем выполнение запроса
     next();
   });
 });
+
 
 
 // Middleware для логирования куки
