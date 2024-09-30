@@ -107,10 +107,8 @@ module.exports.userLogin = async (req, res, next) => {
       
 
       // Ответ с данными
-      res.status(201).send({
-        data: user,
-        userSession: req.session.user
-      });
+      res.status(201).send({data: user});
+      
     });
 
   } catch (error) {
