@@ -1,26 +1,78 @@
 const createError = require("http-errors");
 const bcrypt = require("bcryptjs");
-const { User } = require("../models");
+const jwt = require('jsonwebtoken');
 const generateAccessToken = require("../middlewares/secretKeyRandom");
-const dotenv = require('dotenv');
-dotenv.config();
+const { User } = require("../models");
 
+module.exports.checkSession = async (req, res) => {
+  // Получаем JWT токен из куков
+  const token = req.cookies.jwt;
+  console.log(`${token} он есть `)
+  console.log(req.cookies);
 
+  if (!token) {
+    return res.status(401).send({ message: 'Not authenticated' });
+  }
 
-module.exports.userSession = async (req, res, next) => {
   try {
-    console.log('Session data:', req.session); // Логируем всю сессию
-
-    const { user } = req.session;
+    // Проверяем валидность токена
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || "SECRET_KEY_RANDOM");
+    console.log('Декодированный токен:', decoded);
+    
+    // Ищем пользователя по ID, который мы получили из токена
+    const user = await User.findOne({ where: { id: decoded.id } });
+    console.log('Найденный пользователь:', user);
     if (!user) {
-      return res.status(401).send({ error: 'User Not authenticated' });
+      return res.status(404).send({ message: 'User not found' });
     }
 
-    res.status(201).send({ data: user });
+    // Возвращаем полные данные о пользователе
+    res.status(200).send({data: user});
+  } catch (error) {
+    console.error('Ошибка при проверке токена или поиске пользователя:', error);
+    return res.status(401).send({ message: 'Invalid token' });
+  }
+};
+
+
+
+
+//Please enter a valid email     Password is not valid'   res.status(201).send({data: user});
+module.exports.userLogin = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+
+    // Поиск пользователя по email
+    const user = await User.findOne({ where: { email } });
+    if (!user) {
+      return res.status(400).send({ message: 'Please enter a valid email' });
+    }
+
+    // Проверка пароля
+    const validPassword = await bcrypt.compare(password, user.password);
+    if (!validPassword) {
+      return res.status(400).send({ message: 'Password is not valid' });
+    }
+
+    // Генерация JWT токена
+    const token = generateAccessToken(user.id);
+
+    // Сохранение токена в httpOnly куки
+    res.cookie('jwt', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',  // Использовать только по HTTPS (в продакшене)
+      sameSite: 'lax',
+      maxAge: 24 * 60 * 60 * 1000  // 1 день
+    });
+
+    // Отправляем основные данные пользователя клиенту
+    res.status(201).send({data: user});
+
   } catch (error) {
     next(error);
   }
 };
+
 
 
 
@@ -41,6 +93,7 @@ module.exports.userGoogle = async (req,res,next)=>{
     next(error)
   }
 };
+
 
 module.exports.userRegistration = async (req, res, next) => {
   try {
@@ -68,70 +121,21 @@ module.exports.userRegistration = async (req, res, next) => {
 };
 
 
-module.exports.userLogin = async (req, res, next) => {
+
+
+
+module.exports.userLogout = async (req, res, next) => {
   try {
-    const { body } = req;
+    // Удаляем куки с токеном
+    res.clearCookie('jwt'); // Очищаем куки, где хранится JWT
     
-    // Поиск пользователя по email
-    const user = await User.findOne({ where: { email: body.email } });
-    if (!user) {
-      const error = createError(400, 'Please enter a valid email');
-      return next(error);
-    }
-
-    // Проверка пароля
-    const validPassword = await bcrypt.compare(body.password, user.password);
-    if (!validPassword) {
-      const error = createError(404, 'Password is not valid');
-      return next(error);
-    }
-
-    // Сохранение информации о пользователе в сессии
-    req.session.user = {
-      id: user.id,
-      name: user.name,
-      email: user.email
-    };
-
-    // Сохранение сессии
-    req.session.save(async (err) => {
-      if (err) {
-        console.error('Error saving session:', err);
-        return next(err);
-      }else{
-        console.log('Saved userSession:', req.session.user);
-      }
-      console.log('Session saved successfully');
-      
-      
-      
-
-      // Ответ с данными
-      res.status(201).send({data: user});
-      
-    });
-
+    // Можем отправить подтверждение успешного разлогинивания
+    res.status(200).send({ message: 'User logged out successfully' });
   } catch (error) {
-    next(error);
+    next(error); // Передаем ошибку в middleware обработки ошибок
   }
 };
 
-
-module.exports.userLogout = async (req,res,next)=>{
-  try {
-    req.session.destroy(err => {
-      if (err) {
-        return next(err);
-      }
-      res.clearCookie('connect.sid');
-      res.status(200).send({ message: 'Session has been destroyed' });
-    });
-     
-  } catch (error) {
-    next(error)
-  }
-  
-};
 
 
 module.exports.deleteUserInstance = async (req, res, next) => {

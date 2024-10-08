@@ -2,13 +2,13 @@ const jwt = require('jsonwebtoken');
 
 
 
-const secretKey = {
-  secret: "SECRET_KEY_RANDOM"
+const secretKey = process.env.JWT_SECRET || "SECRET_KEY_RANDOM";
+
+
+
+const generateAccessToken = (id) => {
+  const payload = { id };  
+  return jwt.sign(payload, secretKey, { expiresIn: "24h" });  
 };
 
-module.exports = generateAccessToken = (id)=>{
-  const payload = { id };
-  return jwt.sign(payload, secretKey.secret, {expiresIn: "24h"});
-};
-
-
+module.exports = generateAccessToken;

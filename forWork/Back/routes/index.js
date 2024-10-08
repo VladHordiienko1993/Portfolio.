@@ -13,7 +13,7 @@ router.use('/users',userRouter);
 router.use('/tasks',taskRouter);
 router.use('/logout',logoutRouter);
 router.use('/theme', themeRouter);
-router.use('/session', userSessionRouter);
+router.use('/checkSession', userSessionRouter);
 router.use('/chat', chatRouter);
 
 module.exports = router;
