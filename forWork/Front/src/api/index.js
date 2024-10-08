@@ -6,6 +6,8 @@ const httpClient = axios.create({
   withCredentials: true
 });
 
+export const fetchCheckSessionUser = (data)=> httpClient.get("/checkSession");
+
 export const fetchCreateUser = (data)=> httpClient.post('/users/registration', data);
 
 export const fetchGoogleCallBack = (data)=> httpClient.get('/google/auth/callBack/success',data);
@@ -18,7 +20,7 @@ export const fetchThemeGet = (data)=> httpClient.get("/theme/getTheme", data);
 
 export const fetchThemeUpdate = (data)=> httpClient.patch("/theme/updateTheme", data);
 
-export const fetchSessionUser = (data)=> httpClient.get("/session",data);
+
 
 export const fetchCreateChat = (data)=> httpClient.post('/chat',data);
 
