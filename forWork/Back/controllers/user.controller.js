@@ -60,8 +60,8 @@ module.exports.userLogin = async (req, res, next) => {
     // Сохранение токена в httpOnly куки
     res.cookie('jwt', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',  // Использовать только по HTTPS (в продакшене)
-      sameSite: 'lax',
+      secure: true,  // Использовать только по HTTPS (в продакшене) process.env.NODE_ENV === 'production'
+      sameSite: 'None', // 'lax'
       maxAge: 24 * 60 * 60 * 1000  // 1 день
     });
 
