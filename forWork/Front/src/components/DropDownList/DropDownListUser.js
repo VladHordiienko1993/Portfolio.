@@ -2,7 +2,7 @@ import React, {  useRef, useState } from "react";
 import {  useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import cx from "classnames";
-import {signOutUser} from '../../slices/userSlices';
+import {requestSignOutUser} from '../../slices/userSlices';
 import {useClickOutside} from '../../hooks/index';
 import LogoUser from '../../logo/LogoUser.png';
 import styles from "./DropDownListUser.module.scss";
@@ -26,7 +26,7 @@ const DropDownListUser = (props) => {
   const refMenu = useRef(null);
   const push = useNavigate();
   const handlerSignOut = ()=>{
-    dispath(signOutUser())
+    dispath(requestSignOutUser())
     push('/');
   };
   useClickOutside(refMenu, callBack);

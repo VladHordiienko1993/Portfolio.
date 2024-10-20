@@ -45,7 +45,11 @@ const userSlice = createSlice({
       state.isFetching = false;
       state.error = action.payload;
     },
-    signOutUser: (state,action)=>{
+    requestSignOutUser: (state,action)=>{
+      state.isFetching = true;
+      state.error = null;
+    },
+    signOutSuccess: (state,action)=>{
       const initial = {
         id: '',
         googleId: '',
@@ -56,6 +60,12 @@ const userSlice = createSlice({
         imgPath: '',
       };
       state.users = initial;
+      state.isFetching = false;
+      state.error = null;   
+    },
+    signOutError: (state,action)=>{
+      state.isFetching = false;
+      state.error = action.payload;
     },
     sessionUserRequest : (state,action)=>{
       state.isFetching = true;
@@ -74,5 +84,5 @@ const userSlice = createSlice({
 });
 
 
-export const {createUserRequest,createUserSuccess,createUserError,userGoogleRequest,userGoogleSuccess,userGoogleError, signOutUser,sessionUserRequest,sessionSuccess,sessionError} = userSlice.actions;
+export const {createUserRequest,createUserSuccess,createUserError,userGoogleRequest,userGoogleSuccess,userGoogleError, requestSignOutUser,signOutSuccess,signOutError,sessionUserRequest,sessionSuccess,sessionError} = userSlice.actions;
 export default userSlice.reducer;

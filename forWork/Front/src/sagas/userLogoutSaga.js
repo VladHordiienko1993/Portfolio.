@@ -4,9 +4,9 @@ import { createUserError, signOutUser } from "../slices/userSlices";
 export function* userLogoutSaga(action){
 try {
   yield API.fetchUserLogout(action.payload);
-  yield put(signOutUser());
+  yield put(signOutSuccess());
 } catch (error) {
-  yield put(createUserError(error))
+  yield put(signOutError(error))
 }
 };
 

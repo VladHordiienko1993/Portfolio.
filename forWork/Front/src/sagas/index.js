@@ -12,7 +12,7 @@ import {getMessagesSaga} from './getMessagesSaga';
 function* rootSaga(){
   yield takeEvery('users/createUserRequest', createUserSaga);
   yield takeEvery('users/userGoogleRequest', callBackGoogleSaga);
-  yield takeEvery('users/signOutUser', userLogoutSaga);
+  yield takeEvery('users/requestSignOutUser', userLogoutSaga);
   yield takeEvery('themes/themeRequest', themeGetSaga);
   yield takeEvery('themes/requestSendTheme',themeSendSaga);
   yield takeEvery('users/sessionUserRequest', sessionUserSaga);
