@@ -137,7 +137,8 @@ module.exports.userLogout = async (req, res, next) => {
     // Удаляем куки с токеном
     res.clearCookie('jwt', {
       secure: true, // Должно совпадать с тем, как куки были установлены
-      httpOnly: true // Убедитесь, что httpOnly включён
+      httpOnly: true, // Убедитесь, что httpOnly включён
+      sameSite: 'None'
     });
     console.log('JWT after clearing cookie:', req.cookies.jwt);
     // Можем отправить подтверждение успешного разлогинивания
