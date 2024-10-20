@@ -126,9 +126,9 @@ module.exports.userRegistration = async (req, res, next) => {
 
 module.exports.userLogout = async (req, res, next) => {
   try {
+    console.log('jwt 1111111')
     // Удаляем куки с токеном
     res.clearCookie('jwt'); // Очищаем куки, где хранится JWT
-    
     // Можем отправить подтверждение успешного разлогинивания
     res.status(200).send({ message: 'User logged out successfully' });
   } catch (error) {

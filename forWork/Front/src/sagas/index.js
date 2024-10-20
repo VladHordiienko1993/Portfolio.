@@ -1,4 +1,4 @@
-import {takeEvery,takeLeading} from "redux-saga/effects";
+import {takeEvery} from "redux-saga/effects";
 import {createUserSaga} from "./userSaga";
 import { callBackGoogleSaga } from "./callBackGoogleSaga";
 import {userLogoutSaga} from './userLogoutSaga'
