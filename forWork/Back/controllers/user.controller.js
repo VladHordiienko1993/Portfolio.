@@ -129,6 +129,7 @@ module.exports.userLogout = async (req, res, next) => {
     
     req.session.destroy((err) => {
       if (err) {
+        console.error('Error destroying session:', err);
         return next(err); // Если есть ошибка при удалении сессии
       }})
 
