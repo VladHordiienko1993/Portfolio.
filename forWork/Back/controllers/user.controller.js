@@ -5,7 +5,7 @@ const generateAccessToken = require("../middlewares/secretKeyRandom");
 const { User } = require("../models");
 
 module.exports.checkSession = async (req, res) => {
-  // Получаем JWT токен из куков
+
   const token = req.cookies.jwt;
   console.log(`${token} он есть `)
   console.log(req.cookies);
@@ -15,18 +15,18 @@ module.exports.checkSession = async (req, res) => {
   }
 
   try {
-    // Проверяем валидность токена
+
     const decoded = jwt.verify(token, process.env.JWT_SECRET || "SECRET_KEY_RANDOM");
     console.log('Декодированный токен:', decoded);
     
-    // Ищем пользователя по ID, который мы получили из токена
+
     const user = await User.findOne({ where: { id: decoded.id } });
     console.log('Найденный пользователь:', user);
     if (!user) {
       return res.status(404).send({ message: 'User not found' });
     }
 
-    // Возвращаем полные данные о пользователе
+
     res.status(200).send({data: user});
   } catch (error) {
     console.error('Ошибка при проверке токена или поиске пользователя:', error);
@@ -36,28 +36,25 @@ module.exports.checkSession = async (req, res) => {
 
 
 
-
-//Please enter a valid email     Password is not valid'   res.status(201).send({data: user});
 module.exports.userLogin = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
-    // Поиск пользователя по email
+ 
     const user = await User.findOne({ where: { email } });
     if (!user) {
       return res.status(400).send({ message: 'Please enter a valid email' });
     }
 
-    // Проверка пароля
+
     const validPassword = await bcrypt.compare(password, user.password);
     if (!validPassword) {
       return res.status(400).send({ message: 'Password is not valid' });
     }
 
-    // Генерация JWT токена
+
     const token = generateAccessToken(user.id);
 
-    // Сохранение токена в httpOnly куки
     res.cookie('jwt', token, {
       httpOnly: true,
       secure: true,  // Использовать только по HTTPS (в продакшене) process.env.NODE_ENV === 'production'
@@ -113,7 +110,14 @@ module.exports.userRegistration = async (req, res, next) => {
       const error = createError(400, "Try again");
       next(error); 
     }
-    req.session.user = user;
+    const token = generateAccessToken(user.id);
+
+    res.cookie('jwt', token, {
+      httpOnly: true,
+      secure: true,  // Использовать только по HTTPS (в продакшене) process.env.NODE_ENV === 'production'
+      sameSite: 'None', // 'lax' тоже для локал 
+      maxAge: 24 * 60 * 60 * 1000  // 1 день
+    });
     res.status(201).send({ data: user });
   } catch (error) {
     next(error);
@@ -126,25 +130,16 @@ module.exports.userRegistration = async (req, res, next) => {
 
 module.exports.userLogout = async (req, res, next) => {
   try {
-    
-    // req.session.destroy((err) => {
-    //   if (err) {
-    //     console.error('Error destroying session:', err);
-    //     return next(err); // Если есть ошибка при удалении сессии
-    //   }})
-
-    console.log('jwt 1111111')
-    // Удаляем куки с токеном
     res.clearCookie('jwt', {
-      secure: true, // Должно совпадать с тем, как куки были установлены
-      httpOnly: true, // Убедитесь, что httpOnly включён
+      secure: true, 
+      httpOnly: true, 
       sameSite: 'None'
     });
     console.log('JWT after clearing cookie:', req.cookies.jwt);
-    // Можем отправить подтверждение успешного разлогинивания
+
     res.status(200).send({ message: 'User logged out successfully' });
   } catch (error) {
-    next(error); // Передаем ошибку в middleware обработки ошибок
+    next(error); 
   }
 };
 
