@@ -126,6 +126,12 @@ module.exports.userRegistration = async (req, res, next) => {
 
 module.exports.userLogout = async (req, res, next) => {
   try {
+    
+    req.session.destroy((err) => {
+      if (err) {
+        return next(err); // Если есть ошибка при удалении сессии
+      }})
+
     console.log('jwt 1111111')
     // Удаляем куки с токеном
     res.clearCookie('jwt', {
