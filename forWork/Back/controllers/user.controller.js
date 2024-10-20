@@ -127,11 +127,11 @@ module.exports.userRegistration = async (req, res, next) => {
 module.exports.userLogout = async (req, res, next) => {
   try {
     
-    req.session.destroy((err) => {
-      if (err) {
-        console.error('Error destroying session:', err);
-        return next(err); // Если есть ошибка при удалении сессии
-      }})
+    // req.session.destroy((err) => {
+    //   if (err) {
+    //     console.error('Error destroying session:', err);
+    //     return next(err); // Если есть ошибка при удалении сессии
+    //   }})
 
     console.log('jwt 1111111')
     // Удаляем куки с токеном
@@ -139,6 +139,7 @@ module.exports.userLogout = async (req, res, next) => {
       secure: true, // Должно совпадать с тем, как куки были установлены
       httpOnly: true // Убедитесь, что httpOnly включён
     });
+    console.log('JWT after clearing cookie:', req.cookies.jwt);
     // Можем отправить подтверждение успешного разлогинивания
     res.status(200).send({ message: 'User logged out successfully' });
   } catch (error) {
