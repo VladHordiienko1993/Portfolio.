@@ -1,6 +1,6 @@
 import {put} from "redux-saga/effects";
 import * as API from "../api/index";
-import { createUserError, signOutUser } from "../slices/userSlices";
+import { signOutSuccess, signOutError } from "../slices/userSlices";
 export function* userLogoutSaga(action){
 try {
   yield API.fetchUserLogout(action.payload);
