@@ -9,7 +9,9 @@ import LogoChoice from '../../logo/LogoChoice.jpg';
 const ChoiceRegistrationOption = () => {
 
 const google = ()=>{
-  window.open('http://localhost:3000/api/google/auth','_self');
+  //        https://portfolio-4jfj.onrender.com/api/google/auth
+  //        http://localhost:3000/api/google/auth
+  window.open(' https://portfolio-4jfj.onrender.com/api/google/auth','_self');
 }
 
 

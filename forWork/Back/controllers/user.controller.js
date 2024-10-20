@@ -97,8 +97,7 @@ module.exports.userRegistration = async (req, res, next) => {
     const { body, file} = req;
     const candidate = await User.findOne({where:{email: body.email}});
     if(candidate){
-      const error = createError(400,'User with this email already exists');
-      next(error);
+      return res.status(400).send({message: 'User with this email already exists'})
     }
     if (file) {
       body.imgPath = file.filename;
@@ -107,9 +106,9 @@ module.exports.userRegistration = async (req, res, next) => {
      body.password = hashPassword;
     const user = await User.create(body);
     if (!user) {
-      const error = createError(400, "Try again");
-      next(error); 
+      return res.status(400).send({message: "Try again"})
     }
+    
     const token = generateAccessToken(user.id);
 
     res.cookie('jwt', token, {
