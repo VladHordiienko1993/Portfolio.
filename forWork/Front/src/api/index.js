@@ -14,7 +14,7 @@ export const fetchGoogleCallBack = (data)=> httpClient.get('/google/auth/callBac
 
 export const fetchLoginUser = (data)=> httpClient.post("/users/login",data)
 
-export const fetchUserLogout = (data)=> httpClient.get("/logout");
+export const fetchUserLogout = (data)=> httpClient.post("/logout");
 
 export const fetchThemeGet = (data)=> httpClient.get("/theme/getTheme", data);
 

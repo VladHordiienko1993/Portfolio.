@@ -61,7 +61,7 @@ module.exports.userLogin = async (req, res, next) => {
     res.cookie('jwt', token, {
       httpOnly: true,
       secure: true,  // Использовать только по HTTPS (в продакшене) process.env.NODE_ENV === 'production'
-      sameSite: 'None', // 'lax'
+      sameSite: 'None', // 'lax' тоже для локал 
       maxAge: 24 * 60 * 60 * 1000  // 1 день
     });
 

@@ -4,7 +4,7 @@ const UserController = require('../../controllers/user.controller');
 
 const logout = Router();
 
-logout.get('/', UserController.userLogout);
+logout.post('/', UserController.userLogout);
 
 
 module.exports = logout;
