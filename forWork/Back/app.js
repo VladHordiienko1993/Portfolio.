@@ -7,8 +7,8 @@ const { errorHandler } = require("./middlewares/error.handler.mw");
 const passportGoogle = require('./passports/passportGoogle');
 
 const app = express();
-//http://localhost:3001
-//https://hordiienko1.netlify.app
+// http://localhost:3001
+// https://hordiienko1.netlify.app
 const corsOptions = {
   origin: process.env.FRONT_REMOTE_URL || 'http://localhost:3001',
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
