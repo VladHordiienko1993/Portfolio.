@@ -32,7 +32,7 @@ passport.deserializeUser((id,done)=>{
 passport.use(new OAuth2Strategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: '/api/google/auth/callBack',
+  callbackURL: 'https://portfolio-4jfj.onrender.com/api/google/auth/callBack',
   scope: ['profile','email']
   
 },(accessToken, refreshToken, profile, done)=>{
