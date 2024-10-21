@@ -8,8 +8,8 @@ const googleRouter = Router();
 
 googleRouter.get('/auth', passport.authenticate('google', {scope:['profile', 'email']}))
 googleRouter.get('/auth/callBack', passport.authenticate('google',{
-  successRedirect: 'http://localhost:3001/googleSuccess',
-  failureRedirect: 'http://localhost:3001/signUpPage'}));
+  successRedirect: 'https://hordiienko1.netlify.app/googleSuccess',
+  failureRedirect: 'https://hordiienko1.netlify.app/signUpPage'}));
   
   googleRouter.get('/auth/callBack/success', UserController.userGoogle);
 
