@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
+  "homepage": "https://hordiienko1.netlify.app/",
   "scripts": {
     "start": "set PORT=3001 && react-scripts start",
     "test": "echo \"Error: no test specified\" && exit 1",
