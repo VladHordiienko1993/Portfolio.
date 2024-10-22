@@ -76,16 +76,21 @@ module.exports.userLogin = async (req, res, next) => {
 module.exports.userGoogle = async (req,res,next)=>{
   try {
     const user = req.user;
+
     
     if(!user){
-      const error = createError(400,'Something Is Wrong Try Again');
-      next(error);
-    }
+      return  res.status(400).send({message: 'Something Is Wrong Try Again'})
+    };
+  
     const token = generateAccessToken(user.id);
-    user.token = token;
-    req.session.user = user;
+   res.cookie('jwt',token,{
+    httpOnly: true,
+      secure: true,  
+      sameSite: 'None', 
+      maxAge: 24 * 60 * 60 * 1000 
+   })
 
-    res.send({data:user}); 
+    res.status(201).send({data:user}); 
   } catch (error) {
     next(error)
   }
@@ -113,9 +118,9 @@ module.exports.userRegistration = async (req, res, next) => {
 
     res.cookie('jwt', token, {
       httpOnly: true,
-      secure: true,  // Использовать только по HTTPS (в продакшене) process.env.NODE_ENV === 'production'
-      sameSite: 'None', // 'lax' тоже для локал 
-      maxAge: 24 * 60 * 60 * 1000  // 1 день
+      secure: true,  
+      sameSite: 'None', 
+      maxAge: 24 * 60 * 60 * 1000 
     });
     res.status(201).send({ data: user });
   } catch (error) {

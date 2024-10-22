@@ -2,9 +2,8 @@ const passport = require("passport");
 const OAuth2Strategy = require("passport-google-oauth2").Strategy;
 const dotenv = require('dotenv');
 const { User } = require("../models");
-
-
 dotenv.config();
+
 
 
 passport.serializeUser((user, done)=>{
@@ -32,7 +31,9 @@ passport.deserializeUser((id,done)=>{
 passport.use(new OAuth2Strategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: 'https://portfolio-4jfj.onrender.com/api/google/auth/callBack',
+  callbackURL:  'https://portfolio-4jfj.onrender.com/api/google/auth/callBack',
+  //callbackURL: 'https://portfolio-4jfj.onrender.com/api/google/auth/callBack',
+  //http://localhost:3000/api/google/auth/callBack
   scope: ['profile','email']
   
 },(accessToken, refreshToken, profile, done)=>{
