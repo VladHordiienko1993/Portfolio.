@@ -78,6 +78,7 @@ module.exports.userGoogle = async (req,res,next)=>{
     const user = req.user;
     console.log(user);
     const userSession = req.session.user;
+    console.log(userSession)
     
     if(!user){
       return  res.status(400).send({message: 'Something Is Wrong Try Again'})
