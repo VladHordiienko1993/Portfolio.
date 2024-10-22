@@ -2,7 +2,7 @@ import axios from "axios";
 //https://portfolio-4jfj.onrender.com/api
 //http://localhost:3000/api
 const httpClient = axios.create({
-  baseURL: process.env.BACK_REMOTE_URL || "http://localhost:3000/api",
+  baseURL: process.env.REACT_APP_BACK_REMOTE_URL || "http://localhost:3000/api",
   withCredentials: true
 });
 
