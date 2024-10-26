@@ -17,6 +17,11 @@ const corsOptions = {
   credentials: true
 };
 
+
+app.use(cors(corsOptions))
+app.use(cookieParser());
+app.use(express.json());
+
 app.use(session({
   secret: process.env.SESSION_SECRET || 'yourSecretKey',
   resave: false,
@@ -28,13 +33,10 @@ app.use(session({
   }
 }));
 
-
-app.use(cors(corsOptions))
-app.use(passport.session());
 app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static('public'));
-app.use(express.json());
-app.use(cookieParser());
+
 app.use('/api', router);
 app.use(errorHandler);
 
