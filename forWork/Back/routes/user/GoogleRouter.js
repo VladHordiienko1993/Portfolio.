@@ -18,10 +18,11 @@ googleRouter.get('/auth/callBack',
     // const {user} = req.user;
     // console.log( `user1 ${user}`);
     //     console.log(`user into token ${req.user}`)
-    const user = req.user.dataValues
-    console.log( `user ${user}`)
+    // console.log( `user ${user}`)
 
-    const token = generateAccessToken(user.id); // Генерация JWT на основе пользователя
+    const { id } = req.user.dataValues;
+    console.log(`id User ${id}`)
+    const token = generateAccessToken(id);
 
     res.cookie('jwt',token,{
       httpOnly: true,
