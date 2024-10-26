@@ -14,6 +14,16 @@ googleRouter.get('/auth/callBack',
   }),
   (req, res) => {
     // Аутентификация успешна, создаем JWT и отправляем его в cookie или локальное хранилище
+        console.log(`user into token ${req.user}`)
+    const token = generateAccessToken(req.user); // Генерация JWT на основе пользователя
+
+    res.cookie('jwt',token,{
+      httpOnly: true,
+        secure: true,  
+        sameSite: 'None', 
+        maxAge: 24 * 60 * 60 * 1000 
+     })
+
     res.redirect('https://hordiienko1.netlify.app/googleSuccess');
   }
 );
