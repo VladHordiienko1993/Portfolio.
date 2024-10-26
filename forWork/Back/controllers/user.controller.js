@@ -78,7 +78,7 @@ module.exports.userGoogle = async (req,res,next)=>{
     const user = req.user;
     console.log(user);
     const token1 = req.cookies.jwt;
-    console.log( token1);
+    console.log( `токен в userGoogle  ${token1}`);
     if(!user){
       return  res.status(400).send({message: 'Something Is Wrong Try Again'})
     };
