@@ -75,7 +75,7 @@ module.exports.userLogin = async (req, res, next) => {
 
 module.exports.userGoogle = async (req,res,next)=>{
   try {
-    const user = req.user;
+    const user = req.user.id;
     console.log(user);
     const userSession = req.session.user;
     console.log(userSession)
