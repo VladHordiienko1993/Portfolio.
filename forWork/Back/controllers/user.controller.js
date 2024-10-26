@@ -74,27 +74,27 @@ module.exports.userLogin = async (req, res, next) => {
 
 
 module.exports.userGoogle = async (req,res,next)=>{
-  try {
-    const user = req.user;
-    console.log(user);
-    const token1 = req.cookies.jwt;
-    console.log( `токен в userGoogle  ${token1}`);
-    if(!user){
-      return  res.status(400).send({message: 'Something Is Wrong Try Again'})
-    };
+  // try {
+  //   const user = req.user;
+  //   console.log(user);
+  //   const token1 = req.cookies.jwt;
+  //   console.log( `токен в userGoogle  ${token1}`);
+  //   if(!user){
+  //     return  res.status(400).send({message: 'Something Is Wrong Try Again'})
+  //   };
   
-    const token = generateAccessToken(user.id);
-   res.cookie('jwt',token,{
-    httpOnly: true,
-      secure: true,  
-      sameSite: 'None', 
-      maxAge: 24 * 60 * 60 * 1000 
-   })
+  //   const token = generateAccessToken(user.id);
+  //  res.cookie('jwt',token,{
+  //   httpOnly: true,
+  //     secure: true,  
+  //     sameSite: 'None', 
+  //     maxAge: 24 * 60 * 60 * 1000 
+  //  })
 
-    res.status(201).send({data:user}); 
-  } catch (error) {
-    next(error)
-  }
+  //   res.status(201).send({data:user}); 
+  // } catch (error) {
+  //   next(error)
+  // }
 };
 
 
