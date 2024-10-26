@@ -75,10 +75,9 @@ module.exports.userLogin = async (req, res, next) => {
 
 module.exports.userGoogle = async (req,res,next)=>{
   try {
-    const user = req.user.id;
+    const user = req.user;
     console.log(user);
-    const userSession = req.session.user;
-    console.log(userSession)
+ 
     
     if(!user){
       return  res.status(400).send({message: 'Something Is Wrong Try Again'})
