@@ -42,7 +42,7 @@ app.use(errorHandler);
 
 
 
-// Этот маршрут должен быть последним
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../Front/build/index.html'));
 });

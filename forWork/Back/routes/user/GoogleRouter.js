@@ -14,12 +14,6 @@ googleRouter.get('/auth/callBack',
     failureRedirect: 'https://hordiienko1.netlify.app/signUpPage'
   }),
   (req, res) => {
-    // Аутентификация успешна, создаем JWT и отправляем его в cookie или локальное хранилище
-    // const {user} = req.user;
-    // console.log( `user1 ${user}`);
-    //     console.log(`user into token ${req.user}`)
-    // console.log( `user ${user}`)
-
     const { id } = req.user.dataValues;
     console.log(`id User ${id}`)
     const token = generateAccessToken(id);
@@ -30,12 +24,11 @@ googleRouter.get('/auth/callBack',
         sameSite: 'None', 
         maxAge: 24 * 60 * 60 * 1000 
      })
-
-    res.redirect('https://hordiienko1.netlify.app/googleSuccess');
+//googleSuccess
+    res.redirect('https://hordiienko1.netlify.app/');
   }
 );
 
-// Обработка успешного входа
 googleRouter.get('/auth/callBack/success', UserController.userGoogle);
 
 module.exports = googleRouter;
