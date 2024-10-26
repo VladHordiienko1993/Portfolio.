@@ -15,9 +15,12 @@ googleRouter.get('/auth/callBack',
   }),
   (req, res) => {
     // Аутентификация успешна, создаем JWT и отправляем его в cookie или локальное хранилище
-    const {user} = req.user;
-    console.log( `user1 ${user}`);
-        console.log(`user into token ${req.user}`)
+    // const {user} = req.user;
+    // console.log( `user1 ${user}`);
+    //     console.log(`user into token ${req.user}`)
+    const user = req.user.dataValues
+    console.log( `user ${user}`)
+
     const token = generateAccessToken(req.user); // Генерация JWT на основе пользователя
 
     res.cookie('jwt',token,{
