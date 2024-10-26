@@ -10,7 +10,7 @@ export const fetchCheckSessionUser = (data)=> httpClient.get("/checkSession");
 
 export const fetchCreateUser = (data)=> httpClient.post('/users/registration', data);
 
-export const fetchGoogleCallBack = (data)=> httpClient.get('/google/auth/callBack/success',data);
+// export const fetchGoogleCallBack = (data)=> httpClient.get('/google/auth/callBack/success',data);
 
 export const fetchLoginUser = (data)=> httpClient.post("/users/login",data)
 

@@ -32,19 +32,19 @@ const userSlice = createSlice({
       state.isFetching = false;
       state.error = action.payload;
     },
-    userGoogleRequest: (state,action)=>{
-      state.isFetching = true;
-      state.error = null;
-    },
-    userGoogleSuccess: (state,action)=>{
-      state.users = action.payload;
-      state.isFetching = false;
-      state.error = null;   
-    },
-    userGoogleError: (state,action)=>{
-      state.isFetching = false;
-      state.error = action.payload;
-    },
+    // userGoogleRequest: (state,action)=>{
+    //   state.isFetching = true;
+    //   state.error = null;
+    // },
+    // userGoogleSuccess: (state,action)=>{
+    //   state.users = action.payload;
+    //   state.isFetching = false;
+    //   state.error = null;   
+    // },
+    // userGoogleError: (state,action)=>{
+    //   state.isFetching = false;
+    //   state.error = action.payload;
+    // },
     requestSignOutUser: (state,action)=>{
       state.isFetching = true;
       state.error = null;
@@ -84,5 +84,5 @@ const userSlice = createSlice({
 });
 
 
-export const {createUserRequest,createUserSuccess,createUserError,userGoogleRequest,userGoogleSuccess,userGoogleError, requestSignOutUser,signOutSuccess,signOutError,sessionUserRequest,sessionSuccess,sessionError} = userSlice.actions;
+export const {createUserRequest,createUserSuccess,createUserError, requestSignOutUser,signOutSuccess,signOutError,sessionUserRequest,sessionSuccess,sessionError} = userSlice.actions;
 export default userSlice.reducer;

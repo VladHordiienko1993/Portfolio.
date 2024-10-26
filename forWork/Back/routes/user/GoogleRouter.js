@@ -29,6 +29,6 @@ googleRouter.get('/auth/callBack',
   }
 );
 
-googleRouter.get('/auth/callBack/success', UserController.userGoogle);
+// googleRouter.get('/auth/callBack/success', UserController.userGoogle);
 
 module.exports = googleRouter;
