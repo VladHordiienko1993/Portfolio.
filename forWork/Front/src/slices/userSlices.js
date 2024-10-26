@@ -32,19 +32,6 @@ const userSlice = createSlice({
       state.isFetching = false;
       state.error = action.payload;
     },
-    // userGoogleRequest: (state,action)=>{
-    //   state.isFetching = true;
-    //   state.error = null;
-    // },
-    // userGoogleSuccess: (state,action)=>{
-    //   state.users = action.payload;
-    //   state.isFetching = false;
-    //   state.error = null;   
-    // },
-    // userGoogleError: (state,action)=>{
-    //   state.isFetching = false;
-    //   state.error = action.payload;
-    // },
     requestSignOutUser: (state,action)=>{
       state.isFetching = true;
       state.error = null;

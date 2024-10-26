@@ -10,8 +10,6 @@ export const fetchCheckSessionUser = (data)=> httpClient.get("/checkSession");
 
 export const fetchCreateUser = (data)=> httpClient.post('/users/registration', data);
 
-// export const fetchGoogleCallBack = (data)=> httpClient.get('/google/auth/callBack/success',data);
-
 export const fetchLoginUser = (data)=> httpClient.post("/users/login",data)
 
 export const fetchUserLogout = (data)=> httpClient.post("/logout/");
@@ -19,7 +17,6 @@ export const fetchUserLogout = (data)=> httpClient.post("/logout/");
 export const fetchThemeGet = (data)=> httpClient.get("/theme/getTheme", data);
 
 export const fetchThemeUpdate = (data)=> httpClient.patch("/theme/updateTheme", data);
-
 
 
 export const fetchCreateChat = (data)=> httpClient.post('/chat',data);

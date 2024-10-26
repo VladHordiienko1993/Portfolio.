@@ -74,27 +74,21 @@ module.exports.userLogin = async (req, res, next) => {
 
 
 module.exports.userGoogle = async (req,res,next)=>{
-  // try {
-  //   const user = req.user;
-  //   console.log(user);
-  //   const token1 = req.cookies.jwt;
-  //   console.log( `токен в userGoogle  ${token1}`);
-  //   if(!user){
-  //     return  res.status(400).send({message: 'Something Is Wrong Try Again'})
-  //   };
-  
-  //   const token = generateAccessToken(user.id);
-  //  res.cookie('jwt',token,{
-  //   httpOnly: true,
-  //     secure: true,  
-  //     sameSite: 'None', 
-  //     maxAge: 24 * 60 * 60 * 1000 
-  //  })
+  try {
+    const { id } = req.user.dataValues;
+    console.log(`id User ${id}`)
+    const token = generateAccessToken(id);
 
-  //   res.status(201).send({data:user}); 
-  // } catch (error) {
-  //   next(error)
-  // }
+    res.cookie('jwt',token,{
+      httpOnly: true,
+        secure: true,  
+        sameSite: 'None', 
+        maxAge: 24 * 60 * 60 * 1000 
+     })
+    res.redirect('https://hordiienko1.netlify.app/');
+  } catch (error) {
+    next(error)
+  }
 };
 
 
