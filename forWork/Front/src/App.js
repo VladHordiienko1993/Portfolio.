@@ -5,6 +5,7 @@ import { ThemeContext, UserContext } from "./context";
 import { useSetClassName, useAuth } from "./hooks";
 import Header from "./components/Header";
 import Footer from './components/Footer/index';
+import Spinner from './components/Spinner/Spinner';
 const HomePage = lazy(() => import("./pages/HomePage"));
 const SignUpPage = lazy(() => import("./pages/SignUpPage"));
 const SignUpWithEmail = lazy(()=>import('./pages/SignUpWithEmailPage'));
@@ -15,9 +16,9 @@ const App = () => {
   return (
     <UserContext.Provider value={{useAuth}}>
     <ThemeContext.Provider value={{ useSetClassName }}>
-      <BrowserRouter>
+      <BrowserRouter> <Suspense fallback={<Spinner/>}>
         <Header />
-        <Suspense fallback={<div>Loading...</div>}>
+       
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/signUpPage" element={<SignUpPage />} />
@@ -25,8 +26,8 @@ const App = () => {
             <Route path='/logIn' element={<LogInPage/>} />
             <Route path='/chat' element={<ChatPage/>} />
           </Routes>
-        </Suspense>
-        <Footer/>
+       
+        <Footer/> </Suspense>
       </BrowserRouter>
     </ThemeContext.Provider>
     </UserContext.Provider>

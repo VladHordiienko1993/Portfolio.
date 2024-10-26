@@ -1,0 +1,39 @@
+
+.spinnerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  transition: background-color 0.3s ease;
+
+  &.darkPage {
+    background: linear-gradient(to bottom, #1a1a1a 50%, #181A20 56%);
+    color: cornsilk;
+  }
+
+  &.lightPage {
+    background: linear-gradient(to bottom, #f1f1f1 0%, #f3f3f3 76%);
+    color: #000000;
+  }
+}
+
+// Анимация спиннера
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 6px solid rgba(0, 0, 0, 0.1);
+  border-top-color: currentColor; // Подстроится под цвет текста
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

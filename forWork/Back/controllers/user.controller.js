@@ -7,8 +7,7 @@ const { User } = require("../models");
 module.exports.checkSession = async (req, res) => {
 
   const token = req.cookies.jwt;
-  console.log(`${token} он есть `)
-  console.log(req.cookies);
+
 
   if (!token) {
     return res.status(401).send({ message: 'Not authenticated' });
