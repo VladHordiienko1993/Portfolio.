@@ -1,26 +1,27 @@
-
-.container{
-  height: 100%;
+.container {
+  height: 100%; /* Высота контейнера на весь экран */
   display: flex;
-  justify-content: center;
-  
+  justify-content: center; /* Центрируем по горизонтали */
+  // align-items: center; /* Центрируем по вертикали */
+  padding: 20px; /* Добавляем внутренние отступы */
+  box-sizing: border-box; /* Учитываем отступы при расчете ширины */
 }
-.form{
-  width: 600px;
-  height: 350px;
+
+.form {
+  width: 600px; /* Ширина для больших экранов */
+  height: 350px; /* Высота формы */
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 80px;
+  margin-top: 80px; /* Отступ сверху */
 }
-.label{
-  height: 85px;
-  width: 200px;
+
+.label {
+  height: 85px; /* Высота для меток */
+  width: 200px; /* Ширина меток */
   display: flex;
   flex-direction: column;
 }
-
-
 
 .inputBox {
   position: relative;
@@ -32,11 +33,15 @@
   border: 1px solid #ee8456;
   font-size: 1em;
   transition: 0.4s cubic-bezier(0.05, 0.81, 0, 0.93);
+  width: 100%; /* Ширина 100% для адаптивности */
+  box-sizing: border-box; /* Учитываем отступы */
 }
+
 .inputBox::placeholder {
   color: #999;
   transition: 0.4s cubic-bezier(0.05, 0.81, 0, 0.93);
 }
+
 .inputBox:focus::placeholder {
   position: absolute;
   font-size: 0.7em;
@@ -49,71 +54,102 @@
   color: #999; /* Сохраняем цвет текста подсказки */
 }
 
-
-.btnSubmit{
-width: 235px;
-padding: 15px 20px;
-border: none;
-border-radius: 5px;
-background: #FCD535;
-color: inherit;
-cursor: pointer;
-font-size: 20px;
-}
-.btnSubmit:hover{
-background: #fcd435a7;
+.btnSubmit {
+  width: 235px; /* Ширина кнопки */
+  padding: 15px 20px;
+  border: none;
+  border-radius: 5px;
+  background: #FCD535;
+  color: inherit;
+  cursor: pointer;
+  font-size: 20px;
+  margin-top: 10px; /* Отступ сверху */
 }
 
-
-.errorMessage{
-bottom: 10px;
-font-size: 14px;
+.btnSubmit:hover {
+  background: #fcd435a7;
 }
 
+.errorMessage {
+  bottom: 10px;
+  font-size: 14px;
+}
 
-.notValidEmail{
-  position: absolute;
-  bottom: 440px;
-  left: 510px;
+.notValidEmail, .notValidPassword {
   color: rgba(255, 0, 0, 0.699);
   font-size: 13px;
 }
-.notValidPassword{
-  position: absolute;
-  bottom: 358px;
-  left: 510px;
-  color: rgba(255, 0, 0, 0.699);
-  font-size: 13px;
-}
-
-
-
-.containerforTextLogin{
+.containerforTextLogin {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 390px;
-  height: 200px;
-  margin-top: 75px;
+  flex-direction: column; /* Изменяем направление на колонку для текста */
+  justify-content: center; /* Выровняем по началу */
+  // align-items: flex-start; /* Выровняем содержимое по левому краю */
+  width: 390px; /* Ширина для больших экранов */
+  height: 200px; /* Высота для больших экранов */
+  margin-top: 75px; /* Отступ сверху */
   color: #FCD535;
   padding: 12px;
   border-radius: 8px;
   background-color: rgba(255, 255, 255, 0.8); /* Полупрозрачный белый фон */
-  color: #000000; /* Чёрный текст по умолчанию */
-  text-align: center;
+  color: #000000; /* Чёрный текст */
   font-weight: bold;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Лёгкая тень для контраста */
 }
 
-.textOfLogin{
+
+.textOfLogin {
   display: block;
-  justify-content: left;
-  font-size: 1px;
-  width: 260px;
-  font: inherit;
+  font-size: 1em; /* Размер шрифта по умолчанию */
+  width: 100%; /* Ширина текста 100% для адаптивности */
+  text-align: center; /* Устанавливаем выравнивание текста влево */
+}
+.textOfLogin p {
+  margin-left: 0px; /* Убираем стандартные отступы у параграфов */
+  padding-left: 0; /* Убираем отступ слева для выравнивания */
+}
+.textOfLogin p:nth-of-type(2) {
+  padding-left: 55px;
 }
 
-.textOfLogin > :nth-child(3){
-  margin-right:50px;
+/* Медиазапрос для мобильных устройств */
+@media (max-width: 768px) {
+  .container {
+    height: 100vh; /* Высота контейнера на весь экран */
+    flex-direction: column; /* Меняем направление на колонку */
+    padding: 20px; /* Внутренние отступы */
+  }
+
+  .form {
+    width: 90%; /* Ширина для мобильных устройств */
+    max-width: 600px; /* Максимальная ширина для больших экранов */
+    height: auto; /* Высота по содержимому */
+    margin-top: 20px; /* Уменьшаем отступ сверху */
+  }
+
+  .label {
+    width: 100%; /* Ширина для мобильных устройств */
+  }
+
+  .inputBox {
+    width: 100%; /* Ширина для мобильных устройств */
+  }
+
+  .btnSubmit {
+    width: 100%; /* Ширина 100% для кнопки на мобильных устройствах */
+    max-width: 235px; /* Максимальная ширина для кнопки */
+  }
+  .containerforTextLogin {
+    flex-direction: column; /* Переключаем на колонку для мобильных */
+    width: 90%; /* Ширина для мобильных устройств */
+    max-width: 390px; /* Максимальная ширина для больших экранов */
+    height: auto; /* Высота по содержимому */
+    margin-top: 0px; /* Уменьшаем отступ сверху */
+    margin-bottom: 20px;
+  }
+  .textOfLogin {
+    font-size: 0.9em; /* Уменьшаем размер шрифта на мобильных */
+  }
 }
+
+
+
