@@ -38,23 +38,13 @@ const VidioForHome = () => {
   <span className={styles.googleLetter6}>E</span>
 </h2>
 
-
-
-
              <Link to="/signUpPage"><button className={styles.btnSignUp}><img className={styles.logoBtn} src={LogoBtn} />Sign Up</button></Link>
 
-
              </div> }
-          
 
           <p className={styles.textOfVidio}>Watch a video about website management and don’t forget to register to try out the Chat, Movie library, or Todo List.</p>
-
-
-
       </div>
-
     <div className={styles.containerVidio}>Here is must to be vidio</div>
-
   </div>
   )
 };
