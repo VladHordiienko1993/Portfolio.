@@ -49,7 +49,7 @@ const Header = () => {
          {isAuth  ?  <ul className={styles.containerUl}>
            <Link to='/chat'><li className={`${styles.linkNav} ${styles.generalHover}`}>Chat</li></Link>
            <Link><li className={`${styles.linkNav} ${styles.generalHover}`}>Movie Library</li></Link>
-           <Link><li className={`${styles.linkNav} ${styles.generalHover}`}>Todo List</li></Link>
+           {/* <Link><li className={`${styles.linkNav} ${styles.generalHover}`}>Todo List</li></Link> */}
          </ul> : ''}        
        </nav>
 
