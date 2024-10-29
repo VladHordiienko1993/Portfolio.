@@ -69,7 +69,7 @@ const ChatWindow = () => {
   
  
   
-      <div className={styles.divDiv}>
+      <div className={styles.windowForChat}>
         {messages.map((message) => {
           const isCurrentUser = message.userId === activeUserid;
           
@@ -86,17 +86,6 @@ let bot;
           }
 
           return (
-          //   <div key={message.id} className={messageClass}>
-             
-          //    <h2 className={styles.textMessage} ><img  className={styles.imgUser} 
-          //    src={ 
-          //      message.userId === user.id ? (user.imgPath || LogoUser) :
-          //        message.userId === 2 ? LogoRobot2 :
-          //       message.userId === 3 ? LogoRobot1 : null}
-          //        alt="User Avatar"
-          //  />{message.text}</h2> 
-          //   </div>
-
 
 <div key={message.id} className={messageClass}>
   {console.log(activeUserid)}

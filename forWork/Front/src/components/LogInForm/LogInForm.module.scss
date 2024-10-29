@@ -116,6 +116,7 @@
   .container {
     height: 100vh; /* Высота контейнера на весь экран */
     flex-direction: column; /* Меняем направление на колонку */
+    margin-left: 30px;
     padding: 20px; /* Внутренние отступы */
   }
 

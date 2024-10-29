@@ -32,3 +32,9 @@ html, body {
   height: 100%; 
   overflow-x: hidden; 
 }
+
+* {
+  box-sizing: border-box; /* Устанавливаем box-sizing для всех элементов */
+  margin: 0;
+  padding: 0;
+}

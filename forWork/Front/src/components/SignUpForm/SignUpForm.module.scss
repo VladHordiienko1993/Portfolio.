@@ -1,81 +1,202 @@
 
-  .container{
-    height: 100%;
-    display: flex;
-    justify-content: center;
+//   .container{
+//     height: 100%;
+//     display: flex;
+//     justify-content: center;
     
-  }
-  .form{
-    width: 600px;
-    height: 350px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 80px;
-  }
-  .label{
-    height: 85px;
-    width: 200px;
-    display: flex;
-    flex-direction: column;
-  }
+//   }
+//   .form{
+//     width: 600px;
+//     height: 350px;
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     margin-top: 80px;
+//   }
+//   .label{
+//     height: 85px;
+//     width: 200px;
+//     display: flex;
+//     flex-direction: column;
+//   }
 
  
  
-  .inputBox {
-    position: relative;
-    padding: 15px 20px;
-    outline: none;
-    background: transparent;
-    border-radius: 5px;
-    color: inherit;
-    border: 1px solid #ee8456;
-    font-size: 1em;
-    transition: 0.4s cubic-bezier(0.05, 0.81, 0, 0.93);
+//   .inputBox {
+//     position: relative;
+//     padding: 15px 20px;
+//     outline: none;
+//     background: transparent;
+//     border-radius: 5px;
+//     color: inherit;
+//     border: 1px solid #ee8456;
+//     font-size: 1em;
+//     transition: 0.4s cubic-bezier(0.05, 0.81, 0, 0.93);
+// }
+// .inputBox::placeholder {
+//     color: #999;
+//     transition: 0.4s cubic-bezier(0.05, 0.81, 0, 0.93);
+// }
+// .inputBox:focus::placeholder {
+//     position: absolute;
+//     font-size: 0.7em;
+//     transform: translateX(1px) translateY(-7.5px);
+//     padding: 0 5px;
+//     border-radius: 2px;
+//     background: #212121;
+//     letter-spacing: 0em;
+//     border: 1px solid #ee8456;
+//     color: #999; /* Сохраняем цвет текста подсказки */
+// }
+
+
+// .btnSubmit{
+//   width: 235px;
+//   margin-top: 20px;
+//   padding: 15px 20px;
+//   border: none;
+//   border-radius: 5px;
+//   background: #FCD535;
+//   color: inherit;
+//   cursor: pointer;
+//   transition: background-color 0.3s;
+//   font-size: 20px;
+// }
+// .btnSubmit:hover{
+//   background: #fcd435a7;
+// }
+
+
+// .errorMessage{
+//   bottom: 10px;
+//   font-size: 14px;
+// }
+
+// .notValidEmail{
+//   position: absolute;
+//   bottom: 310px;
+//   left: 507px;
+//   color: rgba(255, 0, 0, 0.699);
+//   font-size: 13px;
+// }
+
+
+
+.container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
 }
+
+.form {
+  width: 600px;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 80px;
+}
+
+.label {
+  height: 85px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.inputBox {
+  position: relative;
+  padding: 15px 20px;
+  outline: none;
+  background: transparent;
+  border-radius: 5px;
+  color: inherit;
+  border: 1px solid #ee8456;
+  font-size: 1em;
+  transition: 0.4s cubic-bezier(0.05, 0.81, 0, 0.93);
+}
+
 .inputBox::placeholder {
-    color: #999;
-    transition: 0.4s cubic-bezier(0.05, 0.81, 0, 0.93);
+  color: #999;
+  transition: 0.4s cubic-bezier(0.05, 0.81, 0, 0.93);
 }
+
 .inputBox:focus::placeholder {
-    position: absolute;
-    font-size: 0.7em;
-    transform: translateX(1px) translateY(-7.5px);
-    padding: 0 5px;
-    border-radius: 2px;
-    background: #212121;
-    letter-spacing: 0em;
-    border: 1px solid #ee8456;
-    color: #999; /* Сохраняем цвет текста подсказки */
+  position: absolute;
+  font-size: 0.7em;
+  transform: translateX(1px) translateY(-7.5px);
+  padding: 0 5px;
+  border-radius: 2px;
+  background: #212121;
+  letter-spacing: 0em;
+  border: 1px solid #ee8456;
+  color: #999;
 }
 
-
-.btnSubmit{
+.btnSubmit {
   width: 235px;
   margin-top: 20px;
   padding: 15px 20px;
   border: none;
   border-radius: 5px;
-  background: #FCD535;
+  background: #fcd535;
   color: inherit;
   cursor: pointer;
   transition: background-color 0.3s;
   font-size: 20px;
 }
-.btnSubmit:hover{
+
+.btnSubmit:hover {
   background: #fcd435a7;
 }
 
-
-.errorMessage{
+.errorMessage {
   bottom: 10px;
   font-size: 14px;
 }
 
-.notValidEmail{
+.notValidEmail {
   position: absolute;
   bottom: 310px;
   left: 507px;
   color: rgba(255, 0, 0, 0.699);
   font-size: 13px;
+}
+
+/* Медиазапрос для маленьких экранов */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  .form {
+    width: 90%; /* Устанавливаем ширину формы на 90% экрана */
+    height: auto; /* Делаем высоту авто, чтобы она подстраивалась под контент */
+    margin-top: 20px; /* Уменьшаем верхний отступ */
+  }
+
+  .label {
+    width: 100%; /* Устанавливаем ширину label на 100% */
+    height: auto; /* Высота по содержимому */
+    margin-bottom: 15px; /* Увеличиваем отступ между полями */
+  }
+
+  .inputBox {
+    padding: 12px 15px; /* Уменьшаем padding для меньших экранов */
+    font-size: 0.9em; /* Уменьшаем шрифт */
+  }
+
+  .btnSubmit {
+    width: 100%; /* Делаем кнопку на всю ширину формы */
+    max-width: 250px; /* Максимальная ширина */
+    padding: 12px 20px; /* Уменьшаем padding */
+    font-size: 18px; /* Уменьшаем размер шрифта */
+  }
+
+  .notValidEmail {
+    position: static; /* Убираем фиксированное позиционирование */
+    color: rgba(255, 0, 0, 0.7); /* Подстраиваем цвет */
+    text-align: center; /* Центрируем текст */
+    margin-top: 10px;
+  }
 }

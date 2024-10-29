@@ -1,14 +1,31 @@
 const {Chat,User,UserChat,Message} = require("../models");
 const createError = require('http-errors')
+const jwt = require('jsonwebtoken');
+
 module.exports.createChatWithBots = async (req, res, next) => {
+
+    const token = req.cookies.jwt;
+    
+    if (!token) {
+      return res.status(401).send({ message: 'Not authenticated' });
+    }
+
+
   try {
-    const { user } = req.session;
+ 
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || "SECRET_KEY_RANDOM");
+    console.log('Декодированный токен:', decoded);
+    
+
+    const user = await User.findOne({ where: { id: decoded.id } });
+    console.log('Найденный пользователь:', user);
+    if (!user || !user.id) {
+      return res.status(404).send({ message: 'User not found' });
+    }
+
+    console.log(`тут ${user}`)
     const botIds = [2, 3];
 
-    if(!user || !user.id){
-        // return next(createError(401),'User Not authenticated')
-        return res.status(401).send({error: 'User Not authenticated'})
-    }
 
     // Проверка, существует ли уже чат, где данный пользователь является владельцем
     const existingChat = await Chat.findOne({
@@ -17,7 +34,7 @@ module.exports.createChatWithBots = async (req, res, next) => {
 
     if (existingChat) {
       // Если чат существует, возвращаем информацию о существующем чате
-      // console.log(existingChat.id)
+      console.log(existingChat.id)
       return res.status(200).send({data: existingChat.id,message:'OK'});
     }
 

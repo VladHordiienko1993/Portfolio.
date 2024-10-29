@@ -1,116 +1,168 @@
-.container{
+.container {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: row;
-  // background-color: red;
 }
 
-.containerForm{
+.containerForm {
   width: 50%;
   display: flex;
   flex-direction: column;
-  // align-items: center;
   margin-top: 8em;
-  // padding-left: 5em;
-  // background-color: red;
-
 }
-.containerImg{
+
+.containerImg {
   width: 50%;
   display: flex;
   margin-top: 8em;
 }
 
-.textWelcome{
+.textWelcome {
   font-size: 2em;
   margin-bottom: 40px;
   margin-left: 5em;
 }
 
-.btnSingUp{
+.btnSingUp {
   width: 350px;
   height: 45px;
   display: flex;
-  align-items:center;
-  margin-left:160px;
+  align-items: center;
+  margin-left: 160px;
   border: none;
   border-radius: 5px;
-  background: #FCD535;
+  background: #fcd535;
   color: inherit;
   font-size: 18px;
   transition: background-color 0.3s;
   cursor: pointer;
 }
-.btnSingUp:hover{
+
+.btnSingUp:hover {
   background: #fcd435a7;
 }
-.iconPassKey{
+
+.iconPassKey {
   width: 22px;
   height: 22px;
   margin-left: 5px;
   margin-right: 62px;
 }
-.textOr{
+
+.textOr {
   display: flex;
   align-items: center;
   margin-left: 160px;
   font-size: 15px;
 }
-.textOr::before{
-  content:'-----------------------------------------------------------------------------------------------------------------------------------------------';
-  margin-right: 25px;
+
+.textOr::before,
+.textOr::after {
+  content: '-----------------------------------------------------------------------------------------------------------------------------------------------';
   font-size: 3px;
   font-weight: bold;
+}
 
+.textOr::before {
+  margin-right: 25px;
 }
-.textOr::after{
-  content:'-----------------------------------------------------------------------------------------------------------------------------------------------';
-  margin-left:  25px;
-  font-size: 3px;
-  font-weight: bold; 
+
+.textOr::after {
+  margin-left: 25px;
 }
-.btnGoogle{
+
+.btnGoogle {
   width: 350px;
   height: 45px;
   display: flex;
-  align-items:center;
-  margin-left:160px;
+  align-items: center;
+  margin-left: 160px;
   border: none;
   border-radius: 5px;
-  background-color: #474D57;
+  background-color: #474d57;
   color: inherit;
   font-size: 18px;
   transition: background-color 0.3s;
   cursor: pointer;
 }
-.iconGoogle{
+
+.iconGoogle {
   width: 20px;
   height: 20px;
   margin-left: 5px;
   margin-right: 62px;
 }
-.btnGoogle:hover{
+
+.btnGoogle:hover {
   background-color: #3b3e42;
 }
 
-.textWrapperforLink{
+.textWrapperforLink {
   margin-left: 160px;
   margin-top: 30px;
-  color: #474D57;
+  color: #474d57;
   font-size: 15px;
-  
 }
-.textLink{
- margin-left: 5px;
- color:  #FCD535;
- font-style: normal;
+
+.textLink {
+  margin-left: 5px;
+  color: #fcd535;
+  font-style: normal;
 }
-.textLink:hover{
+
+.textLink:hover {
   text-decoration: underline;
 }
 
-.LogoChoice{
+.LogoChoice {
   width: 80%;
   height: 80%;
+}
+
+/* Медиазапрос для маленьких экранов */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Переключаем на вертикальное размещение */
+    align-items: center;
+  }
+
+  .containerForm {
+    width: 90%; /* Увеличиваем ширину формы для мобильных */
+    margin-top: 2em; /* Уменьшаем отступ сверху */
+  }
+
+  .textWelcome {
+    font-size: 1.5em; /* Уменьшаем размер текста */
+    margin-left: 0; /* Убираем левый отступ */
+    text-align: center; /* Центрируем текст */
+  }
+
+  .btnSingUp,
+  .btnGoogle {
+    width: 100%; /* Делаем кнопки на 100% ширины */
+    margin-left: 0; /* Убираем левый отступ */
+  }
+
+  .textOr {
+    margin-left: 0; /* Убираем отступы */
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .textOr::before,
+  .textOr::after {
+    content: '------------------------------'; /* Сокращаем линии */
+    font-size: 3px;
+    font-weight: bold;
+  }
+
+  .textWrapperforLink {
+    margin-left: 0; /* Центрируем текст */
+    text-align: center;
+  }
+
+  .containerImg {
+    display: none; /* Скрываем изображение для мобильных */
+  }
 }

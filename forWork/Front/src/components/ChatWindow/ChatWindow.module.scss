@@ -7,49 +7,53 @@
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  height: 80%;
+  min-height: 100vh; /* Заставляет контейнер занимать всю высоту экрана */
   background-image: url('../../logo/LogoSpace.jfif');
-  background-size:cover;
+  background-size: cover;
   color: inherit;
-
 }
-.textPage{
+
+.textPage {
   color: white;
   margin: auto;
 }
-.divDiv {
+
+.windowForChat {
   display: flex;
   flex-direction: column;
-  width: 1000px;
-  max-height: 800px;
-  padding-bottom: 60px;
-  overflow-y: auto;
+  width: 100%;
+  max-width: 1000px;
+  max-height: 300px;
+  min-height: 60vh; /* Минимальная высота для заполнения экрана */
+  padding-bottom: 20px;
+  overflow-y: auto; /* Вертикальная прокрутка */
   overflow-x: hidden;
+  flex-grow: 1;
+  background-color: rgba(0, 0, 0, 0.5); /* Цвет фона */
+  border-radius: 8px;
 
-  /* Стили для полос прокрутки Webkit (Chrome, Safari) */
+  /* Уменьшаем ширину прокрутки */
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #5a5a5a #2a2a2a; /* Firefox */
+
+  /* Webkit (Chrome, Safari) */
   ::-webkit-scrollbar {
-    width: 12px; /* Ширина вертикальной полосы прокрутки */
-    height: 12px; /* Высота горизонтальной полосы прокрутки */
+    width: 8px; /* Сделаем полосу тоньше */
   }
 
   ::-webkit-scrollbar-track {
-    background: #2a2a2a; /* Цвет фона трека прокрутки */
-    border-radius: 10px; /* Радиус скругления трека */
+    background: #2a2a2a;
+    border-radius: 10px;
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: #3a3a3a; /* Цвет "ползунка" полосы прокрутки */
-    border-radius: 10px; /* Радиус скругления "ползунка" */
-    border: 3px solid #2a2a2a; /* Полоса вокруг "ползунка" */
+    background-color: #5a5a5a;
+    border-radius: 10px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background-color: #5a5a5a; /* Цвет "ползунка" при наведении */
+    background-color: #7a7a7a; /* Цвет "ползунка" при наведении */
   }
-
-  /* Стили для полос прокрутки Firefox */
-  scrollbar-width: thin; /* Толщина полосы прокрутки */
-  scrollbar-color: #3a3a3a #2a2a2a; /* Цвет "ползунка" и трека */
 }
 
 .message {
@@ -66,7 +70,6 @@
   font-size: 12px;
 }
 
-
 .currentUser {
   align-self: flex-start;
   background-color: #181917;
@@ -76,8 +79,6 @@
   align-self: flex-end;
   background-color: rgba(27, 27, 28, 0.4);
 }
-
-
 
 .currentUser::after {
   left: 100%;
@@ -120,9 +121,9 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
   background-color: #594040;
-
 }
-.wrapperButtons{
+
+.wrapperButtons {
   display: flex;
   justify-content: space-around;
   width: 400px;
@@ -130,13 +131,12 @@ input[type="submit"]:hover {
   margin-bottom: 10px;
 }
 
-
 .buttonUser {
   display: flex;
-  flex-direction:column;
-  align-items:center;
+  flex-direction: column;
+  align-items: center;
   padding: 8px 16px;
-  background-color: rgba(0, 0, 0, 0.5);   
+  background-color: rgba(0, 0, 0, 0.5);
   color: white;
   border: none;
   border-radius: 5px;
@@ -144,12 +144,9 @@ input[type="submit"]:hover {
   transition: background-color 0.3s;
 }
 
-
 .buttonUser:hover {
   background-color: #3a2838;
 }
-
-
 
 .messageContainer {
   display: flex;
@@ -174,25 +171,21 @@ input[type="submit"]:hover {
   white-space: nowrap; /* Предотвращает перенос времени на новую строку */
 }
 
-
-.imgUser{
-   margin-right: 8px;
-   margin-bottom: 5px;
-   position: relative;
-    width: 35px;
-    height: 35px;
-    border-radius: 50px;
-    cursor: pointer;
-    background-size: cover;
-    background-position: center; 
-  
+.imgUser {
+  margin-right: 8px;
+  margin-bottom: 5px;
+  position: relative;
+  width: 35px;
+  height: 35px;
+  border-radius: 50px;
+  cursor: pointer;
+  background-size: cover;
+  background-position: center; 
 }
 
-
-
-.inputWrapper{
+.inputWrapper {
   display: flex;
- margin-left: 240px;
+  margin-left: 240px;
   height: 36px;
   flex: 0.7;
   padding: 1px;
@@ -206,4 +199,73 @@ input[type="submit"]:hover {
   font-size: 16px;
 }
 
+/* Медиа-запросы для маленьких экранов */
+@media (max-width: 768px) {
+  .windowForChat {
+    max-height: 200px; /* Уменьшаем высоту чата для мобильных устройств */
+    min-height: 50vh; /* Обеспечиваем большую минимальную высоту */
+    padding-bottom: 5px;
+  }
 
+  .wrapperButtons {
+    width: 100%; /* Ширина кнопок на 100% */
+  }
+
+  .inputWrapper {
+    margin-left: 0; /* Убираем отступ слева */
+    width: 100%; /* Увеличиваем ширину ввода */
+  }
+
+  .message {
+    width: 90%; /* Увеличиваем ширину сообщения для мобильных устройств */
+    font-size: 14px; /* Увеличиваем размер шрифта */
+  }
+
+  .textPage {
+    font-size: 16px; /* Увеличиваем размер шрифта текста страницы */
+  }
+
+
+  .message {
+    display: block;
+    margin: 5px;
+    padding: 8px 16px; /* Уменьшено отступы внутри сообщения */
+    border-radius: 15px; /* Уменьшен радиус скругления */
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    position: relative;
+    color: cornsilk;
+    flex-shrink: 0;
+    width: 60%; 
+    font-size: 11px; /* Уменьшен размер шрифта */
+  }
+  
+  .imgUser {
+    margin-right: 6px; /* Уменьшены отступы */
+    margin-bottom: 5px;
+    position: relative;
+    width: 30px; /* Уменьшен размер иконки */
+    height: 30px; /* Уменьшен размер иконки */
+    border-radius: 50px;
+    cursor: pointer;
+    background-size: cover;
+    background-position: center; 
+  }
+  
+  .inputWrapper {
+    display: flex;
+    // margin-left: 160px; /* Уменьшен отступ слева для мобильных устройств */
+    height: 32px; /* Уменьшена высота ввода */
+    flex: 0.7;
+    padding: 1px;
+    border: 2px solid #ccc;
+    border-radius: 15px; /* Уменьшен радиус скругления */
+    margin-right: 10px;
+    outline: none;
+    border: none;
+    background-color: #3a2838;
+    color: cornsilk;
+    font-size: 14px; /* Уменьшен размер шрифта */
+  }
+
+}
