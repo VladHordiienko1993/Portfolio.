@@ -292,13 +292,12 @@ input[type="submit"]:hover {
 
   .windowForChat {
     width: 100%;
-    min-height: 50vh;
-    max-height: 60vh;
-    padding-bottom: 8px;
-    overflow-y: auto;
+    min-height: 60vh;
+    height: 100%;  /* Занимает всё доступное пространство */
+    overflow-y: auto; /* Включаем вертикальную прокрутку */
     overflow-x: hidden;
     border-radius: 5px;
-    background-color: rgba(0, 0, 0, 0.7); /* Затемненный фон для улучшенной читабельности */
+    background-color: rgba(0, 0, 0, 0.7); /* Затемненный фон для читабельности */
   }
 
   .wrapperButtons {
