@@ -274,3 +274,107 @@ input[type="submit"]:hover {
     font-size: 13px; /* Меньший шрифт */
   }
 }
+
+@media (max-width: 414px) {
+  .container {
+    padding: 8px;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .textPage {
+    font-size: 14px;
+    padding: 4px;
+    text-align: center;
+  }
+
+  .windowForChat {
+    width: 100%;
+    min-height: 50vh;
+    max-height: 60vh;
+    padding-bottom: 8px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.7); /* Затемненный фон для улучшенной читабельности */
+  }
+
+  .wrapperButtons {
+    width: 100%;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+  }
+
+  .buttonUser {
+    margin: 3px;
+    padding: 6px 8px;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+  }
+
+  .message {
+    width: 85%;
+    padding: 6px 10px;
+    margin: 3px 0;
+    border-radius: 8px;
+    font-size: 13px;
+  }
+
+  .currentUser {
+    align-self: flex-start;
+    background-color: #181917;
+  }
+
+  .otherUser {
+    align-self: flex-end;
+    background-color: rgba(27, 27, 28, 0.4);
+  }
+
+  .imgUser {
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+  }
+
+  .messageContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .textMessage {
+    font-size: 13px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .timestamp {
+    font-size: 10px;
+    color: #888;
+    margin-left: 8px;
+    white-space: nowrap;
+  }
+
+  .inputWrapper {
+    width: 100%;
+    padding: 6px;
+    border-radius: 8px;
+    background-color: #3a2838;
+  }
+
+  .input[type="text"] {
+    font-size: 12px;
+    padding: 6px;
+    width: 100%;
+  }
+
+  input[type="submit"] {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}
