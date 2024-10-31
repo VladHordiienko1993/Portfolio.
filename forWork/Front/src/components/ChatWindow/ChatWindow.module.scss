@@ -199,7 +199,7 @@ input[type="submit"]:hover {
   color: cornsilk;
   font-size: 16px;
 }
-@media (max-width: 768px) {
+@
   .container {
     padding: 10px;
     width: 100%;
@@ -272,108 +272,82 @@ input[type="submit"]:hover {
   input[type="submit"] {
     padding: 6px 12px; /* Уменьшенный размер кнопки */
     font-size: 13px; /* Меньший шрифт */
-  }
-}
+  
 
-@media (max-width: 414px) {
+
+@media (max-width: 768px) {
   .container {
-    padding: 8px;
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .textPage {
-    font-size: 14px;
-    padding: 4px;
-    text-align: center;
+    padding: 5px; /* Уменьшенный отступ */
   }
 
   .windowForChat {
-    width: 100%;
-    min-height: 60vh;
-    height: 100%;  /* Занимает всё доступное пространство */
-    overflow-y: auto; /* Включаем вертикальную прокрутку */
-    overflow-x: hidden;
-    border-radius: 5px;
-    background-color: rgba(0, 0, 0, 0.7); /* Затемненный фон для читабельности */
-  }
-
-  .wrapperButtons {
-    width: 100%;
-    flex-wrap: wrap;
-    margin-bottom: 6px;
-  }
-
-  .buttonUser {
-    margin: 3px;
-    padding: 6px 8px;
-    font-size: 11px;
-    display: flex;
-    align-items: center;
+    max-width: 100%; /* Полная ширина экрана */
+    max-height: 50vh; /* Уменьшенная высота окна чата */
+    padding-bottom: 5px;
   }
 
   .message {
-    width: 85%;
-    padding: 1px 1px;
-    margin: 1px 0;
-    border-radius: 8px;
-    font-size: 8px;
+    margin: 2px; /* Минимальный отступ */
+    padding: 4px 8px; /* Уменьшенные внутренние отступы */
+    border-radius: 10px;
+    font-size: 10px; /* Уменьшенный размер шрифта */
+    width: 70%; /* Оптимальная ширина для мобильного экрана */
   }
 
   .currentUser {
-    align-self: flex-start;
     background-color: #181917;
   }
 
   .otherUser {
-    align-self: flex-end;
     background-color: rgba(27, 27, 28, 0.4);
+  }
+
+  .form {
+    margin-top: 5px;
+  }
+
+  .input[type="text"] {
+    font-size: 10px; /* Уменьшенный размер шрифта */
+    padding: 4px; /* Уменьшенные внутренние отступы */
+  }
+
+  input[type="submit"] {
+    padding: 4px 8px; /* Уменьшенные отступы */
+    font-size: 10px;
+    border-radius: 10px;
+  }
+
+  .wrapperButtons {
+    width: 100%; /* Полная ширина */
+    height: 50px;
+  }
+
+  .buttonUser {
+    padding: 4px 8px;
+    font-size: 10px;
+    border-radius: 4px;
+  }
+
+  .messageContainer {
+    width: 100%;
+  }
+
+  .textMessage {
+    font-size: 10px;
+  }
+
+  .timestamp {
+    font-size: 8px;
+    margin-left: 4px;
   }
 
   .imgUser {
     width: 20px;
     height: 20px;
-    margin-right: 4px;
-  }
-
-  .messageContainer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 30%;
-  }
-
-  .textMessage {
-    font-size: 13px;
-    margin: 0;
-    display: flex;
-    align-items: center;
-  }
-
-  .timestamp {
-    font-size: 10px;
-    color: #888;
-    margin-left: 8px;
-    white-space: nowrap;
   }
 
   .inputWrapper {
-    width: 100%;
-    padding: 6px;
-    border-radius: 8px;
-    background-color: #3a2838;
-  }
-
-  .input[type="text"] {
-    font-size: 12px;
-    padding: 6px;
-    width: 100%;
-  }
-
-  input[type="submit"] {
-    padding: 6px 10px;
+    height: 26px;
     font-size: 12px;
   }
 }
