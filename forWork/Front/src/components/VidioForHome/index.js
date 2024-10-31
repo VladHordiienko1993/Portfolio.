@@ -42,7 +42,7 @@ const VidioForHome = () => {
 
              </div> }
 
-          <p className={styles.textOfVidio}>Watch a video about website management and don’t forget to register to try out the Chat, Movie library, or Todo List.</p>
+          <p className={styles.textOfVidio}>Watch a video about website management and don’t forget to register to try out the Chat or Movie library</p>
       </div>
     <div className={styles.containerVidio}>Here is must to be vidio</div>
   </div>

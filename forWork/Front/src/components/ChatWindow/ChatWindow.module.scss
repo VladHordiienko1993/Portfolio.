@@ -201,72 +201,147 @@ input[type="submit"]:hover {
 }
 
 /* Медиа-запросы для маленьких экранов */
+// @media (max-width: 768px) {
+//   .windowForChat {
+//     max-height: 200px; /* Уменьшаем высоту чата для мобильных устройств */
+//     min-height: 50vh; /* Обеспечиваем большую минимальную высоту */
+//     padding-bottom: 5px;
+//   }
+
+//   .wrapperButtons {
+//     width: 100%; /* Ширина кнопок на 100% */
+//   }
+
+//   .inputWrapper {
+//     margin-left: 0; /* Убираем отступ слева */
+//     width: 100%; /* Увеличиваем ширину ввода */
+//   }
+
+//   .message {
+//     width: 90%; /* Увеличиваем ширину сообщения для мобильных устройств */
+//     font-size: 14px; /* Увеличиваем размер шрифта */
+//   }
+
+//   .textPage {
+//     font-size: 16px; /* Увеличиваем размер шрифта текста страницы */
+//   }
+
+
+//   .message {
+//     display: block;
+//     margin: 5px;
+//     padding: 8px 16px; /* Уменьшено отступы внутри сообщения */
+//     border-radius: 15px; /* Уменьшен радиус скругления */
+//     word-wrap: break-word;
+//     white-space: pre-wrap;
+//     position: relative;
+//     color: cornsilk;
+//     flex-shrink: 0;
+//     width: 60%; 
+//     font-size: 11px; /* Уменьшен размер шрифта */
+//   }
+  
+//   .imgUser {
+//     margin-right: 6px; /* Уменьшены отступы */
+//     margin-bottom: 5px;
+//     position: relative;
+//     width: 30px; /* Уменьшен размер иконки */
+//     height: 30px; /* Уменьшен размер иконки */
+//     border-radius: 50px;
+//     cursor: pointer;
+//     background-size: cover;
+//     background-position: center; 
+//   }
+  
+//   .inputWrapper {
+//     display: flex;
+//     // margin-left: 160px; /* Уменьшен отступ слева для мобильных устройств */
+//     height: 32px; /* Уменьшена высота ввода */
+//     flex: 0.7;
+//     padding: 1px;
+//     border: 2px solid #ccc;
+//     border-radius: 15px; /* Уменьшен радиус скругления */
+//     margin-right: 10px;
+//     outline: none;
+//     border: none;
+//     background-color: #3a2838;
+//     color: cornsilk;
+//     font-size: 14px; /* Уменьшен размер шрифта */
+//   }
+
+// }
 @media (max-width: 768px) {
+  .container {
+    padding: 10px;
+    width: 100%;
+    min-height: 100vh; /* Убедимся, что контейнер растягивается на всю высоту экрана */
+    display: flex;
+    flex-direction: column;
+  }
+
   .windowForChat {
-    max-height: 200px; /* Уменьшаем высоту чата для мобильных устройств */
-    min-height: 50vh; /* Обеспечиваем большую минимальную высоту */
-    padding-bottom: 5px;
-  }
-
-  .wrapperButtons {
-    width: 100%; /* Ширина кнопок на 100% */
-  }
-
-  .inputWrapper {
-    margin-left: 0; /* Убираем отступ слева */
-    width: 100%; /* Увеличиваем ширину ввода */
-  }
-
-  .message {
-    width: 90%; /* Увеличиваем ширину сообщения для мобильных устройств */
-    font-size: 14px; /* Увеличиваем размер шрифта */
+    max-width: 100%;
+    min-height: 50vh; /* Увеличенная минимальная высота */
+    max-height: 60vh; /* Установка максимальной высоты */
+    padding-bottom: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .textPage {
-    font-size: 16px; /* Увеличиваем размер шрифта текста страницы */
+    font-size: 14px; /* Уменьшение шрифта для мобильных устройств */
+    padding: 10px;
+    text-align: center;
   }
 
+  .wrapperButtons {
+    width: 100%;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+
+  .buttonUser {
+    flex: 1 1 45%; /* Две кнопки в строке */
+    margin: 5px;
+    font-size: 14px;
+  }
 
   .message {
-    display: block;
-    margin: 5px;
-    padding: 8px 16px; /* Уменьшено отступы внутри сообщения */
-    border-radius: 15px; /* Уменьшен радиус скругления */
-    word-wrap: break-word;
-    white-space: pre-wrap;
-    position: relative;
-    color: cornsilk;
-    flex-shrink: 0;
-    width: 60%; 
-    font-size: 11px; /* Уменьшен размер шрифта */
-  }
-  
-  .imgUser {
-    margin-right: 6px; /* Уменьшены отступы */
-    margin-bottom: 5px;
-    position: relative;
-    width: 30px; /* Уменьшен размер иконки */
-    height: 30px; /* Уменьшен размер иконки */
-    border-radius: 50px;
-    cursor: pointer;
-    background-size: cover;
-    background-position: center; 
-  }
-  
-  .inputWrapper {
-    display: flex;
-    // margin-left: 160px; /* Уменьшен отступ слева для мобильных устройств */
-    height: 32px; /* Уменьшена высота ввода */
-    flex: 0.7;
-    padding: 1px;
-    border: 2px solid #ccc;
-    border-radius: 15px; /* Уменьшен радиус скругления */
-    margin-right: 10px;
-    outline: none;
-    border: none;
-    background-color: #3a2838;
-    color: cornsilk;
-    font-size: 14px; /* Уменьшен размер шрифта */
+    width: 85%;
+    font-size: 12px;
+    padding: 8px 14px;
+    margin: 5px 0;
+    border-radius: 12px;
   }
 
+  .currentUser,
+  .otherUser {
+    width: fit-content;
+    font-size: 12px;
+  }
+
+  .imgUser {
+    width: 25px;
+    height: 25px;
+    margin-right: 6px;
+  }
+
+  .inputWrapper {
+    width: 100%;
+    margin: 0 auto;
+    padding: 6px;
+    border-radius: 15px;
+    font-size: 14px;
+  }
+
+  .input[type="text"] {
+    font-size: 14px;
+    padding: 8px;
+    width: 100%;
+  }
+
+  input[type="submit"] {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
 }
