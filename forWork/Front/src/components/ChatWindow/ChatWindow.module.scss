@@ -199,149 +199,78 @@ input[type="submit"]:hover {
   color: cornsilk;
   font-size: 16px;
 }
-
-/* Медиа-запросы для маленьких экранов */
-// @media (max-width: 768px) {
-//   .windowForChat {
-//     max-height: 200px; /* Уменьшаем высоту чата для мобильных устройств */
-//     min-height: 50vh; /* Обеспечиваем большую минимальную высоту */
-//     padding-bottom: 5px;
-//   }
-
-//   .wrapperButtons {
-//     width: 100%; /* Ширина кнопок на 100% */
-//   }
-
-//   .inputWrapper {
-//     margin-left: 0; /* Убираем отступ слева */
-//     width: 100%; /* Увеличиваем ширину ввода */
-//   }
-
-//   .message {
-//     width: 90%; /* Увеличиваем ширину сообщения для мобильных устройств */
-//     font-size: 14px; /* Увеличиваем размер шрифта */
-//   }
-
-//   .textPage {
-//     font-size: 16px; /* Увеличиваем размер шрифта текста страницы */
-//   }
-
-
-//   .message {
-//     display: block;
-//     margin: 5px;
-//     padding: 8px 16px; /* Уменьшено отступы внутри сообщения */
-//     border-radius: 15px; /* Уменьшен радиус скругления */
-//     word-wrap: break-word;
-//     white-space: pre-wrap;
-//     position: relative;
-//     color: cornsilk;
-//     flex-shrink: 0;
-//     width: 60%; 
-//     font-size: 11px; /* Уменьшен размер шрифта */
-//   }
-  
-//   .imgUser {
-//     margin-right: 6px; /* Уменьшены отступы */
-//     margin-bottom: 5px;
-//     position: relative;
-//     width: 30px; /* Уменьшен размер иконки */
-//     height: 30px; /* Уменьшен размер иконки */
-//     border-radius: 50px;
-//     cursor: pointer;
-//     background-size: cover;
-//     background-position: center; 
-//   }
-  
-//   .inputWrapper {
-//     display: flex;
-//     // margin-left: 160px; /* Уменьшен отступ слева для мобильных устройств */
-//     height: 32px; /* Уменьшена высота ввода */
-//     flex: 0.7;
-//     padding: 1px;
-//     border: 2px solid #ccc;
-//     border-radius: 15px; /* Уменьшен радиус скругления */
-//     margin-right: 10px;
-//     outline: none;
-//     border: none;
-//     background-color: #3a2838;
-//     color: cornsilk;
-//     font-size: 14px; /* Уменьшен размер шрифта */
-//   }
-
-// }
 @media (max-width: 768px) {
   .container {
     padding: 10px;
     width: 100%;
-    min-height: 100vh; /* Убедимся, что контейнер растягивается на всю высоту экрана */
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
   }
 
   .windowForChat {
     max-width: 100%;
-    min-height: 50vh; /* Увеличенная минимальная высота */
-    max-height: 60vh; /* Установка максимальной высоты */
+    min-height: 40vh; /* Сниженная минимальная высота */
+    max-height: 55vh; /* Сниженная максимальная высота */
     padding-bottom: 10px;
     overflow-y: auto;
     overflow-x: hidden;
+    border-radius: 5px;
   }
 
   .textPage {
-    font-size: 14px; /* Уменьшение шрифта для мобильных устройств */
-    padding: 10px;
+    font-size: 13px; /* Меньший шрифт */
+    padding: 8px;
     text-align: center;
   }
 
   .wrapperButtons {
     width: 100%;
     flex-wrap: wrap;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
 
   .buttonUser {
-    flex: 1 1 45%; /* Две кнопки в строке */
+    // flex: 1 1 45%; /* Две кнопки в строке */
     margin: 5px;
-    font-size: 14px;
+    padding: 6px 10px; /* Уменьшенный отступ */
+    font-size: 12px; /* Меньший шрифт */
   }
 
   .message {
-    width: 85%;
-    font-size: 12px;
-    padding: 8px 14px;
-    margin: 5px 0;
-    border-radius: 12px;
+    width: 80%; /* Уменьшена ширина сообщения */
+    padding: 6px 12px; /* Уменьшенные отступы */
+    margin: 4px 0;
+    border-radius: 10px;
   }
 
   .currentUser,
   .otherUser {
     width: fit-content;
-    font-size: 12px;
+    font-size: 8px; /* Меньший шрифт */
   }
 
   .imgUser {
-    width: 25px;
-    height: 25px;
-    margin-right: 6px;
+    width: 22px; /* Уменьшен размер иконки */
+    height: 22px;
+    margin-right: 5px;
   }
 
   .inputWrapper {
     width: 100%;
     margin: 0 auto;
-    padding: 6px;
-    border-radius: 15px;
-    font-size: 14px;
+    padding: 5px;
+    border-radius: 12px;
   }
 
   .input[type="text"] {
-    font-size: 14px;
-    padding: 8px;
+    font-size: 13px; /* Меньший шрифт */
+    padding: 6px;
     width: 100%;
   }
 
   input[type="submit"] {
-    padding: 8px 16px;
-    font-size: 14px;
+    padding: 6px 12px; /* Уменьшенный размер кнопки */
+    font-size: 13px; /* Меньший шрифт */
   }
 }
