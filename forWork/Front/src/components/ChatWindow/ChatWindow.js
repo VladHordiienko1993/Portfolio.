@@ -49,37 +49,16 @@ const ChatWindow = () => {
     formikBag.resetForm();
   };
 
-  // useEffect(() => {
-  //   scrollToBottom();
-  // }, [messages]);
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
-  // const scrollToBottom = () => {
-  //   setTimeout(() => {
-  //     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  //   }, 100); 
-  // };
+  const scrollToBottom = () => {
+    setTimeout(() => {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 100); 
+  };
 
-
-  // const scrollToBottom = () => {
-  //   const chatContainer = document.getElementById("windowForChat");
-  //   if (chatContainer) {
-  //     chatContainer.scrollTop = chatContainer.scrollHeight;
-  //   }
-  // };
-  
-  // useEffect(() => {
-  //   scrollToBottom();
-  
-  //   // Прокрутка при изменении размеров
-  //   const handleResize = () => scrollToBottom();
-  //   window.addEventListener("resize", handleResize);
-  //   window.addEventListener("load", scrollToBottom);
-  
-  //   return () => {
-  //     window.removeEventListener("resize", handleResize);
-  //     window.removeEventListener("load", scrollToBottom);
-  //   };
-  // }, [messages]);
   
   
   return (
@@ -112,7 +91,6 @@ let bot;
           return (
 
 <div key={message.id} className={messageClass}>
-  {console.log(activeUserid)}
   <div className={styles.messageContainer}>
     <h2 className={styles.textMessage}>
       <img

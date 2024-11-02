@@ -28,7 +28,8 @@
   overflow-y: auto;
   overflow-x: hidden;
   border-radius: 5px;
-
+  background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон */
+  border-radius: 8px; /* Опционально: скругленные углы */
 
 
 
@@ -204,69 +205,35 @@ input[type="submit"]:hover {
 }
 
 
-@media (max-width: 414px) {
+@media (max-width: 768px) {
   .container {
+    display: flex;
     padding: 10px; /* Уменьшение отступов */
   }
 
   .textPage {
-    font-size: 14px; /* Уменьшение размера шрифта */
+    font-size: 13px; /* Уменьшение размера шрифта */
   }
 
-  .windowForChat {
-    min-height: 40vh; /* Минимальная высота чата */
-    max-height: 55vh; /* Максимальная высота чата */
-    padding-bottom: 10px; /* Уменьшение отступа снизу */
-  }
 
-  .message {
-    padding: 4px 8px; /* Уменьшение отступов внутри сообщения */
-    font-size: 10px; /* Размер шрифта */
-    width: 80%; /* Ширина сообщения */
-  }
-
-  .currentUser {
-    align-self: flex-start;
-    margin-left: 20px; /* Сокращение отступа слева */
-    background-color: #181917;
-  }
-
-  .otherUser {
-    align-self: flex-end;
-    margin-right: 20px; /* Сокращение отступа справа */
-    background-color: rgba(27, 27, 28, 0.4);
-  }
-
-  .form {
-    margin-top: 5px; /* Уменьшение отступа сверху */
-  }
-
-  .input[type="text"] {
-    font-size: 11px; /* Уменьшение размера шрифта */
-  }
-
-  input[type="submit"] {
-    padding: 6px 10px; /* Уменьшение отступов */
-    font-size: 12px; /* Уменьшение размера шрифта */
-  }
 
   .wrapperButtons {
     display: flex;
     justify-content: space-around; /* Распределяем кнопки равномерно */
-    width: 100%; /* Ширина кнопок 100% */
+    width: 70%; /* Ширина кнопок 100% */
     flex-wrap: wrap; /* Перенос кнопок на новую строку */
-    margin-bottom: 10px; /* Отступ снизу */
+    margin-bottom: 3px; /* Отступ снизу */
   }
 
   .buttonUser {
     display: flex;
     flex-direction: column; /* Вертикальное расположение кнопок */
     align-items: center;
-    padding: 6px 12px; /* Уменьшение отступов */
-    font-size: 12px; /* Уменьшение размера шрифта */
+    padding: 1px 2px; /* Уменьшение отступов */
+    font-size: 11px; /* Уменьшение размера шрифта */
     margin: 5px; /* Увеличение отступа между кнопками */
     flex: 1; /* Даем кнопкам равные размеры */
-    max-width: 80px; /* Устанавливаем максимальную ширину для кнопок */
+    max-width: 65px; /* Устанавливаем максимальную ширину для кнопок */
     background-color: rgba(255, 255, 255, 0.166); /* Полупрозрачный фон */
     color: white; /* Цвет текста */
     border: none; /* Убираем рамки */
@@ -278,6 +245,44 @@ input[type="submit"]:hover {
   .buttonUser:hover {
     background-color: #3a2838; /* Цвет при наведении */
   }
+  .imgUser {
+    margin-right: 8px;
+    margin-bottom: 5px;
+    position: relative;
+    width: 20px; /* Уменьшение размера изображения пользователя */
+    height: 20px; /* Уменьшение размера изображения пользователя */
+    border-radius: 50px; /* Сглаживание изображения */
+  }
+
+
+
+
+
+
+  .windowForChat {
+    min-height: 40vh; /* Минимальная высота чата */
+    max-height: 60vh; /* Максимальная высота чата */
+    padding-bottom: 5px; /* Уменьшение отступа снизу */
+  }
+
+  .message {
+    padding: 4px 8px; /* Уменьшение отступов внутри сообщения */
+    font-size: 10px; /* Размер шрифта */
+    width: 95%; /* Ширина сообщения */
+  }
+
+  .currentUser {
+    align-self: flex-start;
+    // margin-left: 20px; /* Сокращение отступа слева */
+    background-color: #181917;
+  }
+
+  .otherUser {
+    align-self: flex-end;
+    // margin-right: 20px; /* Сокращение отступа справа */
+    background-color: rgba(27, 27, 28, 0.4);
+  }
+
 
   .messageContainer {
     display: flex;
@@ -292,7 +297,7 @@ input[type="submit"]:hover {
     margin: 0;
     word-break: break-word; 
     flex: 1;
-  }
+  } 
 
   .timestamp {
     font-size: 8px; /* Уменьшение размера шрифта для времени */
@@ -302,15 +307,32 @@ input[type="submit"]:hover {
     white-space: nowrap; /* Предотвращает перенос времени на новую строку */
   }
 
-  .imgUser {
-    margin-right: 8px;
-    margin-bottom: 5px;
-    position: relative;
-    width: 25px; /* Уменьшение размера изображения пользователя */
-    height: 25px; /* Уменьшение размера изображения пользователя */
-    border-radius: 50px; /* Сглаживание изображения */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .form {
+    margin-top: 5px; /* Уменьшение отступа сверху */
   }
 
+  .input[type="text"] {
+    font-size: 11px; /* Уменьшение размера шрифта */
+  }
+
+  input[type="submit"] {
+    padding: 6px 10px; /* Уменьшение отступов */
+    font-size: 12px; /* Уменьшение размера шрифта */
+  }
   .inputWrapper {
     display: flex;
     margin-left: 0; /* Убрать отступ слева */
