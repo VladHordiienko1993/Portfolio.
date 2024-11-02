@@ -6,48 +6,25 @@ const { User } = require("../models");
 
 module.exports.checkSession = async (req, res) => {
 
-  // const token = req.cookies.jwt;
+  const token = req.cookies.jwt;
 
-
-  // if (!token) {
-  //   return res.status(401).send({ message: 'Not authenticated' });
-  // }
-
-  // try {
-
-  //   const decoded = jwt.verify(token, process.env.JWT_SECRET || "SECRET_KEY_RANDOM");
-  //   console.log('Декодированный токен:', decoded);
-    
-
-  //   const user = await User.findOne({ where: { id: decoded.id } });
-  //   console.log('Найденный пользователь:', user);
-  //   if (!user) {
-  //     return res.status(404).send({ message: 'User not found' });
-  //   }
-
-
-  //   res.status(200).send({data: user});
-  // } catch (error) {
-  //   console.error('Ошибка при проверке токена или поиске пользователя:', error);
-  //   return res.status(401).send({ message: 'Invalid token' });
-  // }
-
-
-  const token = req.headers.authorization && req.headers.authorization.split(' ')[1]; // Получаем токен из заголовка
 
   if (!token) {
     return res.status(401).send({ message: 'Not authenticated' });
   }
 
   try {
+
     const decoded = jwt.verify(token, process.env.JWT_SECRET || "SECRET_KEY_RANDOM");
     console.log('Декодированный токен:', decoded);
+    
 
     const user = await User.findOne({ where: { id: decoded.id } });
     console.log('Найденный пользователь:', user);
     if (!user) {
       return res.status(404).send({ message: 'User not found' });
     }
+
 
     res.status(200).send({data: user});
   } catch (error) {
@@ -85,7 +62,7 @@ module.exports.userLogin = async (req, res, next) => {
     });
 
     // Отправляем основные данные пользователя клиенту
-    res.status(201).send({data: user,token});
+    res.status(201).send({data: user});
 
   } catch (error) {
     next(error);
