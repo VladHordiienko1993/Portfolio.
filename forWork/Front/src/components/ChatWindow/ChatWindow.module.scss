@@ -181,8 +181,8 @@ input[type="submit"]:hover {
   margin-right: 8px;
   margin-bottom: 5px;
   position: relative;
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   border-radius: 50px;
   cursor: pointer;
   background-size: cover;
@@ -269,18 +269,19 @@ input[type="submit"]:hover {
   .message {
     padding: 4px 8px; /* Уменьшение отступов внутри сообщения */
     font-size: 10px; /* Размер шрифта */
-    width: 5%; /* Ширина сообщения */
+    width: 45%; /* Ширина сообщения */
+
   }
 
   .currentUser {
     align-self: flex-start;
-    margin-left: 2px; /* Сокращение отступа слева */
+    margin-left: 5px; /* Сокращение отступа слева */
     background-color: #181917;
   }
 
   .otherUser {
     align-self: flex-end;
-    margin-right: 2px; /* Сокращение отступа справа */
+    margin-right: 5px; /* Сокращение отступа справа */
     background-color: rgba(27, 27, 28, 0.4);
   }
 
@@ -298,6 +299,8 @@ input[type="submit"]:hover {
     margin: 0;
     word-break: break-word; 
     flex: 1;
+    font-size: 11px;
+
   } 
 
   .timestamp {
@@ -307,10 +310,6 @@ input[type="submit"]:hover {
     margin-top: 26px;
     white-space: nowrap; /* Предотвращает перенос времени на новую строку */
   }
-
-
-
-
 
 
 
