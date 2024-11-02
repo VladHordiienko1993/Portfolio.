@@ -49,14 +49,38 @@ const ChatWindow = () => {
     formikBag.resetForm();
   };
 
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+  // useEffect(() => {
+  //   scrollToBottom();
+  // }, [messages]);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-  };
+  // const scrollToBottom = () => {
+  //   setTimeout(() => {
+  //     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  //   }, 100); 
+  // };
 
+
+  // const scrollToBottom = () => {
+  //   const chatContainer = document.getElementById("windowForChat");
+  //   if (chatContainer) {
+  //     chatContainer.scrollTop = chatContainer.scrollHeight;
+  //   }
+  // };
+  
+  // useEffect(() => {
+  //   scrollToBottom();
+  
+  //   // Прокрутка при изменении размеров
+  //   const handleResize = () => scrollToBottom();
+  //   window.addEventListener("resize", handleResize);
+  //   window.addEventListener("load", scrollToBottom);
+  
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //     window.removeEventListener("load", scrollToBottom);
+  //   };
+  // }, [messages]);
+  
   
   return (
     <div className={styles.container}> 
@@ -69,7 +93,7 @@ const ChatWindow = () => {
   
  
   
-      <div className={styles.windowForChat}>
+      <div className={styles.windowForChat} id="windowForChat">
         {messages.map((message) => {
           const isCurrentUser = message.userId === activeUserid;
           
