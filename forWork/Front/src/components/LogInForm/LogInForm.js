@@ -14,21 +14,25 @@ const LogInForm = () => {
  
 
   
-  const onSubmit = async(values, formikBag) => {
-    const {data:{data: user}} = await API.fetchLoginUser(values)
-          .catch((err)=>{
-            if(err && err.message){
-              dispatch(createUserError(err.request.status))
-            }
-          })
+  const onSubmit = async (values, formikBag) => {
+    try {
+        const response = await API.fetchLoginUser(values);
+        const { data: { data: user }, token } = response; // предполагается, что токен будет возвращен от сервера
 
-          if(user){
-            dispatch(createUserSuccess(user))
+        if (user) {
+            // Сохраните токен в localStorage
+            localStorage.setItem('jwtToken', token);
 
-            formikBag.resetForm()
-            push('/')
-          }
-  };
+            dispatch(createUserSuccess(user));
+            formikBag.resetForm();
+            push('/'); // Перенаправление после успешного входа
+        }
+    } catch (err) {
+        if (err && err.message) {
+            dispatch(createUserError(err.request.status));
+        }
+    }
+};
 
   return (
     <div className={styles.container}>

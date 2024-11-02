@@ -6,7 +6,14 @@ const httpClient = axios.create({
   withCredentials: true
 });
 
-export const fetchCheckSessionUser = (data)=> httpClient.get("/checkSession");
+// export const fetchCheckSessionUser = (data)=> httpClient.get("/checkSession");
+export const fetchCheckSessionUser = (token) => {
+  return httpClient.get("/checkSession", {
+    headers: {
+      Authorization: `Bearer ${token}` // Добавляем токен в заголовок
+    }
+  });
+};
 
 export const fetchCreateUser = (data)=> httpClient.post('/users/registration', data);
 
